@@ -17,13 +17,6 @@ namespace gameNS
 	const COLOR_ARGB FONT_COLOR = SETCOLOR_ARGB(255, 255, 15, 15);    // white
 }
 
-namespace gameNS
-{
-	const char FONT[] = "Courier New";  // font
-	const int POINT_SIZE = 30;          // point size
-	const COLOR_ARGB FONT_COLOR = SETCOLOR_ARGB(255, 255, 15, 15);    // white
-}
-
 class Game
 {
 protected:

@@ -24,7 +24,7 @@ void StartingMenu::initialize(HWND hwnd)
 
     mainChara.setY(100);
     mainChara.setX(40);
-    mainChara.setScale(0.5);
+    mainChara.setScale(0.5, 0.5);
     graphics->setBackColor(graphicsNS::WHITE);
 
     // initialize DirectX fonts

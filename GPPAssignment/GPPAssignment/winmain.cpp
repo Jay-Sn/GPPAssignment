@@ -46,7 +46,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
     MSG	 msg;
 
     //Create the game, sets up message handler
-    game = new StartingMenu;
+    game = new PFantasy;
 
     // Create the window
     if (!CreateMainWindow(hwnd, hInstance, nCmdShow))
