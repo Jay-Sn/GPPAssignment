@@ -150,6 +150,7 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="pfantasy.cpp" />
+    <ClCompile Include="textDX.cpp" />
     <ClCompile Include="texturemanager.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
@@ -161,6 +162,8 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="pfantasy.h" />
+    <ClInclude Include="StartingMenu.h" />
+    <ClInclude Include="textDX.h" />
     <ClInclude Include="texturemanager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
