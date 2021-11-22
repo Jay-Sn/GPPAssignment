@@ -6,7 +6,8 @@ Image::Image() {
 	spriteData.height = 2;
 	spriteData.x = 0.0;
 	spriteData.y = 0.0;
-	spriteData.scale = 1.0;
+	spriteData.scaleX = 1.0;
+	spriteData.scaleY = 1.0;
 	spriteData.angle = 0.0;
 	spriteData.rect.left = 0;	//used to select one frame from multi-frame image
 
