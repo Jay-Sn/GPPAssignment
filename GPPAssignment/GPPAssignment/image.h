@@ -37,11 +37,12 @@ public:
 	virtual bool getVisible() { return visible; }
 	virtual float getX() { return spriteData.x; }
 	virtual float getY() { return spriteData.y; }
-	virtual float getScale() { return spriteData.scale; }
-	virtual int getWidth() { return spriteData.width; }
-	virtual int getHeight() { return spriteData.height; }
-	virtual float getCenterX() { return spriteData.x + spriteData.width / 2 * getScale(); }
-	virtual float getCenterY() { return spriteData.y + spriteData.height / 2 * getScale(); }
+	virtual float getScaleX() { return spriteData.scaleX; }
+	virtual float getScaleY() { return spriteData.scaleY; }
+	virtual int getWidth() { return spriteData.width * spriteData.scaleX; }
+	virtual int getHeight() { return spriteData.height * spriteData.scaleY; }
+	virtual float getCenterX() { return spriteData.x + spriteData.width / 2 * getScaleX(); }
+	virtual float getCenterY() { return spriteData.y + spriteData.height / 2 * getScaleY(); }
 	virtual float getDegrees() { return spriteData.angle * (180.0f / (float)PI); }
 	virtual float getRadian() { return spriteData.angle; }
 	virtual int getFrameDelay() { return startFrame; }
@@ -53,7 +54,9 @@ public:
 	virtual COLOR_ARGB getColorFilter() { return colorFilter; }
 	virtual void setX(float newX) { spriteData.x = newX; }
 	virtual void setY(float newY) { spriteData.y = newY; }
-	virtual void setScale(float s) { spriteData.scale = s; }
+	virtual void setScale(float scaleX, float scaleY) { spriteData.scaleX = scaleX; spriteData.scaleY = scaleY; }
+	virtual void setScaleX(float scaleX) { spriteData.scaleX = scaleX; }
+	virtual void setScaleY(float scaleY) { spriteData.scaleY = scaleY; }
 	virtual void setDegrees(float deg) { spriteData.angle = deg * ((float)PI / 180.0f); }
 	virtual void setRadians(float rad) { spriteData.angle = rad; }
 	virtual void setVisible(bool v) { visible = v; }

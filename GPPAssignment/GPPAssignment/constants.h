@@ -43,13 +43,14 @@ const float CURSOR_SCALE = 1.5f;                  // starting ship scale
 // Asset files
 const char MAINCHARA_IMAGE[] = "assets\\Ayame.png";
 const char Cursor[] = "assets\\cursor.png";
+const char PLACEHOLDERRECT[] = "assets\\placeholderRect_Grey.png";
 
 //Asset Constants
 //const int SHIP_START_FRAME = 0;
 //const int SHIP_END_FRAME = 3;
 //const float SHIP_ANIMATION_DELAY = 0.2f;
-const int MC_HEIGHT = 32;
-const int MC_WIDTH = 32;
+const int HPBAR_HEIGHT = 18;
+const int HPBAR_WIDTH = 240;
 //const int MC_COLS = 2;
 
 // key mappings
