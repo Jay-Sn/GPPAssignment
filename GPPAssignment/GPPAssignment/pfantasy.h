@@ -26,7 +26,7 @@ private:
 	//Player Health
 	float FULL_HEALTH = 100;
 	float BATTLE_HEALTH = FULL_HEALTH;
-	float CURRENT_HEALTH = BATTLE_HEALTH;
+	float CURRENT_HEALTH = 100;
 
 	//Enemy Health
 	float EFULL_HEALTH = 100;

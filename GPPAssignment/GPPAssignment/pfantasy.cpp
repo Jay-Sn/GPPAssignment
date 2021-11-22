@@ -72,6 +72,10 @@ void PFantasy::update() {
 
 void PFantasy::updateHealth() {
 
+	if (CURRENT_HEALTH > FULL_HEALTH)CURRENT_HEALTH = FULL_HEALTH;
+	if (CURRENT_HEALTH < 0) CURRENT_HEALTH = 0;
+	if (ECURRENT_HEALTH > FULL_HEALTH)ECURRENT_HEALTH = EFULL_HEALTH;
+	if (ECURRENT_HEALTH < 0) ECURRENT_HEALTH = 0;
 	//Player Health
 	if (CURRENT_HEALTH <= 0 && healthBar.getScaleX() > 0)
 		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
@@ -79,9 +83,8 @@ void PFantasy::updateHealth() {
 		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
 	}
 
-	if (CURRENT_HEALTH > FULL_HEALTH) {
-		CURRENT_HEALTH = FULL_HEALTH;
-	}
+
+
 	if (CURRENT_HEALTH/FULL_HEALTH > healthBar.getScaleX()) {
 		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
 	}
@@ -92,9 +95,6 @@ void PFantasy::updateHealth() {
 		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
 	else if (eHealthBar.getScaleX() > (ECURRENT_HEALTH / EFULL_HEALTH)) {
 		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
-	}
-	if (ECURRENT_HEALTH > EFULL_HEALTH) {
-		ECURRENT_HEALTH = EFULL_HEALTH;
 	}
 	if (ECURRENT_HEALTH / EFULL_HEALTH > eHealthBar.getScaleX()) {
 		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
