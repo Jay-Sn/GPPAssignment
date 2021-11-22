@@ -78,13 +78,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
     {
         game->deleteAll();
         DestroyWindow(hwnd);
-        MessageBoxA(NULL, err.getMessage(), "Error", MB_OK);
+        MessageBox(NULL, err.getMessage(), "Error", MB_OK);
     }
     catch (...)
     {
         game->deleteAll();
         DestroyWindow(hwnd);
-        MessageBoxA(NULL, "Unknown error occured in game.", "Error", MB_OK);
+        MessageBox(NULL, "Unknown error occured in game.", "Error", MB_OK);
     }
     SAFE_DELETE(game); // free memory before exit
     return 0;
@@ -104,7 +104,7 @@ LRESULT WINAPI WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 //=============================================================================
 bool CreateMainWindow(HWND& hwnd, HINSTANCE hInstance, int nCmdShow)
 {
-    WNDCLASSEXA wcx;
+    WNDCLASSEX wcx;
 
     // Fill in the window class structure with parameters 
     // that describe the main window. 
@@ -123,11 +123,11 @@ bool CreateMainWindow(HWND& hwnd, HINSTANCE hInstance, int nCmdShow)
 
     // Register the window class. 
     // RegisterClassEx returns 0 on error.
-    if (RegisterClassExA(&wcx) == 0)    // if error
+    if (RegisterClassEx(&wcx) == 0)    // if error
         return false;
 
     // Create window
-    hwnd = CreateWindowA(
+    hwnd = CreateWindow(
         CLASS_NAME,             // name of the window class
         GAME_TITLE,            // title bar text
         WS_OVERLAPPEDWINDOW,    // window style
