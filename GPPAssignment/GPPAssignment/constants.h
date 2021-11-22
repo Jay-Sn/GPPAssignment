@@ -15,7 +15,8 @@
 #define SAFE_ON_LOST_DEVICE(ptr) {if(ptr){delete [](ptr); ptr = NULL}}
 //Safely call onRestDevice
 #define SAFE_ON_RESET_DEVICE(ptr) {if(ptr){ptr->onResetDevice();}}
-#define TRANSCOLOR SETCOLOR_ARGB(0,255,0,255) // transparent color (magenta)
+#define TRANSCOLOR SETCOLOR_ARGB(255,255,255,255)
+#define BACKGROUNDCOLOUR SETCOLOR_ARGB(0,50,50,50)
 
 //Constants
 
@@ -37,6 +38,17 @@ const float ROTATION_RATE = 180.0f;             // degrees per second
 const float SCALE_RATE = 0.2f;                  // % change per second
 const float ANIMATE_SPEED = 100.0f;             // pixels per second
 const float CHARA_SCALE = 1.5f;                  // starting ship scale
+
+// Asset files
+const char MAINCHARA_IMAGE[] = "assets\\Ayame.png";
+
+//Asset Constants
+//const int SHIP_START_FRAME = 0;
+//const int SHIP_END_FRAME = 3;
+//const float SHIP_ANIMATION_DELAY = 0.2f;
+const int MC_HEIGHT = 32;
+const int MC_WIDTH = 32;
+//const int MC_COLS = 2;
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used

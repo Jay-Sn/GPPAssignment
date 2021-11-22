@@ -147,8 +147,10 @@
   <ItemGroup>
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="pfantasy.cpp" />
+    <ClCompile Include="texturemanager.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,8 +158,10 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="gameerror.h" />
     <ClInclude Include="graphics.h" />
+    <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="pfantasy.h" />
+    <ClInclude Include="texturemanager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

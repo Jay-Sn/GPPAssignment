@@ -11,7 +11,7 @@ Graphics::Graphics()
 	width = GAME_WIDTH;
 	height = GAME_HEIGHT;
 
-	backColor = SETCOLOR_ARGB(255, 0, 0, 128); //Dark blue
+	backColor = BACKGROUNDCOLOUR; //Dark grey
 }
 
 //Destructor
