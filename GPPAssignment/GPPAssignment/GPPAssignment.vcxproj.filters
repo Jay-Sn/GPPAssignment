@@ -39,6 +39,9 @@
     <ClCompile Include="textDX.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StartingMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
