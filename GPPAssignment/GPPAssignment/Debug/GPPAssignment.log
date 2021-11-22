@@ -1,11 +1,4 @@
-﻿  game.cpp
-  graphics.cpp
-  image.cpp
-  input.cpp
-  pfantasy.cpp
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(18,33): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
-  textDX.cpp
-  texturemanager.cpp
+﻿  startingMenu.cpp
   winmain.cpp
   Generating Code...
   GPPAssignment.vcxproj -> C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe

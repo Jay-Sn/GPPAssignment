@@ -8,23 +8,32 @@
 #include "input.h"
 #include "constants.h"
 #include "gameerror.h"
+#include "textDX.h"
+
+namespace gameNS
+{
+	const char FONT[] = "Courier New";  // font
+	const int POINT_SIZE = 30;          // point size
+	const COLOR_ARGB FONT_COLOR = SETCOLOR_ARGB(255, 255, 15, 15);    // white
+}
 
 class Game
 {
 protected:
 	//common game properties
-	Graphics *graphics;				//pointer to Graphics Class
-	Input* input;					//pointer to Input Class
-	HWND hwnd;						//window handle
-	HRESULT hr;						//standard return type
-	LARGE_INTEGER timeStart;		//Performance Counter start value
-	LARGE_INTEGER timeEnd;			//Performance Counter end value
-	LARGE_INTEGER timerFreq;		//Performance Counter frequency
-	float frameTime;				//time required for last frame
-	float fps;						//frames per second
-	DWORD sleepTime;				//number of milli-seconds to sleep between frames
-	bool paused;					//true if game is paused
-	bool initialized;
+	Graphics* graphics;             // pointer to Graphics
+	Input* input;                 // pointer to Input
+	HWND    hwnd;                   // window handle
+	HRESULT hr;                     // standard return type
+	LARGE_INTEGER timeStart;        // Performance Counter start value
+	LARGE_INTEGER timeEnd;          // Performance Counter end value
+	LARGE_INTEGER timerFreq;        // Performance Counter frequency
+	float   frameTime;              // time required for last frame
+	float   fps;                    // frames per second
+	bool    fpsOn;                  // true to display fps
+	DWORD   sleepTime;              // number of milli-seconds to sleep between frames
+	bool    paused;                 // true if game is paused
+	bool    initialized;
 
 public:
 	Game();

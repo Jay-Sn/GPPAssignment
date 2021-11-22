@@ -13,6 +13,7 @@
 #include "gameerror.h"
 #include "constants.h"
 #include "pfantasy.h"
+#include "startingMenu.h"
 
 // Function prototypes
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
@@ -20,7 +21,7 @@ bool CreateMainWindow(HWND&, HINSTANCE, int);
 LRESULT WINAPI WinProc(HWND, UINT, WPARAM, LPARAM);
 
 //Game Pointer
-PFantasy *game = NULL;
+Game *game = NULL;
 HWND hwnd = NULL;
 
 //=============================================================================
@@ -45,7 +46,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
     MSG	 msg;
 
     //Create the game, sets up message handler
-    game = new PFantasy;
+    game = new StartingMenu;
 
     // Create the window
     if (!CreateMainWindow(hwnd, hInstance, nCmdShow))

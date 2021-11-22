@@ -38,9 +38,11 @@ const float ROTATION_RATE = 180.0f;             // degrees per second
 const float SCALE_RATE = 0.2f;                  // % change per second
 const float ANIMATE_SPEED = 100.0f;             // pixels per second
 const float CHARA_SCALE = 1.5f;                  // starting ship scale
+const float CURSOR_SCALE = 1.5f;                  // starting ship scale
 
 // Asset files
 const char MAINCHARA_IMAGE[] = "assets\\Ayame.png";
+const char Cursor[] = "assets\\cursor.png";
 
 //Asset Constants
 //const int SHIP_START_FRAME = 0;
@@ -58,5 +60,8 @@ const BYTE NAVI_RIGHT_KEY = VK_RIGHT;
 const BYTE NAVI_LEFT_KEY = VK_LEFT;
 const BYTE NAVI_UP_KEY = VK_UP;
 const BYTE NAVI_DOWN_KEY = VK_DOWN;
+
+const UCHAR CURSOR_UP_KEY = VK_UP;
+const UCHAR CURSOR_DOWN_KEY = VK_DOWN;
 
 #endif // !_CONSTANTS_H_

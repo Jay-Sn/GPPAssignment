@@ -39,7 +39,7 @@
     <ClCompile Include="textDX.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StartingMenu.cpp">
+    <ClCompile Include="startingMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,7 +71,7 @@
     <ClInclude Include="textDX.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StartingMenu.h">
+    <ClInclude Include="startingMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
