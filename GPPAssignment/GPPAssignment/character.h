@@ -44,7 +44,11 @@ public:
 
 	bool changeCharaSprite(Graphics* g, int width, int height, int ncols, TextureManager* textureM);
 
-	float getCurrentHealth() { return currentHealth; }
+	double getCurrentHealth() { return currentHealth; }
+
+	string getName() { return charaName; }
+	string getClass() { return charaClass; }
+
 	float getMaxHealth() { return maxHealth; }
 	void setHealth(float newHealth) { maxHealth = newHealth; }
 	void deductHealth(float health) { currentHealth -= health; }

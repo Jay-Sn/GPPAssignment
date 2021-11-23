@@ -2,7 +2,7 @@
 using namespace std;
 PFantasy::PFantasy() {
 	selectionY = 0;
-
+	attackPhase = 1;
 }
 
 PFantasy::~PFantasy()
@@ -23,19 +23,36 @@ void PFantasy::initialize(HWND hwnd)
 
 //Update all game items
 void PFantasy::update() {
-	checkMouse();
+	
 	updateHealth();
+	if (attackPhase == 1) {
+		checkMouse();
+	}
+	else {
+		enemyAction();
+	}
 }
 
 void PFantasy::updateHealth() {
 	//Player Health
-	if (mainChara.getCurrentHealth() <= 0 && healthBar.getScaleX() > 0)
+	if (healthBar.test() == round(mainChara.getCurrentHealth() / mainChara.getMaxHealth() * 100) && eHealthBar.test() == round(enemyChara.getCurrentHealth() / enemyChara.getMaxHealth() * 100)) {
+		animationDone = true;
+	}
+	else if ((mainChara.getCurrentHealth()<0 && healthBar.test() == 0) || (enemyChara.getCurrentHealth() < 0 && eHealthBar.test() == 0)) {
+		//End Game Here
+		animationDone = true;
+	}
+	else {
+		animationDone = false;
+	}
+
+	if (mainChara.getCurrentHealth() <= 0 && healthBar.getScaleX() >= 0)
 		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
-	else if (mainChara.getCurrentHealth() > 0 && healthBar.getScaleX() > (mainChara.getCurrentHealth() / mainChara.getMaxHealth())) {
+	else if (mainChara.getCurrentHealth() >= 0 && healthBar.getScaleX() >= (mainChara.getCurrentHealth() / mainChara.getMaxHealth())) {
 		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
 	}
 
-	if (mainChara.getCurrentHealth() > mainChara.getMaxHealth() && healthBar.getScaleX() <= 1) {
+	if (mainChara.getCurrentHealth() >= mainChara.getMaxHealth() && healthBar.getScaleX() <= 1) {
 		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
 	}
 	else if (mainChara.getCurrentHealth() <= mainChara.getMaxHealth() && healthBar.getScaleX() <= mainChara.getCurrentHealth() / mainChara.getMaxHealth()) {
@@ -45,11 +62,11 @@ void PFantasy::updateHealth() {
 	//Enemy Health
 	if (enemyChara.getCurrentHealth() <= 0 && eHealthBar.getScaleX() > 0)
 		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
-	else if (enemyChara.getCurrentHealth() > 0 && eHealthBar.getScaleX() > (enemyChara.getCurrentHealth() / enemyChara.getMaxHealth())) {
+	else if (enemyChara.getCurrentHealth() >= 0 && eHealthBar.getScaleX() >= (enemyChara.getCurrentHealth() / enemyChara.getMaxHealth())) {
 		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
 	}
 
-	if (enemyChara.getCurrentHealth() > enemyChara.getMaxHealth() && eHealthBar.getScaleX() <= 1) {
+	if (enemyChara.getCurrentHealth() >= enemyChara.getMaxHealth() && eHealthBar.getScaleX() <= 1) {
 		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
 	}
 	else if (enemyChara.getCurrentHealth() <= enemyChara.getMaxHealth() && eHealthBar.getScaleX() <= enemyChara.getCurrentHealth() / enemyChara.getMaxHealth()) {
@@ -64,25 +81,43 @@ void PFantasy::deductHealth(bool enemy, float hp) {
 	else {
 		mainChara.deductHealth(hp);
 	}
+	animationDone = false;
 }
 
 //Artificial Intelligence
 void PFantasy::ai() {}
 
+//Phase alternator
+void PFantasy::changePhase() {
+	attackPhase *= -1;
+}
+
+void PFantasy::enemyAction() {
+	//if not blocked
+	if (attackPhase == -1 && animationDone) {
+		deductHealth(false, rand() % 50 + 1);
+		changePhase();
+	}
+}
+
 //Handle collisions
 void PFantasy::collisions() {}
 
 void PFantasy::checkMouse() {
-	if (input->wasKeyPressed(VK_RETURN))
+	if (input->wasKeyPressed(VK_RETURN) && attackPhase == 1)
 	{
-		if (selectionBlock.getY() == yValues[0]) {
-			deductHealth(true, 10);
-		}
-		else if (selectionBlock.getY() == yValues[1]) {
-			//prevent dmg
-		}
-		else if (selectionBlock.getY() == yValues[2]) {
-			//exitScene
+		if (animationDone) {
+			if (selectionBlock.getY() == yValues[0]) {
+				deductHealth(true, rand() % 50 + 1);
+			}
+			else if (selectionBlock.getY() == yValues[1]) {
+				//prevent dmg
+			}
+			else if (selectionBlock.getY() == yValues[2]) {
+				//exitScene
+			}
+
+			changePhase();
 		}
 	}
 
@@ -107,12 +142,15 @@ void PFantasy::render() {
 
 	renderCharacters();
 	renderUI();
-	selectionFonts.print("Fight", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont())/2, abilitySection.getCenterY() - selectionFonts.getHeight("Fight",selectionFonts.getFont()) * 1.5 - 10);
+	selectionFonts.print("Attack", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont())/2, abilitySection.getCenterY() - selectionFonts.getHeight("Fight",selectionFonts.getFont()) * 1.5 - 10);
 	selectionFonts.print("Block", abilitySection.getCenterX() - selectionFonts.getWidth("Block", selectionFonts.getFont()) / 2, abilitySection.getCenterY() - selectionFonts.getHeight("Block", selectionFonts.getFont()) /2);
 	selectionFonts.print("Run", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont()) / 2, abilitySection.getCenterY() + selectionFonts.getHeight("Run", selectionFonts.getFont()) * 0.5 + 10);
 	graphics->spriteEnd();
 }
 
+int properCast(float fukingNumber) {
+	return 1;
+}
 //The graphics device was lost
 //Release all reserved video memory to be resetted
 void PFantasy::releaseAll() {
@@ -133,7 +171,9 @@ void PFantasy::resetAll() {
 
 void PFantasy::intializeUI() {
 
-	if (infoFonts.initialize(graphics, 10, true, false, gameNS::FONT) == false)
+	if (hpFonts.initialize(graphics, 10, true, false, gameNS::FONT) == false)
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
+	if (infoFonts.initialize(graphics, 20, true, false, gameNS::FONT) == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
 	if (selectionFonts.initialize(graphics, 40, true, false, gameNS::FONT) == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
@@ -172,16 +212,18 @@ void PFantasy::intializeUI() {
 
 	//display Information
 	healthBar.setCurrentFrame(1);
+	healthBar.setScale(1, 1);
 	healthBar.setX(infoSection.getX() + 0.0625 * infoSection.getWidth());
 	healthBar.setY(infoSection.getY() + 0.25 * infoSection.getHeight());
 
 	eHealthBar.setCurrentFrame(1);
+	eHealthBar.setScale(1, 1);
 	eHealthBar.setX(enemyNameSection.getX() + 0.125 * enemyNameSection.getWidth());
 	eHealthBar.setY(enemyNameSection.getY() + 0.25 * enemyNameSection.getHeight());
 
 	selectionBlock.setCurrentFrame(4);
 	selectionBlock.setX(abilitySection.getX() +50);
-	selectionBlock.setY(abilitySection.getCenterY() - selectionFonts.getHeight("Fight", selectionFonts.getFont()) * 1.5);
+	selectionBlock.setY(yValues[0]);
 }
 
 void PFantasy::renderUI() {
@@ -195,20 +237,43 @@ void PFantasy::renderUI() {
 
 	//Enemy Information
 	eHealthBar.draw(graphicsNS::RED);
-	infoFonts.print(
+	hpFonts.print(
 		enemyChara.getHealthString(), 
-		eHealthBar.getX() + HPBAR_WIDTH/2 - infoFonts.getWidth(enemyChara.getHealthString(),infoFonts.getFont()) / 2,
-		eHealthBar.getY() + HPBAR_HEIGHT / 2 - infoFonts.getHeight(enemyChara.getHealthString(), infoFonts.getFont()) / 2
+		eHealthBar.getX() + HPBAR_WIDTH/2 - hpFonts.getWidth(enemyChara.getHealthString(), hpFonts.getFont()) / 2,
+		eHealthBar.getY() + HPBAR_HEIGHT / 2 - hpFonts.getHeight(enemyChara.getHealthString(), hpFonts.getFont()) / 2
+	);
+
+	infoFonts.print(
+		enemyChara.getName(),
+		eHealthBar.getX(),
+		eHealthBar.getY() - HPBAR_HEIGHT - infoFonts.getHeight(enemyChara.getName(), infoFonts.getFont())/2
+	);
+
+	infoFonts.print(
+		enemyChara.getClass(),
+		eHealthBar.getX() + eHealthBar.getWidth() - infoFonts.getWidth(enemyChara.getClass(), infoFonts.getFont()),
+		eHealthBar.getY() - HPBAR_HEIGHT - infoFonts.getHeight(enemyChara.getClass(), infoFonts.getFont()) / 2
 	);
 
 	//MainCharacter Information
 	healthBar.draw(graphicsNS::RED);
-	infoFonts.print(
+	hpFonts.print(
 		mainChara.getHealthString(),
-		healthBar.getX() + HPBAR_WIDTH / 2 - infoFonts.getWidth(mainChara.getHealthString(), infoFonts.getFont()) / 2,
-		healthBar.getY() + HPBAR_HEIGHT /2 - infoFonts.getHeight(mainChara.getHealthString(), infoFonts.getFont()) / 2
+		healthBar.getX() + HPBAR_WIDTH / 2 - hpFonts.getWidth(mainChara.getHealthString(), hpFonts.getFont()) / 2,
+		healthBar.getY() + HPBAR_HEIGHT /2 - hpFonts.getHeight(mainChara.getHealthString(), hpFonts.getFont()) / 2
 	);
 
+	infoFonts.print(
+		mainChara.getName(),
+		GAME_WIDTH - ((GAME_WIDTH - healthBar.getX() - healthBar.getWidth()) / 4),
+		healthBar.getY() - HPBAR_HEIGHT - infoFonts.getHeight(mainChara.getName(), infoFonts.getFont()) / 2
+	);
+
+	infoFonts.print(
+		mainChara.getClass(),
+		GAME_WIDTH - ((GAME_WIDTH - healthBar.getX() - healthBar.getWidth()) / 4),
+		healthBar.getY() - HPBAR_HEIGHT - infoFonts.getHeight(mainChara.getClass(), infoFonts.getFont()) / 2
+	);
 	selectionBlock.draw(graphicsNS::GREEN);
 }
 

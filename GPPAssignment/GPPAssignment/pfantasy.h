@@ -20,8 +20,9 @@ private:
 	TextureManager mainCharaTexture;
 	TextureManager placeholderRectTexture;
 
-	TextDX  infoFonts;
+	TextDX  hpFonts;
 	TextDX  selectionFonts;
+	TextDX  infoFonts;
 
 	TextDX* dxMenuText;
 
@@ -37,6 +38,9 @@ private:
 
 	Image floor;
 	Image selectionBlock;
+
+	bool animationDone = true;
+	int attackPhase;
 	int selectionY;
 
 public:
@@ -59,5 +63,7 @@ public:
 	void renderUI();
 	void intializeCharacters();
 	void renderCharacters();
+	void changePhase();
+	void enemyAction();
 };
 #endif // !_PFANTASY_H
