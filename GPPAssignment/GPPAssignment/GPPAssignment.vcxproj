@@ -152,7 +152,6 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="pfantasy.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="startingMenu.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="texturemanager.cpp" />
@@ -169,7 +168,6 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="pfantasy.h" />
-    <ClInclude Include="scene.h" />
     <ClInclude Include="startingMenu.h" />
     <ClInclude Include="textDX.h" />
     <ClInclude Include="texturemanager.h" />

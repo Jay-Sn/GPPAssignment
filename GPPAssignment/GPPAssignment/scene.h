@@ -4,14 +4,13 @@
 
 #include "game.h"
 
-class Scene
+class Scene: public Game
 {
 public:
 	Scene();
 	virtual ~Scene();
 
-	void initialize();
-	void run();
+	void initialize(HWND hwnd);
 
 	//Pure virtual function declarations
 	//These functions MUST be written in any class that inherits from Game
