@@ -58,13 +58,13 @@ void StartingMenu::update()
     if (input->wasKeyPressed(VK_RETURN)) 
     {
         if (mainChara.getY() == 100) {
-            y = 100;
+            debugY = 100;
         }
         else if (mainChara.getY() == 130) {
-            y = 130;
+            debugY = 130;
         }
         else if (mainChara.getY() == 160) {
-            y = 160;
+            debugY = 160;
         }
     }
     if (input->wasKeyPressed(CURSOR_DOWN_KEY) && mainChara.getY() != 160)               // if move up
@@ -107,7 +107,7 @@ void StartingMenu::render()
     dxMenuText->print("Options", 60, yValues[1]);
     dxMenuText->print("Quit", 60, yValues[2]);
     dxFont.setFontColor(gameNS::FONT_COLOR);
-    sprintf_s(buffer, "You have selected: %d", (int)y);
+    sprintf_s(buffer, "You have selected: %d", (int)debugY);
     dxFont.print(buffer, 200, 200);
     graphics->spriteEnd();
 

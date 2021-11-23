@@ -70,7 +70,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
                 DispatchMessage(&msg);
             }
             else
+            {
                 game->run(hwnd);    //run game loop
+            }
         }
         SAFE_DELETE(game); // free memory before exit
         return msg.wParam;

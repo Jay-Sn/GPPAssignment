@@ -96,7 +96,6 @@ void Game::initialize(HWND hw) {
     QueryPerformanceCounter(&timeStart);
 
     initialized = true;
-
 }
 
 void Game::handleLostGraphicsDevice() {
