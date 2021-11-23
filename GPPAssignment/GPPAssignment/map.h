@@ -15,7 +15,6 @@ class Map : public Game
 {
 protected:
     TextDX  dxFont;                 // DirectX font for fps
-    TextDX* dxMenuText;
     
     TextureManager mainCharaTexture;
     TextDX  infoFonts;
