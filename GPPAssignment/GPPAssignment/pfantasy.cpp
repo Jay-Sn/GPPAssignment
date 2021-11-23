@@ -18,68 +18,67 @@ void PFantasy::initialize(HWND hwnd)
 	intializeUI();
 	intializeCharacters();
 
-	
 	return;
 }
 
 //Update all game items
 void PFantasy::update() {
-	if (input->wasKeyPressed(NAVI_LEFT_KEY)) {
-		deductHealth(true, 50);
-	}
-	if (input->wasKeyPressed(NAVI_UP_KEY)) {
-		deductHealth(true, -50);
-	}
-	if (input->wasKeyPressed(NAVI_RIGHT_KEY)) {
-		deductHealth(false,50);
-	}
-	if (input->wasKeyPressed(NAVI_DOWN_KEY)) {
-		deductHealth(false, -50);
-	}
-	updateHealth();
+	checkMouse();
+	//updateHealth();
 }
 
 void PFantasy::updateHealth() {
+	//Player Health
+	if (mainChara.getCurrentHealth() <= 0 && healthBar.getScaleX() > 0)
+		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * MIN_FRAME_RATE);
+	else if (mainChara.getCurrentHealth() > 0 && healthBar.getScaleX() > (mainChara.getCurrentHealth() / mainChara.getMaxHealth())) {
+		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * MIN_FRAME_RATE);
+	}
 
-	////Player Health
-	//if (CURRENT_HEALTH <= 0 && healthBar.getScaleX() > 0)
-	//	healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
-	//else if (CURRENT_HEALTH > 0 && healthBar.getScaleX() > (CURRENT_HEALTH / FULL_HEALTH)) {
-	//	healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
-	//}
+	if (mainChara.getCurrentHealth() > mainChara.getMaxHealth() && healthBar.getScaleX() <= 1) {
+		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * MIN_FRAME_RATE);
+	}
+	else if (mainChara.getCurrentHealth() <= mainChara.getMaxHealth() && healthBar.getScaleX() <= mainChara.getCurrentHealth() / mainChara.getMaxHealth()) {
+		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * MIN_FRAME_RATE);
+	}
 
-	//if (CURRENT_HEALTH> FULL_HEALTH && healthBar.getScaleX() <= 1) {
-	//	healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
-	//}
-	//else if (CURRENT_HEALTH <= FULL_HEALTH && healthBar.getScaleX() <= CURRENT_HEALTH/FULL_HEALTH) {
-	//	healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
-	//}
+	//Enemy Health
+	if (enemyChara.getCurrentHealth() <= 0 && healthBar.getScaleX() > 0)
+		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * MIN_FRAME_RATE);
+	else if (enemyChara.getCurrentHealth() > 0 && healthBar.getScaleX() > (enemyChara.getCurrentHealth() / enemyChara.getMaxHealth())) {
+		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * MIN_FRAME_RATE);
+	}
 
-	////Enemy Health
-	//if (ECURRENT_HEALTH <= 0 && eHealthBar.getScaleX() > 0)
-	//	eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
-	//else if (ECURRENT_HEALTH > 0 && eHealthBar.getScaleX() > (ECURRENT_HEALTH / EFULL_HEALTH)) {
-	//	eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
-	//}
-
-	//if (ECURRENT_HEALTH > EFULL_HEALTH && eHealthBar.getScaleX() <= 1) {
-	//	eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
-	//}
-	//else if (ECURRENT_HEALTH <= EFULL_HEALTH && healthBar.getScaleX() <= ECURRENT_HEALTH / EFULL_HEALTH) {
-	//	eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
-	//}
+	if (enemyChara.getCurrentHealth() > enemyChara.getMaxHealth() && healthBar.getScaleX() <= 1) {
+		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * MIN_FRAME_RATE);
+	}
+	else if (enemyChara.getCurrentHealth() <= enemyChara.getMaxHealth() && healthBar.getScaleX() <= enemyChara.getCurrentHealth() / enemyChara.getMaxHealth()) {
+		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * MIN_FRAME_RATE);
+	}
 }
 
-void PFantasy::deductHealth(bool e, float hp) {
-	//if (e) CURRENT_HEALTH -= hp;
-	//else ECURRENT_HEALTH -= hp;
+void PFantasy::deductHealth(bool enemy, float hp) {
+	if (enemy) {
+		enemyChara.deductHealth(hp);
+	}
+	else {
+		mainChara.deductHealth(hp);
+	}
 }
+
 //Artificial Intelligence
 void PFantasy::ai() {}
 
 //Handle collisions
 void PFantasy::collisions() {}
 
+void PFantasy::checkMouse() {
+	if (input->wasKeyPressed(NAVI_DOWN_KEY) && input->getMouseX() >= abilitySection.getX() && input->getMouseX() <= abilitySection.getX() + abilitySection.getWidth()) {
+		if (input->getMouseY() >= abilitySection.getY() && input->getMouseY() <= abilitySection.getY() + abilitySection.getHeight()) {
+			deductHealth(false, 10);
+		}
+	}
+}
 //Render game items
 void PFantasy::render() {
 	graphics->spriteBegin();
@@ -139,24 +138,21 @@ void PFantasy::intializeUI() {
 
 	abilitySection.setScaleY(1.25);
 	abilitySection.setX(enemyNameSection.getWidth());
-	abilitySection.setY(GAME_HEIGHT - enemyNameSection.getHeight());
+	abilitySection.setY(GAME_HEIGHT - abilitySection.getHeight());
 
 	infoSection.setScale(2, 1.25);
 	infoSection.setX(GAME_WIDTH - infoSection.getWidth());
 	infoSection.setY(GAME_HEIGHT - infoSection.getHeight());
 
 	//display Information
-	//healthBar.setScale(0.75, 0.1);
 	healthBar.setCurrentFrame(1);
 	healthBar.setX(infoSection.getX() + 0.0625 * infoSection.getWidth());
 	healthBar.setY(infoSection.getY() + 0.25 * infoSection.getHeight());
 
-	//eHealthBar.setScale(0.75, 0.1);
 	eHealthBar.setCurrentFrame(1);
 	eHealthBar.setX(enemyNameSection.getX() + 0.125 * enemyNameSection.getWidth());
 	eHealthBar.setY(enemyNameSection.getY() + 0.25 * enemyNameSection.getHeight());
 
-	mainChara.setScale(2, 2);
 }
 
 void PFantasy::renderUI() {
@@ -176,7 +172,7 @@ void PFantasy::renderUI() {
 		eHealthBar.getY() + HPBAR_HEIGHT / 2 - infoFonts.getHeight(enemyChara.getHealthString(), infoFonts.getFont()) / 2
 	);
 
-
+	//MainCharacter Information
 	healthBar.draw(graphicsNS::RED);
 	infoFonts.print(
 		mainChara.getHealthString(),

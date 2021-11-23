@@ -39,6 +39,7 @@ public:
 	void update();
 	void ai();
 	void collisions();
+	void checkMouse();
 	void render();
 	void releaseAll();
 	void resetAll();
