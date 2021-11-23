@@ -150,6 +150,7 @@
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="map.cpp" />
     <ClCompile Include="pfantasy.cpp" />
     <ClCompile Include="startingMenu.cpp" />
     <ClCompile Include="textDX.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="graphics.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="map.h" />
     <ClInclude Include="pfantasy.h" />
     <ClInclude Include="startingMenu.h" />
     <ClInclude Include="textDX.h" />
