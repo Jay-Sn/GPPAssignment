@@ -74,11 +74,6 @@ void Map::render()
     graphics->spriteEnd();
 }
 
-void Map::intializeUI() {}
-void Map::renderUI() {}
-void Map::intializeCharacters() {}
-void Map::renderCharacters() {}
-
 //=============================================================================
 // The graphics device was lost.
 // Release all reserved video memory so graphics device may be reset.
