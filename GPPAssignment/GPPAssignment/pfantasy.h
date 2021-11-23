@@ -5,40 +5,30 @@
 #include "game.h"
 #include "TextureManager.h"
 #include "Image.h"
+#include "character.h"
 #include "textDX.h"
-#define GetSizeOf(a)			sizeof(a)/sizeof(*a)
+
+using namespace std;
+
 class PFantasy : public Game
 {
 private:
 	//Variables
 	TextureManager mainCharaTexture;
 	TextureManager placeholderRectTexture;
-	TextDX  dxFont;                 // DirectX font for fps
+	TextDX  infoFonts;
 	TextDX* dxMenuText;
 
-	Image healthBar;
+	Character mainChara;
+	Character enemyChara;
+
+
 	Image eHealthBar;
-	Image mainChara;
+	Image healthBar;
 	Image enemyNameSection;
 	Image abilitySection;
 	Image infoSection;
-
-	//Player Health
-	float FULL_HEALTH = 100;
-	float BATTLE_HEALTH = FULL_HEALTH;
-	float CURRENT_HEALTH = 100;
-
-	//Enemy Health
-	float EFULL_HEALTH = 100;
-	float EBATTLE_HEALTH = FULL_HEALTH;
-	float ECURRENT_HEALTH = 100;
-
-	int animateIndex = 5;
-	int index = 0;
-	int direction = -1;
-
-	char buffer[100];
-	char ebuffer[100];
+	Image floor;
 public:
 	PFantasy();					//Constructor
 	virtual ~PFantasy();		//Destructor
@@ -54,5 +44,9 @@ public:
 	void resetAll();
 	void deductHealth(bool e, float hp);
 	void updateHealth();
+	void intializeUI();
+	void renderUI();
+	void intializeCharacters();
+	void renderCharacters();
 };
-#endif // !_SPACEWAR_H
+#endif // !_PFANTASY_H

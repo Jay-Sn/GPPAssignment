@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="character.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="image.cpp" />
@@ -153,9 +154,11 @@
     <ClCompile Include="startingMenu.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="texturemanager.cpp" />
+    <ClCompile Include="userinterface.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="character.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameerror.h" />
@@ -166,6 +169,7 @@
     <ClInclude Include="startingMenu.h" />
     <ClInclude Include="textDX.h" />
     <ClInclude Include="texturemanager.h" />
+    <ClInclude Include="userinterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

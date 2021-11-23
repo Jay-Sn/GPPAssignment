@@ -16,7 +16,7 @@
 //Safely call onRestDevice
 #define SAFE_ON_RESET_DEVICE(ptr) {if(ptr){ptr->onResetDevice();}}
 #define TRANSCOLOR SETCOLOR_ARGB(255,255,255,255)
-#define BACKGROUNDCOLOUR SETCOLOR_ARGB(0,50,50,50)
+#define BACKGROUNDCOLOUR SETCOLOR_ARGB(0,20,20,20)
 
 //Constants
 
@@ -37,7 +37,6 @@ const float MAX_FRAME_TIME = 1.0f / MIN_FRAME_RATE; //Maximum time used in calcu
 const float ROTATION_RATE = 180.0f;             // degrees per second
 const float SCALE_RATE = 0.2f;                  // % change per second
 const float ANIMATE_SPEED = 100.0f;             // pixels per second
-const float CHARA_SCALE = 1.5f;                  // starting ship scale
 const float CURSOR_SCALE = 1.5f;                  // starting ship scale
 
 // Asset files
@@ -51,7 +50,7 @@ const char PLACEHOLDERRECT[] = "assets\\placeholderRect_Grey.png";
 //const float SHIP_ANIMATION_DELAY = 0.2f;
 const int HPBAR_HEIGHT = 18;
 const int HPBAR_WIDTH = 240;
-//const int MC_COLS = 2;
+const float CHARA_SCALE = 2;
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
