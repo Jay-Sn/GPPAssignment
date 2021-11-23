@@ -34,23 +34,23 @@ void Map::reset()
 //=============================================================================
 void Map::update()
 {
-    if (input->wasKeyPressed(CURSOR_DOWN_KEY))  // if move down
+    if (input->isKeyDown(CURSOR_DOWN_KEY))  // if move down
     {
-        mainChara.setY(mainChara.getY() + 30);
+        playerChara.setY(playerChara.getY() + 30 * frameTime);
     }
-    if (input->wasKeyPressed(CURSOR_UP_KEY))    // if move up
+    if (input->isKeyDown(CURSOR_UP_KEY))    // if move up
     {
-        mainChara.setY(mainChara.getY() - 30);
+        playerChara.setY(playerChara.getY() - 30 * frameTime);
     }
-    if (input->wasKeyPressed(CURSOR_RIGHT_KEY)) // if move right
+    if (input->isKeyDown(CURSOR_RIGHT_KEY)) // if move right
     {
-        mainChara.setY(mainChara.getY() + 30);
+        playerChara.setX(playerChara.getX() + 30 * frameTime);
     }
-    if (input->wasKeyPressed(CURSOR_LEFT_KEY)) // if move left
+    if (input->isKeyDown(CURSOR_LEFT_KEY)) // if move left
     {
-        mainChara.setY(mainChara.getY() - 30);
+        playerChara.setX(playerChara.getX() - 30 * frameTime);
     }
-    //mainChara.update(frameTime);
+    //playerChara.update(frameTime);
 }
 
 void Map::ai()
@@ -112,8 +112,12 @@ void Map::renderUI()
 
 void Map::intializeCharacters()
 {
+    //initialize character textures
+    if (!mainCharaTexture.initialize(graphics, PLAYERCHARA_IMAGE))throw(gameErrorNS::FATAL_ERROR, "Error initiating Player Character");
+    if (!playerChara.initialize(graphics, 0,0,0,&mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Player Character");
 }
 
 void Map::renderCharacters()
 {
+    playerChara.draw(TRANSCOLOR);
 }

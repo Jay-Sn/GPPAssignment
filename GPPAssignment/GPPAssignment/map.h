@@ -20,7 +20,7 @@ protected:
     TextDX  infoFonts;
     TextDX* dxMenuText;
 
-    Character mainChara;
+    Image playerChara;
 
     int yValues[3] = { 100, 130, 160 }; // Y values for menu
     std::string optionSelected;

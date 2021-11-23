@@ -43,6 +43,7 @@ const float CURSOR_SCALE = 1.5f;                  // starting ship scale
 const char MAINCHARA_IMAGE[] = "assets\\Ayame.png";
 const char Cursor[] = "assets\\cursor.png";
 const char PLACEHOLDERRECT[] = "assets\\placeholderRect_Grey.png";
+const char PLAYERCHARA_IMAGE[] = "assets\\blue_char.png";
 
 //Asset Constants
 //const int SHIP_START_FRAME = 0;
