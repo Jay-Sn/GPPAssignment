@@ -24,6 +24,10 @@ void Map::initialize(HWND hwnd)
     return;
 }
 
+void Map::reset()
+{
+}
+
 //=============================================================================
 // move character
 // frameTime is used to regulate the speed of movement
@@ -97,4 +101,24 @@ void Map::resetAll()
     // dxMenuText->onResetDevice();
     Game::resetAll();
     return;
+}
+
+void Map::checkMouse()
+{
+}
+
+void Map::intializeUI()
+{
+}
+
+void Map::renderUI()
+{
+}
+
+void Map::intializeCharacters()
+{
+}
+
+void Map::renderCharacters()
+{
 }
