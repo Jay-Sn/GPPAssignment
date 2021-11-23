@@ -55,6 +55,18 @@ void StartingMenu::reset()
 //=============================================================================
 void StartingMenu::update()
 {
+    if (input->wasKeyPressed(VK_RETURN)) 
+    {
+        if (mainChara.getY() == 100) {
+            y = 100;
+        }
+        else if (mainChara.getY() == 130) {
+            y = 130;
+        }
+        else if (mainChara.getY() == 160) {
+            y = 160;
+        }
+    }
     if (input->wasKeyPressed(CURSOR_DOWN_KEY) && mainChara.getY() != 160)               // if move up
     {
         mainChara.setY(mainChara.getY() +  30);
@@ -86,16 +98,17 @@ void StartingMenu::collisions()
 //=============================================================================
 void StartingMenu::render()
 {
-    const int BUF_SIZE = 20;
+    const int BUF_SIZE = 100;
     static char buffer[BUF_SIZE];
     graphics->spriteBegin();
     mainChara.draw(TRANSCOLOR);
     dxMenuText->setFontColor(graphicsNS::BLACK);
-    dxMenuText->print("Start", 60, 100);
-    dxMenuText->print("Options", 60, 130);
-    dxMenuText->print("Quit", 60, 160);
-
+    dxMenuText->print("Start", 60, yValues[0]);
+    dxMenuText->print("Options", 60, yValues[1]);
+    dxMenuText->print("Quit", 60, yValues[2]);
     dxFont.setFontColor(gameNS::FONT_COLOR);
+    sprintf_s(buffer, "You have selected: %d", (int)y);
+    dxFont.print(buffer, 200, 200);
     graphics->spriteEnd();
 
 
