@@ -1,4 +1,0 @@
-﻿  map.cpp
-C:\Users\aaron\OneDrive\Ngee Ann Poly\Year 3 Semester 2\Gameplay Programming\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(42,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\aaron\OneDrive\Ngee Ann Poly\Year 3 Semester 2\Gameplay Programming\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  GPPAssignment.vcxproj -> C:\Users\aaron\OneDrive\Ngee Ann Poly\Year 3 Semester 2\Gameplay Programming\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe
