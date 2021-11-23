@@ -81,7 +81,7 @@ void Map::render()
 void Map::releaseAll()
 {
     mainCharaTexture.onLostDevice();
-    dxMenuText->onLostDevice();
+    // dxMenuText->onLostDevice();
     Game::releaseAll();
     return;
 }
@@ -93,7 +93,7 @@ void Map::releaseAll()
 void Map::resetAll()
 {
     mainCharaTexture.onResetDevice();
-    dxMenuText->onResetDevice();
+    // dxMenuText->onResetDevice();
     Game::resetAll();
     return;
 }

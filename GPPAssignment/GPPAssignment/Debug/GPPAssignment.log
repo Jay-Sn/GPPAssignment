@@ -1,5 +1,9 @@
-﻿  map.cpp
+  map.cpp
 C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(42,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
   LINK : C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe not found or not built by the last incremental link; performing full link
   GPPAssignment.vcxproj -> C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe
+﻿  winmain.cpp
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(42,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  GPPAssignment.vcxproj -> C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe

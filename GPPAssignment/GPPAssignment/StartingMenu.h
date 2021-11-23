@@ -7,9 +7,11 @@
 #include "constants.h"
 #include "TextureManager.h"
 #include "Image.h"
+#include "graphics.h"
+#include "pfantasy.h"
 
 //===================
-//MENU CLASS
+// MENU CLASS
 //===================
 class StartingMenu: public Game
 {
@@ -20,9 +22,9 @@ protected:
 
     Image mainChara;
 
-    int yValues[3] = { 100, 130, 160 }; // Y values for menu
+    int yValues[4] = { 100, 130, 160 }; // Y values for menu
     std::string optionSelected;
-    int y; // y values
+    int debugY; // y values for debugging purposes; is now a placeholder
 
     int animateIndex = 5;
     int index = 0;
@@ -42,8 +44,5 @@ public:
     void render();
     void releaseAll();
     void resetAll();
-
-    void setOption(std::string option) { optionSelected = option; }
-    std::string getOption() { return optionSelected; }
 };
 #endif

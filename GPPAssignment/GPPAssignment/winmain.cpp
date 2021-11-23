@@ -14,6 +14,7 @@
 #include "constants.h"
 #include "pfantasy.h"
 #include "startingMenu.h"
+#include "map.h"
 
 // Function prototypes
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
@@ -46,7 +47,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
     MSG	 msg;
 
     //Create the game, sets up message handler
-    game = new StartingMenu;
+    game = new PFantasy;
 
     // Create the window
     if (!CreateMainWindow(hwnd, hInstance, nCmdShow))
@@ -70,7 +71,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
                 DispatchMessage(&msg);
             }
             else
+            {
                 game->run(hwnd);    //run game loop
+            }
         }
         SAFE_DELETE(game); // free memory before exit
         return msg.wParam;
