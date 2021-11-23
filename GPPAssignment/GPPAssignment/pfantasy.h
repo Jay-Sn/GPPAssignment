@@ -14,21 +14,30 @@ class PFantasy : public Game
 {
 private:
 	//Variables
+	float yValues[3] = { 550, 600, 650 }; // Y values for menu
+
 	TextureManager mainCharaTexture;
 	TextureManager placeholderRectTexture;
+
 	TextDX  infoFonts;
+	TextDX  selectionFonts;
+
 	TextDX* dxMenuText;
 
 	Character mainChara;
 	Character enemyChara;
 
-
 	Image eHealthBar;
 	Image healthBar;
+
 	Image enemyNameSection;
 	Image abilitySection;
 	Image infoSection;
+
 	Image floor;
+	Image selectionBlock;
+	int selectionY;
+
 public:
 	PFantasy();					//Constructor
 	virtual ~PFantasy();		//Destructor

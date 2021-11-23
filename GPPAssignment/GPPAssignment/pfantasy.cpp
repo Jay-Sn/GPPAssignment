@@ -1,7 +1,7 @@
 #include "pfantasy.h"
 using namespace std;
 PFantasy::PFantasy() {
-
+	selectionY = 0;
 
 }
 
@@ -24,36 +24,36 @@ void PFantasy::initialize(HWND hwnd)
 //Update all game items
 void PFantasy::update() {
 	checkMouse();
-	//updateHealth();
+	updateHealth();
 }
 
 void PFantasy::updateHealth() {
 	//Player Health
 	if (mainChara.getCurrentHealth() <= 0 && healthBar.getScaleX() > 0)
-		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * MIN_FRAME_RATE);
+		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
 	else if (mainChara.getCurrentHealth() > 0 && healthBar.getScaleX() > (mainChara.getCurrentHealth() / mainChara.getMaxHealth())) {
-		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * MIN_FRAME_RATE);
+		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
 	}
 
 	if (mainChara.getCurrentHealth() > mainChara.getMaxHealth() && healthBar.getScaleX() <= 1) {
-		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * MIN_FRAME_RATE);
+		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
 	}
 	else if (mainChara.getCurrentHealth() <= mainChara.getMaxHealth() && healthBar.getScaleX() <= mainChara.getCurrentHealth() / mainChara.getMaxHealth()) {
-		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * MIN_FRAME_RATE);
+		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
 	}
 
 	//Enemy Health
-	if (enemyChara.getCurrentHealth() <= 0 && healthBar.getScaleX() > 0)
-		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * MIN_FRAME_RATE);
-	else if (enemyChara.getCurrentHealth() > 0 && healthBar.getScaleX() > (enemyChara.getCurrentHealth() / enemyChara.getMaxHealth())) {
-		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * MIN_FRAME_RATE);
+	if (enemyChara.getCurrentHealth() <= 0 && eHealthBar.getScaleX() > 0)
+		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
+	else if (enemyChara.getCurrentHealth() > 0 && eHealthBar.getScaleX() > (enemyChara.getCurrentHealth() / enemyChara.getMaxHealth())) {
+		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
 	}
 
-	if (enemyChara.getCurrentHealth() > enemyChara.getMaxHealth() && healthBar.getScaleX() <= 1) {
-		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * MIN_FRAME_RATE);
+	if (enemyChara.getCurrentHealth() > enemyChara.getMaxHealth() && eHealthBar.getScaleX() <= 1) {
+		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
 	}
-	else if (enemyChara.getCurrentHealth() <= enemyChara.getMaxHealth() && healthBar.getScaleX() <= enemyChara.getCurrentHealth() / enemyChara.getMaxHealth()) {
-		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * MIN_FRAME_RATE);
+	else if (enemyChara.getCurrentHealth() <= enemyChara.getMaxHealth() && eHealthBar.getScaleX() <= enemyChara.getCurrentHealth() / enemyChara.getMaxHealth()) {
+		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
 	}
 }
 
@@ -73,12 +73,32 @@ void PFantasy::ai() {}
 void PFantasy::collisions() {}
 
 void PFantasy::checkMouse() {
-	if (input->wasKeyPressed(NAVI_DOWN_KEY) && input->getMouseX() >= abilitySection.getX() && input->getMouseX() <= abilitySection.getX() + abilitySection.getWidth()) {
-		if (input->getMouseY() >= abilitySection.getY() && input->getMouseY() <= abilitySection.getY() + abilitySection.getHeight()) {
-			deductHealth(false, 10);
+	if (input->wasKeyPressed(VK_RETURN))
+	{
+		if (selectionBlock.getY() == yValues[0]) {
+			deductHealth(true, 10);
+		}
+		else if (selectionBlock.getY() == yValues[1]) {
+			//prevent dmg
+		}
+		else if (selectionBlock.getY() == yValues[2]) {
+			//exitScene
 		}
 	}
+
+	if (input->wasKeyPressed(CURSOR_DOWN_KEY) && selectionY + 1<3)               // if move up
+	{
+		selectionY += 1;
+		selectionBlock.setY(yValues[selectionY]);
+	}
+	if (input->wasKeyPressed(CURSOR_UP_KEY) && selectionY -1 >=0)               // if move up
+	{
+		selectionY -= 1;
+		selectionBlock.setY(yValues[selectionY]);
+		
+	}
 }
+
 //Render game items
 void PFantasy::render() {
 	graphics->spriteBegin();
@@ -87,7 +107,9 @@ void PFantasy::render() {
 
 	renderCharacters();
 	renderUI();
-
+	selectionFonts.print("Fight", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont())/2, abilitySection.getCenterY() - selectionFonts.getHeight("Fight",selectionFonts.getFont()) * 1.5 - 10);
+	selectionFonts.print("Block", abilitySection.getCenterX() - selectionFonts.getWidth("Block", selectionFonts.getFont()) / 2, abilitySection.getCenterY() - selectionFonts.getHeight("Block", selectionFonts.getFont()) /2);
+	selectionFonts.print("Run", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont()) / 2, abilitySection.getCenterY() + selectionFonts.getHeight("Run", selectionFonts.getFont()) * 0.5 + 10);
 	graphics->spriteEnd();
 }
 
@@ -113,6 +135,8 @@ void PFantasy::intializeUI() {
 
 	if (infoFonts.initialize(graphics, 10, true, false, gameNS::FONT) == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
+	if (selectionFonts.initialize(graphics, 40, true, false, gameNS::FONT) == false)
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
 
 	if (!placeholderRectTexture.initialize(graphics, PLACEHOLDERRECT))throw(gameErrorNS::FATAL_ERROR, "Error initiating placeholder rect");
 	if (!floor.initialize(graphics, 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
@@ -125,6 +149,8 @@ void PFantasy::intializeUI() {
 	if (!enemyNameSection.initialize(graphics, 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating enemyNameSection");
 	if (!abilitySection.initialize(graphics, 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating abilitySection");
 	if (!infoSection.initialize(graphics, 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
+
+	if (!selectionBlock.initialize(graphics, 10, 10, 6, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
 	
 	//Floor Stuff (To Be removed)
 	floor.setY(GAME_HEIGHT / 2);
@@ -153,6 +179,9 @@ void PFantasy::intializeUI() {
 	eHealthBar.setX(enemyNameSection.getX() + 0.125 * enemyNameSection.getWidth());
 	eHealthBar.setY(enemyNameSection.getY() + 0.25 * enemyNameSection.getHeight());
 
+	selectionBlock.setCurrentFrame(4);
+	selectionBlock.setX(abilitySection.getX() +50);
+	selectionBlock.setY(abilitySection.getCenterY() - selectionFonts.getHeight("Fight", selectionFonts.getFont()) * 1.5);
 }
 
 void PFantasy::renderUI() {
@@ -179,9 +208,12 @@ void PFantasy::renderUI() {
 		healthBar.getX() + HPBAR_WIDTH / 2 - infoFonts.getWidth(mainChara.getHealthString(), infoFonts.getFont()) / 2,
 		healthBar.getY() + HPBAR_HEIGHT /2 - infoFonts.getHeight(mainChara.getHealthString(), infoFonts.getFont()) / 2
 	);
+
+	selectionBlock.draw(graphicsNS::GREEN);
 }
 
 void PFantasy::intializeCharacters() {
+
 	//initialize character textures
 	if (!mainCharaTexture.initialize(graphics, MAINCHARA_IMAGE))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
 
@@ -201,7 +233,6 @@ void PFantasy::intializeCharacters() {
 	enemyChara.setX(GAME_WIDTH * 0.25f - enemyChara.getImagePtr()->getWidth()/2);
 	enemyChara.setY(GAME_HEIGHT * 0.5f - mainChara.getImagePtr()->getHeight()/3);
 	enemyChara.getImagePtr()->flipHorizontal(true);
-
 }
 
 void PFantasy::renderCharacters() {
