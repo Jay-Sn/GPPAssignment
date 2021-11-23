@@ -70,6 +70,11 @@ void Map::render()
     graphics->spriteEnd();
 }
 
+void Map::intializeUI() {}
+void Map::renderUI() {}
+void Map::intializeCharacters() {}
+void Map::renderCharacters() {}
+
 //=============================================================================
 // The graphics device was lost.
 // Release all reserved video memory so graphics device may be reset.
@@ -77,7 +82,7 @@ void Map::render()
 void Map::releaseAll()
 {
     mainCharaTexture.onLostDevice();
-    dxMenuText->onLostDevice();
+    // dxMenuText->onLostDevice();
     Game::releaseAll();
     return;
 }
@@ -89,7 +94,7 @@ void Map::releaseAll()
 void Map::resetAll()
 {
     mainCharaTexture.onResetDevice();
-    dxMenuText->onResetDevice();
+    // dxMenuText->onResetDevice();
     Game::resetAll();
     return;
 }

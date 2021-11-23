@@ -7,6 +7,7 @@
 #include "Image.h"
 #include "character.h"
 #include "textDX.h"
+#include "pfantasy.h"
 
 using namespace std;
 
