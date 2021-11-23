@@ -338,12 +338,14 @@ void Graphics::drawSprite(const SpriteData& spriteData, COLOR_ARGB color)
         return;
 
     // Find center of sprite
-    D3DXVECTOR2 spriteCenter = D3DXVECTOR2((float)(spriteData.width / 2 * spriteData.scaleX),
-        (float)(spriteData.height / 2 * spriteData.scaleY));
+    D3DXVECTOR2 spriteCenter = D3DXVECTOR2((float)(spriteData.width / 2 * spriteData.scaleX),(float)(spriteData.height / 2 * spriteData.scaleY));
+
     // Screen position of the sprite
     D3DXVECTOR2 translate = D3DXVECTOR2((float)spriteData.x, (float)spriteData.y);
+
     // Scaling X,Y
     D3DXVECTOR2 scaling(spriteData.scaleX, spriteData.scaleY);
+
     if (spriteData.flipHorizontal)  // if flip horizontal
     {
         scaling.x *= -1;            // negative X scale to flip

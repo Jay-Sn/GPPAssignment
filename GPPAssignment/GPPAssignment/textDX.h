@@ -6,6 +6,8 @@
 #include "constants.h"
 #include "graphics.h"
 
+using namespace std;
+
 class TextDX
 {
 private:
@@ -36,14 +38,14 @@ public:
     // Return 0 on fail, height of text on success
     // Pre: &str contains text to display
     //      x, y = screen location
-    virtual int print(const std::string& str, int x, int y);
+    virtual int print(const string& str, int x, int y);
 
     // Print inside rect using format. Call between spriteBegin()/spriteEnd()
     // Return 0 on fail, height of text on success
     // Pre: &str = text to display
     //      &rect = rectangular region
     //      format = format specifier
-    virtual int print(const std::string& str, RECT& rect, UINT format);
+    virtual int print(const string& str, RECT& rect, UINT format);
 
     // Return rotation angle in degrees.
     virtual float getDegrees() { return angle * (180.0f / (float)PI); }
@@ -54,9 +56,9 @@ public:
     // Returns font color
     virtual COLOR_ARGB getFontColor() { return color; }
 
-    virtual int getWidth(const char *szText, LPD3DXFONT pfont);
+    virtual int getWidth(string szText, LPD3DXFONT pfont);
 
-    virtual int getHeight(const char *szText, LPD3DXFONT pfont);
+    virtual int getHeight(string szText, LPD3DXFONT pfont);
 
     virtual LP_DXFONT getFont() const { return dxFont; }
 
