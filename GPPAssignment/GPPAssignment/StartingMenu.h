@@ -20,6 +20,10 @@ protected:
 
     Image mainChara;
 
+    int yValues[3] = { 100, 130, 160 }; // Y values for menu
+    std::string optionSelected;
+    int y; // y values
+
     int animateIndex = 5;
     int index = 0;
     int direction = -1;
@@ -38,5 +42,8 @@ public:
     void render();
     void releaseAll();
     void resetAll();
+
+    void setOption(std::string option) { optionSelected = option; }
+    std::string getOption() { return optionSelected; }
 };
 #endif
