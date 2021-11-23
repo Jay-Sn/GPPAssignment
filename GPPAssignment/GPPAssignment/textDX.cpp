@@ -108,3 +108,20 @@ void TextDX::onResetDevice()
         return;
     dxFont->OnResetDevice();
 }
+
+int TextDX::getWidth(const char* szText, LPD3DXFONT pFont) {
+    RECT rcRect = { 0,0,0,0 };
+    if (pFont) {
+        pFont->DrawTextA(NULL, szText, strlen(szText), &rcRect, DT_CALCRECT,D3DCOLOR_XRGB(0,0,0));
+    }
+
+    return rcRect.right - rcRect.left;
+}
+int TextDX::getHeight(const char* szText, LPD3DXFONT pFont) {
+    RECT rcRect = { 0,0,0,0 };
+    if (pFont) {
+        pFont->DrawTextA(NULL, szText, strlen(szText), &rcRect, DT_CALCRECT,D3DCOLOR_XRGB(0,0,0));
+    }
+
+    return rcRect.bottom - rcRect.top;
+}

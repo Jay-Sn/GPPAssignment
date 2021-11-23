@@ -16,7 +16,7 @@
 //Safely call onRestDevice
 #define SAFE_ON_RESET_DEVICE(ptr) {if(ptr){ptr->onResetDevice();}}
 #define TRANSCOLOR SETCOLOR_ARGB(255,255,255,255)
-#define BACKGROUNDCOLOUR SETCOLOR_ARGB(0,50,50,50)
+#define BACKGROUNDCOLOUR SETCOLOR_ARGB(0,20,20,20)
 
 //Constants
 

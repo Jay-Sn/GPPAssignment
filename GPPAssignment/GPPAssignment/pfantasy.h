@@ -22,6 +22,7 @@ private:
 	Image enemyNameSection;
 	Image abilitySection;
 	Image infoSection;
+	Image floor;
 
 	//Player Health
 	float FULL_HEALTH = 100;

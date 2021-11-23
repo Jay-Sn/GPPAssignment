@@ -1,5 +1,5 @@
 #include "pfantasy.h"
-
+using namespace std;
 PFantasy::PFantasy() {}
 
 PFantasy::~PFantasy()
@@ -26,10 +26,12 @@ void PFantasy::initialize(HWND hwnd)
 	if (!enemyNameSection.initialize(graphics,0,0,0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating enemyNameSection");
 	if (!abilitySection.initialize(graphics,0,0,0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating abilitySection");
 	if (!infoSection.initialize(graphics,0,0,0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
-	
+	if (!floor.initialize(graphics,0,0,0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
+	floor.setY(GAME_HEIGHT/2);
+	floor.setX(-200);
 	mainChara.setY(GAME_HEIGHT / 2 - mainChara.getHeight());
 	mainChara.setX(GAME_WIDTH * 0.75f - mainChara.getWidth() / 2);
-
+	floor.setScale(10, 10);
 	//display Sections
 	enemyNameSection.setScaleY(1.25);
 	enemyNameSection.setX(0);
@@ -62,44 +64,49 @@ void PFantasy::initialize(HWND hwnd)
 //Update all game items
 void PFantasy::update() {
 	if (input->wasKeyPressed(NAVI_LEFT_KEY)) {
-		deductHealth(true,50);
+		deductHealth(true, 50);
+	}
+	if (input->wasKeyPressed(NAVI_UP_KEY)) {
+		deductHealth(true, -50);
 	}
 	if (input->wasKeyPressed(NAVI_RIGHT_KEY)) {
 		deductHealth(false,50);
+	}
+	if (input->wasKeyPressed(NAVI_DOWN_KEY)) {
+		deductHealth(false, -50);
 	}
 	updateHealth();
 }
 
 void PFantasy::updateHealth() {
 
-	if (CURRENT_HEALTH > FULL_HEALTH)CURRENT_HEALTH = FULL_HEALTH;
-	if (CURRENT_HEALTH < 0) CURRENT_HEALTH = 0;
-	if (ECURRENT_HEALTH > FULL_HEALTH)ECURRENT_HEALTH = EFULL_HEALTH;
-	if (ECURRENT_HEALTH < 0) ECURRENT_HEALTH = 0;
 	//Player Health
 	if (CURRENT_HEALTH <= 0 && healthBar.getScaleX() > 0)
 		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
-	else if (healthBar.getScaleX() > (CURRENT_HEALTH / FULL_HEALTH)) {
+	else if (CURRENT_HEALTH > 0 && healthBar.getScaleX() > (CURRENT_HEALTH / FULL_HEALTH)) {
 		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
 	}
 
-
-
-	if (CURRENT_HEALTH/FULL_HEALTH > healthBar.getScaleX()) {
+	if (CURRENT_HEALTH> FULL_HEALTH && healthBar.getScaleX() <= 1) {
 		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
 	}
-	BATTLE_HEALTH = CURRENT_HEALTH;
+	else if (CURRENT_HEALTH <= FULL_HEALTH && healthBar.getScaleX() <= CURRENT_HEALTH/FULL_HEALTH) {
+		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
+	}
 
 	//Enemy Health
 	if (ECURRENT_HEALTH <= 0 && eHealthBar.getScaleX() > 0)
 		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
-	else if (eHealthBar.getScaleX() > (ECURRENT_HEALTH / EFULL_HEALTH)) {
+	else if (ECURRENT_HEALTH > 0 && eHealthBar.getScaleX() > (ECURRENT_HEALTH / EFULL_HEALTH)) {
 		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
 	}
-	if (ECURRENT_HEALTH / EFULL_HEALTH > eHealthBar.getScaleX()) {
+
+	if (ECURRENT_HEALTH > EFULL_HEALTH && eHealthBar.getScaleX() <= 1) {
 		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
 	}
-	EBATTLE_HEALTH = ECURRENT_HEALTH;
+	else if (ECURRENT_HEALTH <= EFULL_HEALTH && healthBar.getScaleX() <= ECURRENT_HEALTH / EFULL_HEALTH) {
+		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
+	}
 }
 
 void PFantasy::deductHealth(bool e, float hp) {
@@ -116,10 +123,7 @@ void PFantasy::collisions() {}
 void PFantasy::render() {
 	graphics->spriteBegin();
 
-	mainChara.draw(TRANSCOLOR);
-
-	
-
+	floor.draw(graphicsNS::TEAL);
 	mainChara.draw(TRANSCOLOR);
 	enemyNameSection.draw(TRANSCOLOR);
 	abilitySection.draw(TRANSCOLOR);
@@ -128,10 +132,11 @@ void PFantasy::render() {
 	healthBar.draw(graphicsNS::RED);
 	eHealthBar.draw(graphicsNS::RED);
 	dxFont.setFontColor(graphicsNS::WHITE);
+	//std::string health = CURRENT_HEALTH + " / " + FULL_HEALTH;
 	sprintf_s(buffer,20, "%d / %d", (int)CURRENT_HEALTH, (int)FULL_HEALTH);
-	dxFont.print(buffer, healthBar.getX() + HPBAR_WIDTH/2 , healthBar.getY());
+	dxFont.print(buffer, healthBar.getX() + HPBAR_WIDTH/2 - dxFont.getWidth(buffer, dxFont.getFont()) / 2, healthBar.getY() + dxFont.getHeight(buffer,dxFont.getFont())/2);
 	sprintf_s(ebuffer, 20, "%d / %d", (int)ECURRENT_HEALTH, (int)EFULL_HEALTH);
-	dxFont.print(ebuffer, eHealthBar.getX() + HPBAR_WIDTH/2 , eHealthBar.getY());
+	dxFont.print(ebuffer, eHealthBar.getX() + HPBAR_WIDTH/2 - dxFont.getWidth(ebuffer, dxFont.getFont())/2, eHealthBar.getY() + dxFont.getHeight(ebuffer, dxFont.getFont())/2);
 	graphics->spriteEnd();
 }
 

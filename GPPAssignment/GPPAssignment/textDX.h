@@ -54,6 +54,12 @@ public:
     // Returns font color
     virtual COLOR_ARGB getFontColor() { return color; }
 
+    virtual int getWidth(const char *szText, LPD3DXFONT pfont);
+
+    virtual int getHeight(const char *szText, LPD3DXFONT pfont);
+
+    virtual LP_DXFONT getFont() const { return dxFont; }
+
     // Set rotation angle in degrees.
     // 0 degrees is up. Angles progress clockwise.
     virtual void setDegrees(float deg) { angle = deg * ((float)PI / 180.0f); }
