@@ -22,7 +22,7 @@ class Game
 protected:
 	//common game properties
 	Graphics* graphics;             // pointer to Graphics
-	Input* input;                 // pointer to Input
+	Input* input;					// pointer to Input
 	HWND    hwnd;                   // window handle
 	HRESULT hr;                     // standard return type
 	LARGE_INTEGER timeStart;        // Performance Counter start value

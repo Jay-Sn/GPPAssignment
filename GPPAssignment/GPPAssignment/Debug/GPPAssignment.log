@@ -1,39 +1,25 @@
-﻿  character.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(42,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(43,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  game.cpp
+﻿  pfantasy.cpp
 C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(42,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  graphics.cpp
-  image.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(42,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  pfantasy.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(42,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(138,36): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(141,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(142,34): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(145,30): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(146,31): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(151,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(152,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(156,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(157,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(176,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(175,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(184,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(183,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  startingMenu.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(42,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  textDX.cpp
-  texturemanager.cpp
-  userinterface.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(42,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(43,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  winmain.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(42,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(33,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(35,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(39,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(42,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(47,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(49,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(53,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(56,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(137,36): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(140,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(141,34): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(144,30): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(145,31): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(149,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(150,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(153,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(154,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(172,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(171,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(180,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pfantasy.cpp(179,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   GPPAssignment.vcxproj -> C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe
