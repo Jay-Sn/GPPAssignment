@@ -13,6 +13,7 @@
 namespace gameNS
 {
 	const char FONT[] = "Terminal";  // font
+	const char INFOFONT[] = "Calibri ";  // font
 	const int POINT_SIZE = 30;          // point size
 	const COLOR_ARGB FONT_COLOR = SETCOLOR_ARGB(255, 255, 15, 15);    // white
 }

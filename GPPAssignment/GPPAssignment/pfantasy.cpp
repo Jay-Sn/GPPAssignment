@@ -1,4 +1,6 @@
 #include "pfantasy.h"
+#include <time.h>
+
 using namespace std;
 PFantasy::PFantasy() {
 	selectionY = 0;
@@ -14,6 +16,7 @@ PFantasy::~PFantasy()
 //Initialize the game
 void PFantasy::initialize(HWND hwnd)
 {
+	srand(time(NULL));
 	Game::initialize(hwnd); // throws GameError
 	intializeUI();
 	intializeCharacters();
@@ -38,10 +41,10 @@ void PFantasy::updateHealth() {
 	if (healthBar.test() == round(mainChara.getCurrentHealth() / mainChara.getMaxHealth() * 100) && eHealthBar.test() == round(enemyChara.getCurrentHealth() / enemyChara.getMaxHealth() * 100)) {
 		animationDone = true;
 	}
-	else if ((mainChara.getCurrentHealth()<0 && healthBar.test() == 0) || (enemyChara.getCurrentHealth() < 0 && eHealthBar.test() == 0)) {
-		//End Game Here
-		animationDone = true;
-	}
+	//else if ((mainChara.getCurrentHealth()<0 && healthBar.test() == 0) || (enemyChara.getCurrentHealth() < 0 && eHealthBar.test() == 0)) {
+	//	//End Game Here
+	//	animationDone = true;
+	//}
 	else {
 		animationDone = false;
 	}
@@ -138,7 +141,7 @@ void PFantasy::checkMouse() {
 void PFantasy::render() {
 	graphics->spriteBegin();
 
-	floor.draw(graphicsNS::TEAL);
+	floor.draw(BACKGROUNDCOLOUR);
 
 	renderCharacters();
 	renderUI();
@@ -151,6 +154,7 @@ void PFantasy::render() {
 int properCast(float fukingNumber) {
 	return 1;
 }
+
 //The graphics device was lost
 //Release all reserved video memory to be resetted
 void PFantasy::releaseAll() {
@@ -173,9 +177,9 @@ void PFantasy::intializeUI() {
 
 	if (hpFonts.initialize(graphics, 10, true, false, gameNS::FONT) == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
-	if (infoFonts.initialize(graphics, 20, true, false, gameNS::FONT) == false)
+	if (infoFonts.initialize(graphics, 30, false, false, gameNS::INFOFONT) == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
-	if (selectionFonts.initialize(graphics, 40, true, false, gameNS::FONT) == false)
+	if (selectionFonts.initialize(graphics, 40, true, false, gameNS::INFOFONT) == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
 
 	if (!placeholderRectTexture.initialize(graphics, PLACEHOLDERRECT))throw(gameErrorNS::FATAL_ERROR, "Error initiating placeholder rect");
@@ -251,7 +255,7 @@ void PFantasy::renderUI() {
 
 	infoFonts.print(
 		enemyChara.getClass(),
-		eHealthBar.getX() + eHealthBar.getWidth() - infoFonts.getWidth(enemyChara.getClass(), infoFonts.getFont()),
+		eHealthBar.getX() + HPBAR_WIDTH/2 - infoFonts.getWidth(enemyChara.getClass(), infoFonts.getFont()),
 		eHealthBar.getY() - HPBAR_HEIGHT - infoFonts.getHeight(enemyChara.getClass(), infoFonts.getFont()) / 2
 	);
 
@@ -265,14 +269,14 @@ void PFantasy::renderUI() {
 
 	infoFonts.print(
 		mainChara.getName(),
-		GAME_WIDTH - ((GAME_WIDTH - healthBar.getX() - healthBar.getWidth()) / 4),
-		healthBar.getY() - HPBAR_HEIGHT - infoFonts.getHeight(mainChara.getName(), infoFonts.getFont()) / 2
+		GAME_WIDTH - ((GAME_WIDTH - healthBar.getX() - HPBAR_WIDTH) / 4),
+		healthBar.getY() - infoFonts.getHeight(mainChara.getName(),infoFonts.getFont())/2 + HPBAR_HEIGHT / 2
 	);
 
 	infoFonts.print(
 		mainChara.getClass(),
-		GAME_WIDTH - ((GAME_WIDTH - healthBar.getX() - healthBar.getWidth()) / 4),
-		healthBar.getY() - HPBAR_HEIGHT - infoFonts.getHeight(mainChara.getClass(), infoFonts.getFont()) / 2
+		GAME_WIDTH - ((GAME_WIDTH - healthBar.getX() - HPBAR_WIDTH) / 4 * 3),
+		healthBar.getY() - infoFonts.getHeight(mainChara.getClass(), infoFonts.getFont()) / 2 + HPBAR_HEIGHT / 2
 	);
 	selectionBlock.draw(graphicsNS::GREEN);
 }
@@ -284,7 +288,7 @@ void PFantasy::intializeCharacters() {
 
 	//initialize character objects
 	if (!mainChara.getImagePtr()->initialize(graphics, 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error assigning main character image");
-	mainChara.setValues("Hero", "Hero", 100);
+	mainChara.setValues("Ayame", "Hero", 100);
 
 	if (!enemyChara.getImagePtr()->initialize(graphics, 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error assigning enemy character image");
 	enemyChara.setValues("Guy", "WoD", 100);

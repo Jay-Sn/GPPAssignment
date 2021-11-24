@@ -25,7 +25,7 @@ public:
 	~Character();
 
 	string getHealthString();
-
+	bool initialize(Graphics* g, int width, int height, int ncols, TextureManager* textureM, string charaName, string charaClass, float maxHealth);
 	void setValues(string charaName, string charaClass, float maxHealth);
 	Image* getImagePtr() { return &charaSprite; }
 
