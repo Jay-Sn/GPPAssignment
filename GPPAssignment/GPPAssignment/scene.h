@@ -11,8 +11,8 @@ class Scene;
 class Scene
 {
 public:
-	Scene();
-	~Scene();
+	Scene() {}
+	~Scene() {}
 	virtual void initialize() = 0;
 	virtual void reset() = 0;
 	virtual void update(float frameTime) = 0;

@@ -1,5 +1,5 @@
 #include "game.h"
-#include "pfantasy.h"
+#include "battleScene.h"
 
 //Constructor
 Game::Game()

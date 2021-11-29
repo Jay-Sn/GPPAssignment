@@ -16,102 +16,123 @@
     <Filter Include="Header Files\BattleSystem">
       <UniqueIdentifier>{7f6fd9cb-d797-4111-8ed8-abf6a73e154e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MenuSystem">
+      <UniqueIdentifier>{82135fd1-915e-488d-8441-447248fcd8ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GraphicsSystem">
+      <UniqueIdentifier>{a43c4e3d-a2c6-4900-9bbd-64c6c68eb99d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GeneralSystem">
+      <UniqueIdentifier>{00de4291-614b-46e3-838f-b3b550ef3956}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OverworldSystem">
+      <UniqueIdentifier>{59b87337-0b83-4990-84f2-7a7e3ad1fa6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BattleSystem">
+      <UniqueIdentifier>{10e343ff-6aa5-41ad-93f5-3fc6a27435a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GeneralSystem">
+      <UniqueIdentifier>{9b452978-b8d8-4e18-810b-dfbb7f02728e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GraphicsSystem">
+      <UniqueIdentifier>{948b4661-04a2-4adc-b4e7-f9d79529b12f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MenuSystem">
+      <UniqueIdentifier>{86b883fc-3dfa-4a29-ad18-b3bd1a166f0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OverworldSystem">
+      <UniqueIdentifier>{e76f8b18-4e69-48ff-baae-3dcf10908201}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="winmain.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="character.cpp">
+      <Filter>Source Files\BattleSystem</Filter>
     </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="battleScene.cpp">
+      <Filter>Source Files\BattleSystem</Filter>
     </ClCompile>
     <ClCompile Include="graphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pfantasy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="texturemanager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GraphicsSystem</Filter>
     </ClCompile>
     <ClCompile Include="image.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GraphicsSystem</Filter>
     </ClCompile>
     <ClCompile Include="textDX.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GraphicsSystem</Filter>
     </ClCompile>
-    <ClCompile Include="startingMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="character.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="texturemanager.cpp">
+      <Filter>Source Files\GraphicsSystem</Filter>
     </ClCompile>
     <ClCompile Include="userinterface.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GraphicsSystem</Filter>
     </ClCompile>
-    <ClCompile Include="map.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="startingMenu.cpp">
+      <Filter>Source Files\MenuSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="overworld.cpp">
+      <Filter>Source Files\OverworldSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Source Files\GeneralSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Source Files\GeneralSystem</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GeneralSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="winmain.cpp">
+      <Filter>Source Files\GeneralSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gameerror.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="texturemanager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="textDX.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="startingMenu.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="battleScene.h">
+      <Filter>Header Files\BattleSystem</Filter>
     </ClInclude>
     <ClInclude Include="character.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\BattleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="overworld.h">
+      <Filter>Header Files\OverworldSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="startingMenu.h">
+      <Filter>Header Files\MenuSystem</Filter>
     </ClInclude>
     <ClInclude Include="userinterface.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GraphicsSystem</Filter>
     </ClInclude>
-    <ClInclude Include="map.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="texturemanager.h">
+      <Filter>Header Files\GraphicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="textDX.h">
+      <Filter>Header Files\GraphicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="image.h">
+      <Filter>Header Files\GraphicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics.h">
+      <Filter>Header Files\GraphicsSystem</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="constants.h">
+      <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
     <ClInclude Include="EntityManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
-    <ClInclude Include="SceneCall.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="game.h">
+      <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
-    <ClInclude Include="pfantasy.h">
-      <Filter>Header Files\BattleSystem</Filter>
+    <ClInclude Include="gameerror.h">
+      <Filter>Header Files\GeneralSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Header Files\GeneralSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

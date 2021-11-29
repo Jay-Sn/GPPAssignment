@@ -150,9 +150,8 @@
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
-    <ClCompile Include="map.cpp" />
-    <ClCompile Include="pfantasy.cpp" />
-    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="overworld.cpp" />
+    <ClCompile Include="battleScene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="startingMenu.cpp" />
     <ClCompile Include="textDX.cpp" />
@@ -169,10 +168,9 @@
     <ClInclude Include="graphics.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
-    <ClInclude Include="map.h" />
-    <ClInclude Include="pfantasy.h" />
+    <ClInclude Include="overworld.h" />
+    <ClInclude Include="battleScene.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneCall.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="startingMenu.h" />
     <ClInclude Include="textDX.h" />

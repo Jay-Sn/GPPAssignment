@@ -8,7 +8,6 @@
 #include "constants.h"
 #include "Scene.h"
 
-
 class SceneManager: public Game
 {
 protected:

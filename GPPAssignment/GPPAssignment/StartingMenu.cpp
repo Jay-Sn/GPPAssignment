@@ -58,10 +58,10 @@ void StartingMenu::update(float frameTime)
     if (dxManager->getInput()->wasKeyPressed(VK_RETURN)) 
     {
         if (mainChara.getY() == 100) {
-            dxManager->switchScene("Battle");
+            dxManager->switchScene("Overworld");
         }
         else if (mainChara.getY() == 130) {
-            debugY = 130;
+            dxManager->switchScene("Battle");
         }
         else if (mainChara.getY() == 160) {
              PostQuitMessage(0);

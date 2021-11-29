@@ -8,7 +8,6 @@
 #include "TextureManager.h"
 #include "Image.h"
 #include "graphics.h"
-#include "pfantasy.h"
 #include "Scene.h"
 #include "SceneManager.h"
 

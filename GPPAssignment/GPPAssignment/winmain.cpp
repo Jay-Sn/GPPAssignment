@@ -12,9 +12,6 @@
 #include <crtdbg.h>
 #include "gameerror.h"
 #include "constants.h"
-#include "pfantasy.h"
-#include "startingMenu.h"
-#include "map.h"
 #include "SceneManager.h"
 
 // Function prototypes

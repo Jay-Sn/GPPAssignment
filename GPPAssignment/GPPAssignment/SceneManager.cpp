@@ -1,12 +1,14 @@
 #include "SceneManager.h"
-#include "SceneCall.h"
+
 #include "StartingMenu.h"
-#include "pfantasy.h"
+#include "battleScene.h"
+#include "overworld.h"
 
 SceneManager::SceneManager()
 {
     sceneMap["Menu"] = new StartingMenu(this);
-    sceneMap["Battle"] = new PFantasy(this);
+    sceneMap["Overworld"] = new Overworld(this);
+    sceneMap["Battle"] = new BattleScene(this);
 }
 
 
