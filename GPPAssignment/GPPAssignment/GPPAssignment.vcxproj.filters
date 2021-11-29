@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\BattleSystem">
+      <UniqueIdentifier>{7f6fd9cb-d797-4111-8ed8-abf6a73e154e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -71,9 +74,6 @@
     <ClInclude Include="graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pfantasy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -109,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="SceneCall.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pfantasy.h">
+      <Filter>Header Files\BattleSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
