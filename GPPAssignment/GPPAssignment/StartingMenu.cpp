@@ -1,8 +1,9 @@
 #include "startingMenu.h"
 #include <iostream>
 
-StartingMenu::StartingMenu()
+StartingMenu::StartingMenu(SceneManager* manager)
 {
+    dxManager = manager;
     dxMenuText = new TextDX();     // DirectX fonts
 }
 
@@ -16,22 +17,21 @@ StartingMenu::~StartingMenu()
 // initializes the game
 // Throws GameError on error
 //=============================================================================
-void StartingMenu::initialize(HWND hwnd)
+void StartingMenu::initialize()
 {
-    Game::initialize(hwnd);
-    if (!mainCharaTexture.initialize(graphics, Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
-    if (!mainChara.initialize(graphics, 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+    if (!mainCharaTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+    if (!mainChara.initialize(dxManager->getGraphics(), 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
 
     mainChara.setY(100);
     mainChara.setX(40);
     mainChara.setScale(0.5, 0.5);
-    graphics->setBackColor(graphicsNS::WHITE);
+    dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
 
     // initialize DirectX fonts
     // 15 pixel high Arial
-    if (dxMenuText->initialize(graphics, 15, true, false, "Arial") == false)
+    if (dxMenuText->initialize(dxManager->getGraphics(), 15, true, false, "Arial") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
-    if (dxFont.initialize(graphics, gameNS::POINT_SIZE, false, false, gameNS::FONT) == false)
+    if (dxFont.initialize(dxManager->getGraphics(), gameNS::POINT_SIZE, false, false, gameNS::FONT) == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
 
 
@@ -53,33 +53,29 @@ void StartingMenu::reset()
 // move all game items
 // frameTime is used to regulate the speed of movement
 //=============================================================================
-void StartingMenu::update()
+void StartingMenu::update(float frameTime)
 {
-    if (input->wasKeyPressed(VK_RETURN)) 
+    if (dxManager->getInput()->wasKeyPressed(VK_RETURN)) 
     {
         if (mainChara.getY() == 100) {
-            debugY = 100;
+            dxManager->switchScene("Battle");
         }
         else if (mainChara.getY() == 130) {
             debugY = 130;
         }
         else if (mainChara.getY() == 160) {
-            debugY = 160;
+             PostQuitMessage(0);
         }
     }
-    if (input->wasKeyPressed(CURSOR_DOWN_KEY) && mainChara.getY() != 160)               // if move up
+    if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && mainChara.getY() != 160)               // if move up
     {
         mainChara.setY(mainChara.getY() +  30);
-        graphics->spriteBegin();
-        dxMenuText->setFontColor(graphicsNS::BLACK);
-        dxMenuText->print("Start", 600, 600);
-        graphics->spriteEnd();
     }
-    if (input->wasKeyPressed(CURSOR_UP_KEY) && mainChara.getY() != 100)               // if move up
+    if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && mainChara.getY() != 100)               // if move up
     {
         mainChara.setY(mainChara.getY() -  30);
     }
-    if (input->wasKeyPressed(VK_LEFT)) {
+    if (dxManager->getInput()->wasKeyPressed(VK_LEFT)) {
 
     }
     mainChara.update(frameTime);
@@ -100,7 +96,7 @@ void StartingMenu::render()
 {
     const int BUF_SIZE = 100;
     static char buffer[BUF_SIZE];
-    graphics->spriteBegin();
+    dxManager->getGraphics()->spriteBegin();
     mainChara.draw(TRANSCOLOR);
     dxMenuText->setFontColor(graphicsNS::BLACK);
     dxMenuText->print("Start", 60, yValues[0]);
@@ -109,7 +105,7 @@ void StartingMenu::render()
     dxFont.setFontColor(gameNS::FONT_COLOR);
     sprintf_s(buffer, "You have selected: %d", (int)debugY);
     dxFont.print(buffer, 200, 200);
-    graphics->spriteEnd();
+    dxManager->getGraphics()->spriteEnd();
 
 
 }
@@ -122,7 +118,6 @@ void StartingMenu::releaseAll()
 {
     mainCharaTexture.onLostDevice();
     dxMenuText->onLostDevice();
-    Game::releaseAll();
     return;
 }
 
@@ -134,6 +129,5 @@ void StartingMenu::resetAll()
 {
     mainCharaTexture.onResetDevice();
     dxMenuText->onResetDevice();
-    Game::resetAll();
     return;
 }

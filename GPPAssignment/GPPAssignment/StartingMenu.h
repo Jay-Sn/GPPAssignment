@@ -9,13 +9,16 @@
 #include "Image.h"
 #include "graphics.h"
 #include "pfantasy.h"
+#include "Scene.h"
+#include "SceneManager.h"
 
 //===================
 // MENU CLASS
 //===================
-class StartingMenu: public Game
+class StartingMenu: public Scene
 {
 protected:
+    SceneManager* dxManager;
     TextDX  dxFont;                 // DirectX font for fps
     TextDX* dxMenuText;
     TextureManager mainCharaTexture;
@@ -31,14 +34,14 @@ protected:
     int direction = -1;
 public:
     // Constructor
-    StartingMenu();
+    StartingMenu(SceneManager* manager);
 
     // Destructor
     virtual ~StartingMenu();
 
-    void initialize(HWND hwnd);
+    void initialize();
     void reset();
-    void update();
+    void update(float frameTime);
     void ai();
     void collisions();
     void render();

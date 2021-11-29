@@ -1,21 +1,25 @@
-#ifndef _SCENE_H
-#define _SCENE_H
+#ifndef _SCENE_H            // prevent multiple definitions if this 
+#define _SCENE_H            // ..file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
+#include "graphics.h"
+#include "input.h"
 #include "game.h"
 
-class Scene: public Game
+class Scene;
+
+class Scene
 {
 public:
 	Scene();
-	virtual ~Scene();
-
-	void initialize(HWND hwnd);
-
-	//Pure virtual function declarations
-	//These functions MUST be written in any class that inherits from Game
-	virtual void update() = 0;														//Update game items
-	virtual void ai() = 0;															//Perform AI calculations
-	virtual void collisions() = 0;													//Check for collisions
+	~Scene();
+	virtual void initialize() = 0;
+	virtual void reset() = 0;
+	virtual void update(float frameTime) = 0;
+	virtual void ai() = 0;
+	virtual void collisions() = 0;
+	virtual void render() = 0;
+	virtual void releaseAll() = 0;
+	virtual void resetAll() = 0;
 };
 #endif

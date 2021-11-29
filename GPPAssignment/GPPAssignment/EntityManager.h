@@ -1,0 +1,4 @@
+#ifndef _ENTITYMANAGER_H
+#define _ENTITYMANAGER_H
+#define WIN32_LEAN_AND_MEAN
+#endif

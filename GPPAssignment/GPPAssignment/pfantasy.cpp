@@ -1,33 +1,40 @@
 #include "pfantasy.h"
 #include <time.h>
 
+
 using namespace std;
-PFantasy::PFantasy() {
+PFantasy::PFantasy(SceneManager* manager) {
+	dxManager = manager;
 	selectionY = 0;
 	attackPhase = 1;
 }
 
 PFantasy::~PFantasy()
 {
-	releaseAll();			//call onLostDevice() for every graphics item
+	releaseAll();			//call onLostDevice() for every dxManager->getGraphics() item
 
 }
 
 //Initialize the game
-void PFantasy::initialize(HWND hwnd)
+void PFantasy::initialize()
 {
 	srand(time(NULL));
-	Game::initialize(hwnd); // throws GameError
 	intializeUI();
 	intializeCharacters();
+	reset();
+	return;
+}
 
+// Reset
+void PFantasy::reset()
+{
 	return;
 }
 
 //Update all game items
-void PFantasy::update() {
+void PFantasy::update(float frameTime) {
 	
-	updateHealth();
+	updateHealth(frameTime);
 	if (attackPhase == 1) {
 		checkMouse();
 	}
@@ -36,7 +43,7 @@ void PFantasy::update() {
 	}
 }
 
-void PFantasy::updateHealth() {
+void PFantasy::updateHealth(float frameTime) {
 	//Player Health
 	if (healthBar.test() == round(mainChara.getCurrentHealth() / mainChara.getMaxHealth() * 100) && eHealthBar.test() == round(enemyChara.getCurrentHealth() / enemyChara.getMaxHealth() * 100)) {
 		animationDone = true;
@@ -107,7 +114,7 @@ void PFantasy::enemyAction() {
 void PFantasy::collisions() {}
 
 void PFantasy::checkMouse() {
-	if (input->wasKeyPressed(VK_RETURN) && attackPhase == 1)
+	if (dxManager->getInput()->wasKeyPressed(VK_RETURN) && attackPhase == 1)
 	{
 		if (animationDone) {
 			if (selectionBlock.getY() == yValues[0]) {
@@ -117,19 +124,19 @@ void PFantasy::checkMouse() {
 				//prevent dmg
 			}
 			else if (selectionBlock.getY() == yValues[2]) {
-				//exitScene
+				dxManager->switchScene("Menu");
 			}
 
 			changePhase();
 		}
 	}
 
-	if (input->wasKeyPressed(CURSOR_DOWN_KEY) && selectionY + 1<3)               // if move up
+	if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && selectionY + 1<3)               // if move up
 	{
 		selectionY += 1;
 		selectionBlock.setY(yValues[selectionY]);
 	}
-	if (input->wasKeyPressed(CURSOR_UP_KEY) && selectionY -1 >=0)               // if move up
+	if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && selectionY -1 >=0)               // if move up
 	{
 		selectionY -= 1;
 		selectionBlock.setY(yValues[selectionY]);
@@ -139,7 +146,7 @@ void PFantasy::checkMouse() {
 
 //Render game items
 void PFantasy::render() {
-	graphics->spriteBegin();
+	dxManager->getGraphics()->spriteBegin();
 
 	floor.draw(BACKGROUNDCOLOUR);
 
@@ -148,53 +155,51 @@ void PFantasy::render() {
 	selectionFonts.print("Attack", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont())/2, abilitySection.getCenterY() - selectionFonts.getHeight("Fight",selectionFonts.getFont()) * 1.5 - 10);
 	selectionFonts.print("Block", abilitySection.getCenterX() - selectionFonts.getWidth("Block", selectionFonts.getFont()) / 2, abilitySection.getCenterY() - selectionFonts.getHeight("Block", selectionFonts.getFont()) /2);
 	selectionFonts.print("Run", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont()) / 2, abilitySection.getCenterY() + selectionFonts.getHeight("Run", selectionFonts.getFont()) * 0.5 + 10);
-	graphics->spriteEnd();
+	dxManager->getGraphics()->spriteEnd();
 }
 
 int properCast(float fukingNumber) {
 	return 1;
 }
 
-//The graphics device was lost
+//The dxManager->getGraphics() device was lost
 //Release all reserved video memory to be resetted
 void PFantasy::releaseAll() {
 	mainCharaTexture.onLostDevice();
 	placeholderRectTexture.onLostDevice();
-	Game::releaseAll();
 	return;
 }
 
-//The graphics device has been reset.
-//Recreate all reserved video memory to reset graphics device
+//The dxManager->getGraphics() device has been reset.
+//Recreate all reserved video memory to reset dxManager->getGraphics() device
 void PFantasy::resetAll() {
 	mainCharaTexture.onResetDevice();
 	placeholderRectTexture.onResetDevice();
-	Game::resetAll();
 	return;
 }
 
 void PFantasy::intializeUI() {
 
-	if (hpFonts.initialize(graphics, 10, true, false, gameNS::FONT) == false)
+	if (hpFonts.initialize(dxManager->getGraphics(), 10, true, false, gameNS::FONT) == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
-	if (infoFonts.initialize(graphics, 30, false, false, gameNS::INFOFONT) == false)
+	if (infoFonts.initialize(dxManager->getGraphics(), 30, false, false, gameNS::INFOFONT) == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
-	if (selectionFonts.initialize(graphics, 40, true, false, gameNS::INFOFONT) == false)
+	if (selectionFonts.initialize(dxManager->getGraphics(), 40, true, false, gameNS::INFOFONT) == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
 
-	if (!placeholderRectTexture.initialize(graphics, PLACEHOLDERRECT))throw(gameErrorNS::FATAL_ERROR, "Error initiating placeholder rect");
-	if (!floor.initialize(graphics, 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
+	if (!placeholderRectTexture.initialize(dxManager->getGraphics(), PLACEHOLDERRECT))throw(gameErrorNS::FATAL_ERROR, "Error initiating placeholder rect");
+	if (!floor.initialize(dxManager->getGraphics(), 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
 
 	//CharacterInformation UI
-	if (!healthBar.initialize(graphics, HPBAR_WIDTH, HPBAR_HEIGHT, 1, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating healthBar");
-	if (!eHealthBar.initialize(graphics, HPBAR_WIDTH, HPBAR_HEIGHT, 1, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating eHealthBar");
+	if (!healthBar.initialize(dxManager->getGraphics(), HPBAR_WIDTH, HPBAR_HEIGHT, 1, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating healthBar");
+	if (!eHealthBar.initialize(dxManager->getGraphics(), HPBAR_WIDTH, HPBAR_HEIGHT, 1, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating eHealthBar");
 
 	//Quad UI
-	if (!enemyNameSection.initialize(graphics, 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating enemyNameSection");
-	if (!abilitySection.initialize(graphics, 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating abilitySection");
-	if (!infoSection.initialize(graphics, 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
+	if (!enemyNameSection.initialize(dxManager->getGraphics(), 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating enemyNameSection");
+	if (!abilitySection.initialize(dxManager->getGraphics(), 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating abilitySection");
+	if (!infoSection.initialize(dxManager->getGraphics(), 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
 
-	if (!selectionBlock.initialize(graphics, 10, 10, 6, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
+	if (!selectionBlock.initialize(dxManager->getGraphics(), 10, 10, 6, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
 	
 	//Floor Stuff (To Be removed)
 	floor.setY(GAME_HEIGHT / 2);
@@ -284,13 +289,13 @@ void PFantasy::renderUI() {
 void PFantasy::intializeCharacters() {
 
 	//initialize character textures
-	if (!mainCharaTexture.initialize(graphics, MAINCHARA_IMAGE))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+	if (!mainCharaTexture.initialize(dxManager->getGraphics(), MAINCHARA_IMAGE))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
 
 	//initialize character objects
-	if (!mainChara.getImagePtr()->initialize(graphics, 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error assigning main character image");
+	if (!mainChara.getImagePtr()->initialize(dxManager->getGraphics(), 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error assigning main character image");
 	mainChara.setValues("Ayame", "Hero", 100);
 
-	if (!enemyChara.getImagePtr()->initialize(graphics, 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error assigning enemy character image");
+	if (!enemyChara.getImagePtr()->initialize(dxManager->getGraphics(), 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error assigning enemy character image");
 	enemyChara.setValues("Guy", "WoD", 100);
 
 	//Set characters placement cooridinates

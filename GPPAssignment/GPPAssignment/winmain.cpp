@@ -15,6 +15,7 @@
 #include "pfantasy.h"
 #include "startingMenu.h"
 #include "map.h"
+#include "SceneManager.h"
 
 // Function prototypes
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
@@ -22,7 +23,8 @@ bool CreateMainWindow(HWND&, HINSTANCE, int);
 LRESULT WINAPI WinProc(HWND, UINT, WPARAM, LPARAM);
 
 //Game Pointer
-Game *game = NULL;
+SceneManager* game = NULL;
+// std::shared_ptr<SceneManager> game = NULL;
 HWND hwnd = NULL;
 
 //=============================================================================
@@ -47,7 +49,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
     MSG	 msg;
 
     //Create the game, sets up message handler
-    game = new PFantasy;
+    game = new SceneManager;
+    // game = std::make_shared<SceneManager>();
 
     // Create the window
     if (!CreateMainWindow(hwnd, hInstance, nCmdShow))
