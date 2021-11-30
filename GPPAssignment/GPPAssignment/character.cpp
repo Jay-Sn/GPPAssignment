@@ -10,7 +10,7 @@ Character::~Character() {
 
 }
 
-void Character::setValues(string CharaName, string CharaClass, float MaxHealth) {
+void Character::setValues(std::string CharaName, std::string CharaClass, float MaxHealth) {
 		charaName = CharaName;
 		charaClass = CharaClass;
 		maxHealth = MaxHealth;
@@ -22,7 +22,7 @@ bool Character::changeCharaSprite(Graphics* g, int width, int height, int ncols,
 	return true;
 }
 
-string Character::getHealthString() {
+std::string Character::getHealthString() {
 	sprintf_s(hpbuffer, 20, "%d / %d", (int)currentHealth, (int)maxHealth);
 	return hpbuffer;
 }

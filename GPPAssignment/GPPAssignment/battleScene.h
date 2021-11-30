@@ -2,10 +2,13 @@
 #define _PFANTASY_H
 #define WIN32_LEAN_AND_MEAN
 
+#include <vector>
+
 #include "game.h"
 #include "TextureManager.h"
 #include "Image.h"
 #include "character.h"
+#include "battleUI.h"
 #include "textDX.h"
 #include "SceneManager.h"
 
@@ -15,6 +18,7 @@ private:
 	//Variables
 	float yValues[3] = { 550, 600, 650 }; // Y values for menu
 	SceneManager* dxManager;
+	BattleUI battleUI;
 
 	TextureManager mainCharaTexture;
 	TextureManager placeholderRectTexture;
@@ -27,6 +31,8 @@ private:
 
 	Character mainChara;
 	Character enemyChara;
+
+	std::vector<Character> characterList;
 
 	Image eHealthBar;
 	Image healthBar;
@@ -53,7 +59,7 @@ public:
 	void ai();
 	void reset();
 	void collisions();
-	void checkMouse();
+	void checkMenu();
 	void render();
 	void releaseAll();
 	void resetAll();

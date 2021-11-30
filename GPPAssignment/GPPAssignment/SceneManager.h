@@ -17,8 +17,10 @@ protected:
 public:
 	SceneManager();
 	~SceneManager();
+
 	void switchScene(std::string scene);
 	void initialize(HWND hwnd);
+
 	void reset();
 	void update();
 	void ai();

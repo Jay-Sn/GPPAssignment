@@ -42,7 +42,7 @@ const float CURSOR_SCALE = 1.5f;                  // starting ship scale
 // Asset files
 const char MAINCHARA_IMAGE[] = "assets\\Ayame.png";
 const char Cursor[] = "assets\\cursor.png";
-const char PLACEHOLDERRECT[] = "assets\\placeholderRect_Grey.png";
+const char PLACEHOLDERRECT[] = "assets\\PlaceholderRect.png";
 const char PLAYERCHARA_IMAGE[] = "assets\\blue_char.png";
 
 //Asset Constants
@@ -67,4 +67,8 @@ const UCHAR CURSOR_DOWN_KEY = VK_DOWN;
 const UCHAR CURSOR_LEFT_KEY = VK_LEFT;
 const UCHAR CURSOR_RIGHT_KEY = VK_RIGHT;
 
+const float ENEMYSECTION = GAME_WIDTH * 0.25;
+const float TEAMSECTION = GAME_WIDTH * 0.75;
+
+const float OFFSET = 10;
 #endif // !_CONSTANTS_H_

@@ -1,71 +1,13 @@
-﻿  game.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  overworld.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  battleScene.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(21,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(60,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(62,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(66,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(69,45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(74,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(76,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(80,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(83,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(108,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(121,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(155,220): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(155,61): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(156,154): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(156,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(157,218): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(157,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(212,36): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(215,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(216,34): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(219,30): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(220,31): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(225,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(226,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(230,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(231,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(252,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(251,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(258,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(257,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(264,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(263,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(272,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(271,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(278,85): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(277,14): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(284,89): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(283,14): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  SceneManager.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  startingMenu.cpp
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  winmain.cpp
-  Generating Code...
+﻿  battleUI.cpp
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(19,29): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(33,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(61,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(70,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(84,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(25): warning C4715: 'BattleUI::initialize': not all control paths return a value
   GPPAssignment.vcxproj -> C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe

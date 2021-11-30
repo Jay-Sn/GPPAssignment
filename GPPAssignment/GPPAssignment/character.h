@@ -6,13 +6,11 @@
 #include "image.h"
 #include "constants.h"
 
-using namespace std;
-
 class Character 
 {
 protected:
-	string charaName;
-	string charaClass;
+	std::string charaName;
+	std::string charaClass;
 
 	Image charaSprite;
 
@@ -24,9 +22,9 @@ public:
 	Character();
 	~Character();
 
-	string getHealthString();
-	bool initialize(Graphics* g, int width, int height, int ncols, TextureManager* textureM, string charaName, string charaClass, float maxHealth);
-	void setValues(string charaName, string charaClass, float maxHealth);
+	std::string getHealthString();
+	bool initialize(Graphics* g, int width, int height, int ncols, TextureManager* textureM, std::string charaName, std::string charaClass, float maxHealth);
+	void setValues(std::string charaName, std::string charaClass, float maxHealth);
 	Image* getImagePtr() { return &charaSprite; }
 
 	float getX() {return charaSprite.getX();}
@@ -46,10 +44,11 @@ public:
 
 	double getCurrentHealth() { return currentHealth; }
 
-	string getName() { return charaName; }
-	string getClass() { return charaClass; }
+	std::string getName() { return charaName; }
+	std::string getClass() { return charaClass; }
 
 	float getMaxHealth() { return maxHealth; }
+
 	void setHealth(float newHealth) { maxHealth = newHealth; }
 	void deductHealth(float health) { currentHealth -= health; }
 

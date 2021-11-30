@@ -84,6 +84,9 @@
     <ClCompile Include="winmain.cpp">
       <Filter>Source Files\GeneralSystem</Filter>
     </ClCompile>
+    <ClCompile Include="battleUI.cpp">
+      <Filter>Source Files\BattleSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleScene.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files\GeneralSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="battleUI.h">
+      <Filter>Header Files\BattleSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

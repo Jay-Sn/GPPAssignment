@@ -5,6 +5,7 @@
 using namespace std;
 BattleScene::BattleScene(SceneManager* manager) {
 	dxManager = manager;
+	dxMenuText = new TextDX();
 	selectionY = 0;
 	attackPhase = 1;
 }
@@ -19,8 +20,9 @@ BattleScene::~BattleScene()
 void BattleScene::initialize()
 {
 	srand(time(NULL));
-	intializeUI();
+	//intializeUI();
 	intializeCharacters();
+	battleUI.initialize(dxManager, characterList);
 	reset();
 	return;
 }
@@ -36,7 +38,7 @@ void BattleScene::update(float frameTime) {
 	
 	updateHealth(frameTime);
 	if (attackPhase == 1) {
-		checkMouse();
+		checkMenu();
 	}
 	else {
 		enemyAction();
@@ -113,7 +115,7 @@ void BattleScene::enemyAction() {
 //Handle collisions
 void BattleScene::collisions() {}
 
-void BattleScene::checkMouse() {
+void BattleScene::checkMenu() {
 	if (dxManager->getInput()->wasKeyPressed(VK_RETURN) && attackPhase == 1)
 	{
 		if (animationDone) {
@@ -151,15 +153,12 @@ void BattleScene::render() {
 	floor.draw(BACKGROUNDCOLOUR);
 
 	renderCharacters();
-	renderUI();
+	battleUI.draw();
+	//renderUI();
 	selectionFonts.print("Attack", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont())/2, abilitySection.getCenterY() - selectionFonts.getHeight("Fight",selectionFonts.getFont()) * 1.5 - 10);
 	selectionFonts.print("Block", abilitySection.getCenterX() - selectionFonts.getWidth("Block", selectionFonts.getFont()) / 2, abilitySection.getCenterY() - selectionFonts.getHeight("Block", selectionFonts.getFont()) /2);
 	selectionFonts.print("Run", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont()) / 2, abilitySection.getCenterY() + selectionFonts.getHeight("Run", selectionFonts.getFont()) * 0.5 + 10);
 	dxManager->getGraphics()->spriteEnd();
-}
-
-int properCast(float fukingNumber) {
-	return 1;
 }
 
 //The dxManager->getGraphics() device was lost
@@ -297,6 +296,9 @@ void BattleScene::intializeCharacters() {
 
 	if (!enemyChara.getImagePtr()->initialize(dxManager->getGraphics(), 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error assigning enemy character image");
 	enemyChara.setValues("Guy", "WoD", 100);
+
+	characterList.push_back(mainChara);
+	characterList.push_back(enemyChara);
 
 	//Set characters placement cooridinates
 	mainChara.setScale(CHARA_SCALE, CHARA_SCALE);
