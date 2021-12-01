@@ -20,9 +20,10 @@ BattleScene::~BattleScene()
 void BattleScene::initialize()
 {
 	srand(time(NULL));
-	//intializeUI();
+	intializeUI();
 	intializeCharacters();
 	battleUI.initialize(dxManager, characterList);
+	checkCharacterHealth = mainChara;
 	reset();
 	return;
 }
@@ -35,56 +36,62 @@ void BattleScene::reset()
 
 //Update all game items
 void BattleScene::update(float frameTime) {
-	
-	updateHealth(frameTime);
+
+	if (checkGameState()) dxManager->switchScene("Overworld");
+	//updateHealth(frameTime);
+	battleUI.update(dxManager);
+	animationDone = battleUI.updateHpBars(checkCharacterHealth, frameTime);
+
 	if (attackPhase == 1) {
 		checkMenu();
 	}
 	else {
 		enemyAction();
 	}
+
+	
 }
 
-void BattleScene::updateHealth(float frameTime) {
-	//Player Health
-	if (healthBar.test() == round(mainChara.getCurrentHealth() / mainChara.getMaxHealth() * 100) && eHealthBar.test() == round(enemyChara.getCurrentHealth() / enemyChara.getMaxHealth() * 100)) {
-		animationDone = true;
-	}
-	//else if ((mainChara.getCurrentHealth()<0 && healthBar.test() == 0) || (enemyChara.getCurrentHealth() < 0 && eHealthBar.test() == 0)) {
-	//	//End Game Here
-	//	animationDone = true;
-	//}
-	else {
-		animationDone = false;
-	}
-
-	if (mainChara.getCurrentHealth() <= 0 && healthBar.getScaleX() >= 0)
-		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
-	else if (mainChara.getCurrentHealth() >= 0 && healthBar.getScaleX() >= (mainChara.getCurrentHealth() / mainChara.getMaxHealth())) {
-		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
-	}
-
-	if (mainChara.getCurrentHealth() >= mainChara.getMaxHealth() && healthBar.getScaleX() <= 1) {
-		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
-	}
-	else if (mainChara.getCurrentHealth() <= mainChara.getMaxHealth() && healthBar.getScaleX() <= mainChara.getCurrentHealth() / mainChara.getMaxHealth()) {
-		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
-	}
-
-	//Enemy Health
-	if (enemyChara.getCurrentHealth() <= 0 && eHealthBar.getScaleX() > 0)
-		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
-	else if (enemyChara.getCurrentHealth() >= 0 && eHealthBar.getScaleX() >= (enemyChara.getCurrentHealth() / enemyChara.getMaxHealth())) {
-		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
-	}
-
-	if (enemyChara.getCurrentHealth() >= enemyChara.getMaxHealth() && eHealthBar.getScaleX() <= 1) {
-		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
-	}
-	else if (enemyChara.getCurrentHealth() <= enemyChara.getMaxHealth() && eHealthBar.getScaleX() <= enemyChara.getCurrentHealth() / enemyChara.getMaxHealth()) {
-		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
-	}
-}
+//void BattleScene::updateHealth(float frameTime) {
+//	//Player Health
+//	if (healthBar.test() == round(mainChara.getCurrentHealth() / mainChara.getMaxHealth() * 100) && eHealthBar.test() == round(enemyChara.getCurrentHealth() / enemyChara.getMaxHealth() * 100)) {
+//		animationDone = true;
+//	}
+//	//else if ((mainChara.getCurrentHealth()<0 && healthBar.test() == 0) || (enemyChara.getCurrentHealth() < 0 && eHealthBar.test() == 0)) {
+//	//	//End Game Here
+//	//	animationDone = true;
+//	//}
+//	else {
+//		animationDone = false;
+//	}
+//
+//	if (mainChara.getCurrentHealth() <= 0 && healthBar.getScaleX() >= 0)
+//		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
+//	else if (mainChara.getCurrentHealth() >= 0 && healthBar.getScaleX() >= (mainChara.getCurrentHealth() / mainChara.getMaxHealth())) {
+//		healthBar.setScaleX(healthBar.getScaleX() - 0.1 * frameTime);
+//	}
+//
+//	if (mainChara.getCurrentHealth() >= mainChara.getMaxHealth() && healthBar.getScaleX() <= 1) {
+//		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
+//	}
+//	else if (mainChara.getCurrentHealth() <= mainChara.getMaxHealth() && healthBar.getScaleX() <= mainChara.getCurrentHealth() / mainChara.getMaxHealth()) {
+//		healthBar.setScaleX(healthBar.getScaleX() + 0.1 * frameTime);
+//	}
+//
+//	//Enemy Health
+//	if (enemyChara.getCurrentHealth() <= 0 && eHealthBar.getScaleX() > 0)
+//		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
+//	else if (enemyChara.getCurrentHealth() >= 0 && eHealthBar.getScaleX() >= (enemyChara.getCurrentHealth() / enemyChara.getMaxHealth())) {
+//		eHealthBar.setScaleX(eHealthBar.getScaleX() - 0.1 * frameTime);
+//	}
+//
+//	if (enemyChara.getCurrentHealth() >= enemyChara.getMaxHealth() && eHealthBar.getScaleX() <= 1) {
+//		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
+//	}
+//	else if (enemyChara.getCurrentHealth() <= enemyChara.getMaxHealth() && eHealthBar.getScaleX() <= enemyChara.getCurrentHealth() / enemyChara.getMaxHealth()) {
+//		eHealthBar.setScaleX(eHealthBar.getScaleX() + 0.1 * frameTime);
+//	}
+//}
 
 void BattleScene::deductHealth(bool enemy, float hp) {
 	if (enemy) {
@@ -108,6 +115,7 @@ void BattleScene::enemyAction() {
 	//if not blocked
 	if (attackPhase == -1 && animationDone) {
 		deductHealth(false, rand() % 50 + 1);
+		checkCharacterHealth = mainChara;
 		changePhase();
 	}
 }
@@ -121,6 +129,7 @@ void BattleScene::checkMenu() {
 		if (animationDone) {
 			if (selectionBlock.getY() == yValues[0]) {
 				deductHealth(true, rand() % 50 + 1);
+				checkCharacterHealth = enemyChara;
 			}
 			else if (selectionBlock.getY() == yValues[1]) {
 				//prevent dmg
@@ -150,14 +159,15 @@ void BattleScene::checkMenu() {
 void BattleScene::render() {
 	dxManager->getGraphics()->spriteBegin();
 
-	floor.draw(BACKGROUNDCOLOUR);
+	//floor.draw(BACKGROUNDCOLOUR);
 
 	renderCharacters();
+	selectionFonts.print("Attack", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont()) / 2, abilitySection.getCenterY() - selectionFonts.getHeight("Fight", selectionFonts.getFont()) * 1.5 - 10);
+	selectionFonts.print("Block", abilitySection.getCenterX() - selectionFonts.getWidth("Block", selectionFonts.getFont()) / 2, abilitySection.getCenterY() - selectionFonts.getHeight("Block", selectionFonts.getFont()) / 2);
+	selectionFonts.print("Run", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont()) / 2, abilitySection.getCenterY() + selectionFonts.getHeight("Run", selectionFonts.getFont()) * 0.5 + 10);
 	battleUI.draw();
 	//renderUI();
-	selectionFonts.print("Attack", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont())/2, abilitySection.getCenterY() - selectionFonts.getHeight("Fight",selectionFonts.getFont()) * 1.5 - 10);
-	selectionFonts.print("Block", abilitySection.getCenterX() - selectionFonts.getWidth("Block", selectionFonts.getFont()) / 2, abilitySection.getCenterY() - selectionFonts.getHeight("Block", selectionFonts.getFont()) /2);
-	selectionFonts.print("Run", abilitySection.getCenterX() - selectionFonts.getWidth("Fight", selectionFonts.getFont()) / 2, abilitySection.getCenterY() + selectionFonts.getHeight("Run", selectionFonts.getFont()) * 0.5 + 10);
+	
 	dxManager->getGraphics()->spriteEnd();
 }
 
@@ -185,9 +195,9 @@ void BattleScene::intializeUI() {
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
 	if (selectionFonts.initialize(dxManager->getGraphics(), 40, true, false, gameNS::INFOFONT) == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
-
+	selectionFonts.setFontColor(graphicsNS::BLACK);
 	if (!placeholderRectTexture.initialize(dxManager->getGraphics(), PLACEHOLDERRECT))throw(gameErrorNS::FATAL_ERROR, "Error initiating placeholder rect");
-	if (!floor.initialize(dxManager->getGraphics(), 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
+	if (!floor.initialize(dxManager->getGraphics(), 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main actionBarinfoSection");
 
 	//CharacterInformation UI
 	if (!healthBar.initialize(dxManager->getGraphics(), HPBAR_WIDTH, HPBAR_HEIGHT, 1, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating healthBar");
@@ -196,9 +206,9 @@ void BattleScene::intializeUI() {
 	//Quad UI
 	if (!enemyNameSection.initialize(dxManager->getGraphics(), 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating enemyNameSection");
 	if (!abilitySection.initialize(dxManager->getGraphics(), 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating abilitySection");
-	if (!infoSection.initialize(dxManager->getGraphics(), 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
+	if (!actionBarinfoSection.initialize(dxManager->getGraphics(), 0, 0, 0, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main actionBarinfoSection");
 
-	if (!selectionBlock.initialize(dxManager->getGraphics(), 10, 10, 6, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main infoSection");
+	if (!selectionBlock.initialize(dxManager->getGraphics(), 10, 10, 6, &placeholderRectTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main actionBarinfoSection");
 	
 	//Floor Stuff (To Be removed)
 	floor.setY(GAME_HEIGHT / 2);
@@ -214,15 +224,15 @@ void BattleScene::intializeUI() {
 	abilitySection.setX(enemyNameSection.getWidth());
 	abilitySection.setY(GAME_HEIGHT - abilitySection.getHeight());
 
-	infoSection.setScale(2, 1.25);
-	infoSection.setX(GAME_WIDTH - infoSection.getWidth());
-	infoSection.setY(GAME_HEIGHT - infoSection.getHeight());
+	actionBarinfoSection.setScale(2, 1.25);
+	actionBarinfoSection.setX(GAME_WIDTH - actionBarinfoSection.getWidth());
+	actionBarinfoSection.setY(GAME_HEIGHT - actionBarinfoSection.getHeight());
 
 	//display Information
 	healthBar.setCurrentFrame(1);
 	healthBar.setScale(1, 1);
-	healthBar.setX(infoSection.getX() + 0.0625 * infoSection.getWidth());
-	healthBar.setY(infoSection.getY() + 0.25 * infoSection.getHeight());
+	healthBar.setX(actionBarinfoSection.getX() + 0.0625 * actionBarinfoSection.getWidth());
+	healthBar.setY(actionBarinfoSection.getY() + 0.25 * actionBarinfoSection.getHeight());
 
 	eHealthBar.setCurrentFrame(1);
 	eHealthBar.setScale(1, 1);
@@ -239,7 +249,7 @@ void BattleScene::renderUI() {
 	//Section Draw
 	enemyNameSection.draw(TRANSCOLOR);
 	abilitySection.draw(TRANSCOLOR);
-	infoSection.draw(TRANSCOLOR);
+	actionBarinfoSection.draw(TRANSCOLOR);
 
 	infoFonts.setFontColor(graphicsNS::WHITE);
 
@@ -314,4 +324,12 @@ void BattleScene::intializeCharacters() {
 void BattleScene::renderCharacters() {
 	mainChara.getImagePtr()->draw(TRANSCOLOR);
 	enemyChara.getImagePtr()->draw(graphicsNS::ARED);
+}
+
+bool BattleScene::checkGameState()
+{
+	if (mainChara.getCurrentHealth() <= 0 || enemyChara.getCurrentHealth() <= 0) {
+		if (animationDone) return true;
+	}
+	return false;
 }

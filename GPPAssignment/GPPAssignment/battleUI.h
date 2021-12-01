@@ -15,7 +15,16 @@
 class BattleUI : public Image
 {
 public:
+	float yValues[3] = { 550, 600, 650 }; // Y values for menu
+
 	TextureManager UITexture;
+	TextureManager SelectionArrowTexture;
+
+	Image selectionArrow;
+
+	TextDX  hpFonts;
+	TextDX  selectionFonts;
+	TextDX  infoFonts;
 
 	BattleUI();
 	~BattleUI();
@@ -24,14 +33,18 @@ public:
 	
 	void healthBarSetup(Game* gameptr, std::vector<Character> listOfCharacters);
 
-	void update(float frameTime, Character* currentCharacter);
+	void update(Game* gameptr);
 
 	void draw();
 
-	void setHealthBarPos();
-
 	void setHpPosYEnemy();
 	void setHpPosYTeam();
+
+	bool updateHpBars(Character character, float frameTime);
+
+	bool animationDone = true;
+
+	int selectionY = 0;
 
 private:
 	std::vector<Character> listOfCharactersInPlay;
@@ -63,7 +76,7 @@ private:
 		healthBar8
 	};
 
-	std::map<int, Image> usedHealthBar;
+	std::map<string, Image> usedHealthBar;
 
 	std::vector<float> enemyHpPosY;
 	std::vector<float> teamHpPosY;

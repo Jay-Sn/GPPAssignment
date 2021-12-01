@@ -4,10 +4,21 @@ C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.
 C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(19,29): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(33,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(61,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(70,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(84,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(25): warning C4715: 'BattleUI::initialize': not all control paths return a value
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(25,29): warning C4244: 'argument': conversion from 'UINT' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(33,30): warning C4552: '-': result of expression not used
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(45,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(73,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(78,213): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(78,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(79,144): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(79,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(80,208): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(80,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(87,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(101,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(139,95): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(141,95): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(146,95): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(149,95): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleUI.cpp(36): warning C4715: 'BattleUI::initialize': not all control paths return a value
   GPPAssignment.vcxproj -> C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe

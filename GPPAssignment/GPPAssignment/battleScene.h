@@ -32,6 +32,8 @@ private:
 	Character mainChara;
 	Character enemyChara;
 
+	Character checkCharacterHealth;
+
 	std::vector<Character> characterList;
 
 	Image eHealthBar;
@@ -39,7 +41,7 @@ private:
 
 	Image enemyNameSection;
 	Image abilitySection;
-	Image infoSection;
+	Image actionBarinfoSection;
 
 	Image floor;
 	Image selectionBlock;
@@ -71,5 +73,7 @@ public:
 	void renderCharacters();
 	void changePhase();
 	void enemyAction();
+
+	bool checkGameState();
 };
 #endif // !_PFANTASY_H
