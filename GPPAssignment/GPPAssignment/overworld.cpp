@@ -28,16 +28,20 @@ void Overworld::initialize()
 
 void Overworld::reset()
 {
+    return;
 }
 
 //=============================================================================
-// move character
+// Update to check for game logic
 // frameTime is used to regulate the speed of movement
 //=============================================================================
 void Overworld::update(float frameTime)
 {
     //Checking for controls
     controls(frameTime);
+
+    //UpdatePositions
+    setWorldPosition();
 }
 
 void Overworld::ai()
@@ -57,6 +61,9 @@ void Overworld::render()
 
     //Draw the world map
     worldMap.draw(TRANSCOLOR);
+
+    //Draw enemy Character
+    enemyChara.draw(graphicsNS::RED);
 
     //Draw Main Character
     playerChara.draw();
@@ -99,19 +106,30 @@ void Overworld::initializeWorld()
     //Scaling Up world
     worldMap.setScale(3, 3);
 
+    
+
     //Setting Default Position of the world
     worldMap.setX(-worldMap.getWidth() / 2 + GAME_WIDTH / 2);
     worldMap.setY(-worldMap.getHeight() / 2 + GAME_HEIGHT / 2);
+
+    //Setting world parameters
+    worldX = worldMap.getX();
+    worldY = worldMap.getY();
 }
 
 
-//Initialize Characters and set MC at Center
+//=====================================================================================
+//              Set Main Character to always be center of the screen
+//            Rest of the Characters are set base on WorldX and WorldY
+// 
+//            E.g. test.setX(WorldX + X), X being the world cooridinate
+//=====================================================================================
 void Overworld::initializeCharacters() 
 {
-    //initializing World map Texture
+    //initializing Character Texture
     if (!mainCharaTexture.initialize(dxManager->getGraphics(), MAINCHARA_IMAGE))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Main Character texture"));
 
-    //initializing World Map
+    //initializing player character
     if (!playerChara.initialize(dxManager, 0, 0, 0, &mainCharaTexture, "Ayame","Hero",100,true))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Main Character"));
 
     //Setting Scale
@@ -122,24 +140,59 @@ void Overworld::initializeCharacters()
     playerChara.setY(GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2);
 
     characterList.push_back(playerChara);
+
+    //initializing enemyCharacter
+    if (!enemyChara.initialize(dxManager, 0, 0, 0, &mainCharaTexture, "WoD", "Tank", 100))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize enemyCharacter"));
+
+    //Getting the right orientationa and scale
+    enemyChara.setScale(1.5, 1.5);
+    enemyChara.getImagePtr()->flipHorizontal(true);
+
+    //Setting Enemy position
+    enemyChara.setX(worldX + GAME_WIDTH / 2);
+    enemyChara.setY(worldY + 1840);
+
 }
 
-//Movement Controls
+//=====================================================================================
+//                                  Movement Controls
+//                              Updates WorldX and WorldY
+//=====================================================================================
 void Overworld::controls(float frameTime) {
+
     if (dxManager->getInput()->isKeyDown(NAVI_RIGHT_KEY))
     {
-        worldMap.setX(worldMap.getX() - MOVEMENTSPEED * frameTime);
+        worldX -= MOVEMENTSPEED * frameTime;
     }
+
     if (dxManager->getInput()->isKeyDown(NAVI_LEFT_KEY))
     {
-        worldMap.setX(worldMap.getX() + MOVEMENTSPEED * frameTime);
+        worldX += MOVEMENTSPEED * frameTime;
     }
+
     if (dxManager->getInput()->isKeyDown(NAVI_DOWN_KEY))
     {
-        worldMap.setY(worldMap.getY() - MOVEMENTSPEED * frameTime);
+        worldY -= MOVEMENTSPEED * frameTime;
     }
+
     if (dxManager->getInput()->isKeyDown(NAVI_UP_KEY))
     {
-        worldMap.setY(worldMap.getY() + MOVEMENTSPEED * frameTime);
+        worldY += MOVEMENTSPEED * frameTime;
     }
+
+    
+}
+
+//=====================================================================================
+//          worldX : x == windowX : (GameWidth/2 - worldWidth/2) + x
+//          worldY : y == windowY : (GameHeight/2 - worldHeight/2) + y
+//=====================================================================================
+void Overworld::setWorldPosition()
+{
+    //Setting the world map postition
+    worldMap.setX(worldX);
+    worldMap.setY(worldY);
+
+    enemyChara.setX(worldX + GAME_WIDTH / 2);
+    enemyChara.setY(worldY + 1840);
 }

@@ -1,8 +1,14 @@
-#include "battleScene.h"
+//===============================================================================================
+//	Author:			Jason Teo Jun Hao
+//	Student ID:		S10194978B
+//	Description:	This is the battle scene that is accessed by encountering an enemy in the
+//					overworld.
+//===============================================================================================
+
 #include <time.h>
+#include "battleScene.h"
 
-
-using namespace std;
+//Constructor
 BattleScene::BattleScene(SceneManager* manager) {
 	dxManager = manager;
 	dxMenuText = new TextDX();
@@ -10,13 +16,14 @@ BattleScene::BattleScene(SceneManager* manager) {
 	attackPhase = 1;
 }
 
+//Destructor
 BattleScene::~BattleScene()
 {
 	releaseAll();			//call onLostDevice() for every dxManager->getGraphics() item
 
 }
 
-//Initialize the game
+//Initialize the Scene
 void BattleScene::initialize()
 {
 	//Allow for the randomizer for the damage to be always different

@@ -26,6 +26,10 @@ protected:
 
     //Characters
     Character playerChara;
+    Character enemyChara;
+
+    //World Parameters
+    float worldX, worldY;
 
     std::vector<Character> characterList;
 
@@ -51,13 +55,12 @@ public:
     //If you are using this in the future please rename it to something that is relevant to what it is used for.
     //void checkMouse();
 
-    //void intializeUI();
-    //void renderUI();
-
     void initializeWorld();
 
     void initializeCharacters();
 
     void controls(float frameTime);
+
+    void setWorldPosition();
 };
 #endif // !_MAP_H

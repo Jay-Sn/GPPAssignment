@@ -32,9 +32,9 @@ public:
 	Character();
 	~Character();
 
-	bool initialize(Game* gamePtr, int width, int height, int ncols, TextureManager* textureM, std::string charaName, std::string charaClass, float maxHealth, bool friendly);
+	bool initialize(Game* gamePtr, int width, int height, int ncols, TextureManager* textureM, std::string charaName, std::string charaClass, float maxHealth, bool friendly = false);
 
-	void draw();
+	void draw(COLOR_ARGB color = TRANSCOLOR);
 
 	//Set Variables for the character
 	void setValues(std::string charaName, std::string charaClass, float maxHealth, bool friendly);

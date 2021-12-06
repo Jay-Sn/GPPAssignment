@@ -34,9 +34,9 @@ bool Character::initialize(
 	return true;
 }
 
-void Character::draw()
+void Character::draw(COLOR_ARGB color)
 {
-		charaSprite.draw(TRANSCOLOR);
+		charaSprite.draw(color);
 }
 
 void Character::setValues(std::string CharaName, std::string CharaClass, float MaxHealth, bool friendly) {
