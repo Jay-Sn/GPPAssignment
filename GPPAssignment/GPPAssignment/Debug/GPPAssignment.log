@@ -4,6 +4,10 @@ C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(28,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(29,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(28,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(29,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(68,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(69,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(74,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(75,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   GPPAssignment.vcxproj -> C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe
