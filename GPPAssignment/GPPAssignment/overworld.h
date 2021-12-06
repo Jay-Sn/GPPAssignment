@@ -2,6 +2,7 @@
 #define _MAP_H             // ..file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
+#include <vector>
 #include "game.h"
 #include "textDX.h"
 #include "constants.h"
@@ -22,8 +23,11 @@ protected:
 
     //Images
     Image worldMap;
-    Image playerChara;
 
+    //Characters
+    Character playerChara;
+
+    std::vector<Character> characterList;
 
 public:
     // Constructor
@@ -52,7 +56,8 @@ public:
 
     void initializeWorld();
 
-    void intializeCharacters();
-    void renderCharacters();
+    void initializeCharacters();
+
+    void controls(float frameTime);
 };
 #endif // !_MAP_H

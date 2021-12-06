@@ -34,6 +34,8 @@ public:
 
 	bool initialize(Game* gamePtr, int width, int height, int ncols, TextureManager* textureM, std::string charaName, std::string charaClass, float maxHealth, bool friendly);
 
+	void draw();
+
 	//Set Variables for the character
 	void setValues(std::string charaName, std::string charaClass, float maxHealth, bool friendly);
 
@@ -41,18 +43,18 @@ public:
 	std::string getHealthString();
 	Image* getImagePtr() { return &charaSprite; }
 
-	float getX() {return charaSprite.getX();}
-	void setX(float x) { return charaSprite.setX(x); }
-	float getY() { return charaSprite.getY(); }
-	void setY(float y) { return charaSprite.setY(y); }
+	float getX() {return getImagePtr()->getX();}
+	void setX(float x) { return getImagePtr()->setX(x); }
+	float getY() { return getImagePtr()->getY(); }
+	void setY(float y) { return getImagePtr()->setY(y); }
 
-	virtual void setScale(float scaleX, float scaleY) { charaSprite.setScaleX(scaleX); charaSprite.setScaleY(scaleY); }
+	virtual void setScale(float scaleX, float scaleY) { getImagePtr()->setScaleX(scaleX); getImagePtr()->setScaleY(scaleY); }
 	
-	virtual float getScaleX() { return charaSprite.getScaleX(); }
-	virtual void setScaleX(float scaleX) { charaSprite.setScaleX(scaleX); }
+	virtual float getScaleX() { return getImagePtr()->getScaleX(); }
+	virtual void setScaleX(float scaleX) { getImagePtr()->setScaleX(scaleX); }
 
-	virtual float getScaleY() { return charaSprite.getScaleY(); }
-	virtual void setScaleY(float scaleY) { charaSprite.setScaleY(scaleY); }
+	virtual float getScaleY() { return getImagePtr()->getScaleY(); }
+	virtual void setScaleY(float scaleY) { getImagePtr()->setScaleY(scaleY); }
 
 	bool changeCharaSprite(Graphics* g, int width, int height, int ncols, TextureManager* textureM);
 

@@ -18,10 +18,10 @@ Overworld::~Overworld()
 void Overworld::initialize()
 {
     //Initialize the world map
-
     initializeWorld();
 
-    intializeCharacters();
+    //initialize the Characters
+    initializeCharacters();
 
     return;
 }
@@ -36,23 +36,8 @@ void Overworld::reset()
 //=============================================================================
 void Overworld::update(float frameTime)
 {
-    if (dxManager->getInput()->isKeyDown(CURSOR_DOWN_KEY))  // if move down
-    {
-        playerChara.setY(playerChara.getY() + 30 * frameTime);
-    }
-    if (dxManager->getInput()->isKeyDown(CURSOR_UP_KEY))    // if move up
-    {
-        playerChara.setY(playerChara.getY() - 30 * frameTime);
-    }
-    if (dxManager->getInput()->isKeyDown(CURSOR_RIGHT_KEY)) // if move right
-    {
-        playerChara.setX(playerChara.getX() + 30 * frameTime);
-    }
-    if (dxManager->getInput()->isKeyDown(CURSOR_LEFT_KEY)) // if move left
-    {
-        playerChara.setX(playerChara.getX() - 30 * frameTime);
-    }
-    //playerChara.update(frameTime);
+    //Checking for controls
+    controls(frameTime);
 }
 
 void Overworld::ai()
@@ -68,10 +53,15 @@ void Overworld::collisions()
 //=============================================================================
 void Overworld::render()
 {
-    const int BUF_SIZE = 100;
-    static char buffer[BUF_SIZE];
     dxManager->getGraphics()->spriteBegin();
-    renderCharacters();
+
+    //Draw the world map
+    worldMap.draw(TRANSCOLOR);
+
+    //Draw Main Character
+    playerChara.draw();
+
+    //renderCharacters();
     dxManager->getGraphics()->spriteEnd();
 }
 
@@ -81,8 +71,8 @@ void Overworld::render()
 //=============================================================================
 void Overworld::releaseAll()
 {
+    worldMapTexture.onLostDevice();
     mainCharaTexture.onLostDevice();
-    // dxMenuText->onLostDevice();
     return;
 }
 
@@ -92,36 +82,64 @@ void Overworld::releaseAll()
 //=============================================================================
 void Overworld::resetAll()
 {
+    worldMapTexture.onResetDevice();
     mainCharaTexture.onResetDevice();
-    // dxMenuText->onResetDevice();
     return;
 }
 
+//Initialize the world and set default position
 void Overworld::initializeWorld()
 {
+    //initializing World map Texture
     if (!worldMapTexture.initialize(dxManager->getGraphics(), OVERWORLD_IMAGE))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize World Map initialize"));
 
-    if(!worldMap.initialize(dxManager->getGraphics(), 0, 0, 0, &worldMapTexture))throw(GameError(gameErrorNS::FATAL_ERROR,"Failed to initialize World Map"));
+    //initializing World Map
+    if (!worldMap.initialize(dxManager->getGraphics(), 0, 0, 0, &worldMapTexture))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize World Map"));
 
+    //Scaling Up world
+    worldMap.setScale(3, 3);
+
+    //Setting Default Position of the world
+    worldMap.setX(-worldMap.getWidth() / 2 + GAME_WIDTH / 2);
+    worldMap.setY(-worldMap.getHeight() / 2 + GAME_HEIGHT / 2);
 }
 
-//void Overworld::checkMouse()
-//{
-//}
-//
-//
-//void Overworld::renderUI()
-//{
-//}
 
-void Overworld::intializeCharacters()
+//Initialize Characters and set MC at Center
+void Overworld::initializeCharacters() 
 {
-    //initialize character textures
-    if (!mainCharaTexture.initialize(dxManager->getGraphics(), PLAYERCHARA_IMAGE))throw(gameErrorNS::FATAL_ERROR, "Error initiating Player Character");
-    if (!playerChara.initialize(dxManager->getGraphics(), 0,0,0,&mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Player Character");
+    //initializing World map Texture
+    if (!mainCharaTexture.initialize(dxManager->getGraphics(), MAINCHARA_IMAGE))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Main Character texture"));
+
+    //initializing World Map
+    if (!playerChara.initialize(dxManager, 0, 0, 0, &mainCharaTexture, "Ayame","Hero",100,true))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Main Character"));
+
+    //Setting Scale
+    playerChara.setScale(1.5, 1.5);
+
+    //Setting Default Position of the world
+    playerChara.setX(GAME_WIDTH / 2 - playerChara.getImagePtr()->getWidth() / 2);
+    playerChara.setY(GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2);
+
+    characterList.push_back(playerChara);
 }
 
-void Overworld::renderCharacters()
-{
-    playerChara.draw(TRANSCOLOR);
+//Movement Controls
+void Overworld::controls(float frameTime) {
+    if (dxManager->getInput()->isKeyDown(NAVI_RIGHT_KEY))
+    {
+        worldMap.setX(worldMap.getX() - MOVEMENTSPEED * frameTime);
+    }
+    if (dxManager->getInput()->isKeyDown(NAVI_LEFT_KEY))
+    {
+        worldMap.setX(worldMap.getX() + MOVEMENTSPEED * frameTime);
+    }
+    if (dxManager->getInput()->isKeyDown(NAVI_DOWN_KEY))
+    {
+        worldMap.setY(worldMap.getY() - MOVEMENTSPEED * frameTime);
+    }
+    if (dxManager->getInput()->isKeyDown(NAVI_UP_KEY))
+    {
+        worldMap.setY(worldMap.getY() + MOVEMENTSPEED * frameTime);
+    }
 }

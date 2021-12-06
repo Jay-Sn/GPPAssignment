@@ -24,8 +24,8 @@
 const char CLASS_NAME[] = "Placeholder Fantasy";
 const char GAME_TITLE[] = "Placeholder Fantasy";
 const bool FULLSCREEN = false;              // windowed or fullscreen
-const UINT  GAME_WIDTH = 1280;              // width of game in pixels
-const UINT  GAME_HEIGHT = 720;              // height of game in pixels
+const int  GAME_WIDTH = 1280;              // width of game in pixels
+const int  GAME_HEIGHT = 720;              // height of game in pixels
 
 //game
 const double PI = 3.14159265;
@@ -67,6 +67,8 @@ const UCHAR CURSOR_UP_KEY = VK_UP;
 const UCHAR CURSOR_DOWN_KEY = VK_DOWN;
 const UCHAR CURSOR_LEFT_KEY = VK_LEFT;
 const UCHAR CURSOR_RIGHT_KEY = VK_RIGHT;
+
+const float MOVEMENTSPEED = 50;
 
 const float ENEMYSECTION = GAME_WIDTH * 0.25;
 const float TEAMSECTION = GAME_WIDTH * 0.75;

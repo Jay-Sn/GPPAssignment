@@ -34,6 +34,11 @@ bool Character::initialize(
 	return true;
 }
 
+void Character::draw()
+{
+		charaSprite.draw(TRANSCOLOR);
+}
+
 void Character::setValues(std::string CharaName, std::string CharaClass, float MaxHealth, bool friendly) {
 		charaName = CharaName;
 		charaClass = CharaClass;
