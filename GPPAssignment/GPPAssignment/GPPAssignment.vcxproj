@@ -153,6 +153,7 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="overworld.cpp" />
     <ClCompile Include="battleScene.cpp" />
+    <ClCompile Include="pauseMenu.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="startingMenu.cpp" />
     <ClCompile Include="textDX.cpp" />
@@ -170,8 +171,10 @@
     <ClInclude Include="graphics.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="menuOption.h" />
     <ClInclude Include="overworld.h" />
     <ClInclude Include="battleScene.h" />
+    <ClInclude Include="pauseMenu.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="startingMenu.h" />

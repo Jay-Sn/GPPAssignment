@@ -5,6 +5,9 @@ StartingMenu::StartingMenu(SceneManager* manager)
 {
     dxManager = manager;
     dxMenuText = new TextDX();     // DirectX fonts
+    menuList.push_back({ "Start", 60, 100 });
+    menuList.push_back({ "Option", 60, 130 });
+    menuList.push_back({ "Quit", 60, 160 });
 }
 
 StartingMenu::~StartingMenu()
@@ -20,11 +23,11 @@ StartingMenu::~StartingMenu()
 void StartingMenu::initialize()
 {
     if (!mainCharaTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
-    if (!mainChara.initialize(dxManager->getGraphics(), 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
 
-    mainChara.setY(100);
-    mainChara.setX(40);
-    mainChara.setScale(0.5, 0.5);
+    cursor.setX(menuList.at(menuIndex).x - 20);
+    cursor.setY(menuList.at(menuIndex).y);
+    cursor.setScale(0.5, 0.5);
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
 
     // initialize DirectX fonts
@@ -57,28 +60,28 @@ void StartingMenu::update(float frameTime)
 {
     if (dxManager->getInput()->wasKeyPressed(VK_RETURN)) 
     {
-        if (mainChara.getY() == 100) {
+        if (cursor.getY() == 100) {
             dxManager->switchScene("Overworld");
         }
-        else if (mainChara.getY() == 130) {
+        else if (cursor.getY() == 130) {
             dxManager->switchScene("Battle");
         }
-        else if (mainChara.getY() == 160) {
+        else if (cursor.getY() == 160) {
              PostQuitMessage(0);
         }
     }
-    if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && mainChara.getY() != 160)               // if move up
+    if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && cursor.getY() != 160)               // if move up
     {
-        mainChara.setY(mainChara.getY() +  30);
+        cursor.setY(cursor.getY() +  30);
     }
-    if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && mainChara.getY() != 100)               // if move up
+    if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && cursor.getY() != 100)               // if move up
     {
-        mainChara.setY(mainChara.getY() -  30);
+        cursor.setY(cursor.getY() -  30);
     }
-    if (dxManager->getInput()->wasKeyPressed(VK_LEFT)) {
-
+    if (dxManager->getInput()->wasKeyPressed(VK_ESCAPE)) {
+        dxManager->switchScene("PauseMenu");
     }
-    mainChara.update(frameTime);
+    cursor.update(frameTime);
 }
 
 void StartingMenu::ai()
@@ -94,20 +97,14 @@ void StartingMenu::collisions()
 //=============================================================================
 void StartingMenu::render()
 {
-    const int BUF_SIZE = 100;
-    static char buffer[BUF_SIZE];
     dxManager->getGraphics()->spriteBegin();
-    mainChara.draw(TRANSCOLOR);
+    cursor.draw(TRANSCOLOR);
     dxMenuText->setFontColor(graphicsNS::BLACK);
-    dxMenuText->print("Start", 60, yValues[0]);
-    dxMenuText->print("Options", 60, yValues[1]);
-    dxMenuText->print("Quit", 60, yValues[2]);
+    for(auto option: menuList) {
+        dxMenuText->print(option.option, option.x, option.y);
+    }
     dxFont.setFontColor(gameNS::FONT_COLOR);
-    sprintf_s(buffer, "You have selected: %d", (int)debugY);
-    dxFont.print(buffer, 200, 200);
     dxManager->getGraphics()->spriteEnd();
-
-
 }
 
 //=============================================================================

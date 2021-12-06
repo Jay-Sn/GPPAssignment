@@ -10,6 +10,8 @@
 #include "graphics.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "menuOption.h"
+#include <vector>
 
 //===================
 // MENU CLASS
@@ -22,15 +24,10 @@ protected:
     TextDX* dxMenuText;
     TextureManager mainCharaTexture;
 
-    Image mainChara;
+    int menuIndex = 0;
+    std::vector<MenuOption> menuList;
 
-    int yValues[4] = { 100, 130, 160 }; // Y values for menu
-    std::string optionSelected;
-    int debugY; // y values for debugging purposes; is now a placeholder
-
-    int animateIndex = 5;
-    int index = 0;
-    int direction = -1;
+    Image cursor;
 public:
     // Constructor
     StartingMenu(SceneManager* manager);

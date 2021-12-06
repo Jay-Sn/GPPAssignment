@@ -87,6 +87,9 @@
     <ClCompile Include="battleUI.cpp">
       <Filter>Source Files\BattleSystem</Filter>
     </ClCompile>
+    <ClCompile Include="pauseMenu.cpp">
+      <Filter>Source Files\MenuSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleScene.h">
@@ -139,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="battleUI.h">
       <Filter>Header Files\BattleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="pauseMenu.h">
+      <Filter>Header Files\MenuSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="menuOption.h">
+      <Filter>Header Files\MenuSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

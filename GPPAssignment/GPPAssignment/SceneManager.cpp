@@ -3,12 +3,14 @@
 #include "StartingMenu.h"
 #include "battleScene.h"
 #include "overworld.h"
+#include  "pauseMenu.h"
 
 SceneManager::SceneManager()
 {
-    sceneMap["Menu"] = new StartingMenu(this);
+    sceneMap["Title"] = new StartingMenu(this);
     sceneMap["Overworld"] = new Overworld(this);
     sceneMap["Battle"] = new BattleScene(this);
+    sceneMap["PauseMenu"] = new PauseMenu(this);
 }
 
 
@@ -26,7 +28,7 @@ void SceneManager::switchScene(std::string scene)
 void SceneManager::initialize(HWND hwnd)
 {
     Game::initialize(hwnd);
-    currentScene = sceneMap["Menu"];
+    currentScene = sceneMap["Title"];
     currentScene->initialize();
 }
 
