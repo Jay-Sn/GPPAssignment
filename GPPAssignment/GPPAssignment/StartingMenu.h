@@ -22,7 +22,7 @@ protected:
     SceneManager* dxManager;
     TextDX  dxFont;                 // DirectX font for fps
     TextDX* dxMenuText;
-    TextureManager mainCharaTexture;
+    TextureManager cursorTexture;
 
     int menuIndex = 0;
     std::vector<MenuOption> menuList;
@@ -38,6 +38,7 @@ public:
     void initialize();
     void reset();
     void update(float frameTime);
+    void optionSelected(std::string option);
     void ai();
     void collisions();
     void render();

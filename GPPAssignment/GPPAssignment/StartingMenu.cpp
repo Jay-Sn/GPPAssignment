@@ -22,11 +22,11 @@ StartingMenu::~StartingMenu()
 //=============================================================================
 void StartingMenu::initialize()
 {
-    if (!mainCharaTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
-    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+    if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
 
-    cursor.setX(menuList.at(menuIndex).x - 20);
-    cursor.setY(menuList.at(menuIndex).y);
+    cursor.setX(menuList.front().x - 20);
+    cursor.setY(menuList.front().y);
     cursor.setScale(0.5, 0.5);
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
 
@@ -60,28 +60,45 @@ void StartingMenu::update(float frameTime)
 {
     if (dxManager->getInput()->wasKeyPressed(VK_RETURN)) 
     {
-        if (cursor.getY() == 100) {
-            dxManager->switchScene("Overworld");
-        }
-        else if (cursor.getY() == 130) {
-            dxManager->switchScene("Battle");
-        }
-        else if (cursor.getY() == 160) {
-             PostQuitMessage(0);
-        }
+        optionSelected(menuList.at(menuIndex).option);
     }
-    if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && cursor.getY() != 160)               // if move up
+    if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && menuIndex != (menuList.size() - 1)) // if move down
     {
-        cursor.setY(cursor.getY() +  30);
+        menuIndex++;
+        cursor.setX(menuList.at(menuIndex).x - 20);
+        cursor.setY(menuList.at(menuIndex).y);
     }
-    if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && cursor.getY() != 100)               // if move up
+    if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && menuIndex != 0)  // if move up
     {
-        cursor.setY(cursor.getY() -  30);
+        menuIndex--;
+        cursor.setX(menuList.at(menuIndex).x - 20);
+        cursor.setY(menuList.at(menuIndex).y);
     }
     if (dxManager->getInput()->wasKeyPressed(VK_ESCAPE)) {
         dxManager->switchScene("PauseMenu");
     }
     cursor.update(frameTime);
+}
+
+
+//====================================================
+// Check string of current option
+// Return the function
+// ===================================================
+// *Switch case doesn't work because C++ doesn't allow strings in switch cases.
+void StartingMenu::optionSelected(std::string option) {
+    if (option == "Start")
+    {
+        dxManager->switchScene("Overworld");
+    }
+    else if (option == "Option")
+    {
+        dxManager->switchScene("Battle");
+    }
+    else if (option == "Quit")
+    {
+        PostQuitMessage(0);
+    }
 }
 
 void StartingMenu::ai()
@@ -100,7 +117,8 @@ void StartingMenu::render()
     dxManager->getGraphics()->spriteBegin();
     cursor.draw(TRANSCOLOR);
     dxMenuText->setFontColor(graphicsNS::BLACK);
-    for(auto option: menuList) {
+    for(auto option: menuList) 
+    {
         dxMenuText->print(option.option, option.x, option.y);
     }
     dxFont.setFontColor(gameNS::FONT_COLOR);
@@ -113,7 +131,7 @@ void StartingMenu::render()
 //=============================================================================
 void StartingMenu::releaseAll()
 {
-    mainCharaTexture.onLostDevice();
+    cursorTexture.onLostDevice();
     dxMenuText->onLostDevice();
     return;
 }
@@ -124,7 +142,7 @@ void StartingMenu::releaseAll()
 //=============================================================================
 void StartingMenu::resetAll()
 {
-    mainCharaTexture.onResetDevice();
+    cursorTexture.onResetDevice();
     dxMenuText->onResetDevice();
     return;
 }

@@ -10,8 +10,9 @@
 #include "graphics.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "menuOption.h"
+#include <vector>
 #include <iostream>
-#include <list>
 
 //===================
 // MENU CLASS
@@ -24,20 +25,14 @@ protected:
     TextDX* dxMenuText;
     TextureManager mainCharaTexture;
 
-    int menuX = 60;
-    int menuStartY = 100; // Increment by 30
-    int subX = 100;
-    int subStartY = 100;
-    std::list<std::string> subMenu;
+    std::vector<MenuOption> menuList;
+    std::vector<MenuOption> subList;
+
     bool subMenuOn;
     Image cursor;
 
-    std::string optionSelected;
-    int debugY; // y values for debugging purposes; is now a placeholder
-
-    int animateIndex = 5;
-    int index = 0;
-    int direction = -1;
+    int menuIndex = 0;
+    int subIndex;
 public:
     // Constructor
     PauseMenu(SceneManager* manager);
@@ -48,6 +43,7 @@ public:
     void initialize();
     void reset();
     void update(float frameTime);
+    void optionSelected(std::string option);
     void ai();
     void collisions();
     void render();
