@@ -61,19 +61,9 @@ public:
 	void ai();
 	void reset();
 	void collisions();
-	void checkMenu();
 	void render();
 	void releaseAll();
 	void resetAll();
-	void deductHealth(bool e, float hp);
-	void updateHealth(float frameTime);
-	void intializeUI();
-	void renderUI();
-	void intializeCharacters();
-	void renderCharacters();
-	void changePhase();
-	void enemyAction();
 
-	bool checkGameState();
 };
 #endif // !_PFANTASY_H

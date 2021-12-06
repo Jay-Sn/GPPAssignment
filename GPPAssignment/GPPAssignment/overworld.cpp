@@ -17,6 +17,10 @@ Overworld::~Overworld()
 //=============================================================================
 void Overworld::initialize()
 {
+    //Initialize the world map
+
+    initializeWorld();
+
     intializeCharacters();
 
     return;
@@ -93,13 +97,18 @@ void Overworld::resetAll()
     return;
 }
 
+void Overworld::initializeWorld()
+{
+    if (!worldMapTexture.initialize(dxManager->getGraphics(), OVERWORLD_IMAGE))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize World Map initialize"));
+
+    if(!worldMap.initialize(dxManager->getGraphics(), 0, 0, 0, &worldMapTexture))throw(GameError(gameErrorNS::FATAL_ERROR,"Failed to initialize World Map"));
+
+}
+
 //void Overworld::checkMouse()
 //{
 //}
 //
-//void Overworld::intializeUI()
-//{
-//}
 //
 //void Overworld::renderUI()
 //{

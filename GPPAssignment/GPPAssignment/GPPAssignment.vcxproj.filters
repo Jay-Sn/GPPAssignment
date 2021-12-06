@@ -90,6 +90,9 @@
     <ClCompile Include="pauseMenu.cpp">
       <Filter>Source Files\MenuSystem</Filter>
     </ClCompile>
+    <ClCompile Include="characterBattleManager.cpp">
+      <Filter>Source Files\BattleSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleScene.h">
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="menuOption.h">
       <Filter>Header Files\MenuSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="characterBattleManager.h">
+      <Filter>Header Files\BattleSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

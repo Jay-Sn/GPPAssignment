@@ -16,10 +16,12 @@ class Overworld : public Scene
 protected:
     SceneManager* dxManager;
 
-    //Texture for mainCharacter;
+    //Textures;
+    TextureManager worldMapTexture;
     TextureManager mainCharaTexture;
 
-    //Player Character Image
+    //Images
+    Image worldMap;
     Image playerChara;
 
 
@@ -47,6 +49,8 @@ public:
 
     //void intializeUI();
     //void renderUI();
+
+    void initializeWorld();
 
     void intializeCharacters();
     void renderCharacters();

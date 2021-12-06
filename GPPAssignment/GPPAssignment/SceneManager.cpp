@@ -25,6 +25,15 @@ void SceneManager::switchScene(std::string scene)
     currentScene->initialize();
 }
 
+void SceneManager::switchScene(std::string scene, std::vector<Character> characterList)
+{
+    currentScene = sceneMap[scene];
+    currentScene->setCharacterList(characterList);
+    currentScene->initialize();
+}
+
+
+
 void SceneManager::initialize(HWND hwnd)
 {
     Game::initialize(hwnd);
