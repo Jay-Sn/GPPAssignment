@@ -1,16 +1,40 @@
 #include "character.h"
 
 Character::Character(): charaSprite() {
+	//By default no health
 	currentHealth = 0;
 	maxHealth = 0;
 
+	//Enemy as default
+	friendlyTag = false;
 }
 
 Character::~Character() {
 
 }
 
-void Character::setValues(std::string CharaName, std::string CharaClass, float MaxHealth) {
+//To Initialize Characters for Battle.
+bool Character::initialize(
+	Game* gamePtr, 
+	int width, 
+	int height, 
+	int ncols, 
+	TextureManager* textureM, 
+	std::string newCharaName, 
+	std::string newCharaClass, 
+	float newMaxHealth, 
+	bool friendly)
+{
+	charaSprite.initialize(gamePtr->getGraphics(), width, height, ncols, textureM);
+	charaName = newCharaName;
+	charaClass = newCharaClass;
+	friendlyTag = friendly;
+	maxHealth = newMaxHealth;
+
+	return true;
+}
+
+void Character::setValues(std::string CharaName, std::string CharaClass, float MaxHealth, bool friendly) {
 		charaName = CharaName;
 		charaClass = CharaClass;
 		maxHealth = MaxHealth;

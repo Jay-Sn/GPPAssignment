@@ -4,27 +4,41 @@
 
 #include <string>
 #include "image.h"
+#include "texturemanager.h"
 #include "constants.h"
+#include "game.h"
+#include "image.h"
 
-class Character 
+class Character : public Image
 {
 protected:
 	std::string charaName;
 	std::string charaClass;
 
+	bool friendlyTag;
+
+	//Image of the Characters
 	Image charaSprite;
 
+	//Actual Health Variables
 	float maxHealth;
 	float currentHealth;
+
+	//To store HealthString
 	char hpbuffer[100];
+
 public:
 
 	Character();
 	~Character();
 
+	bool initialize(Game* gamePtr, int width, int height, int ncols, TextureManager* textureM, std::string charaName, std::string charaClass, float maxHealth, bool friendly);
+
+	//Set Variables for the character
+	void setValues(std::string charaName, std::string charaClass, float maxHealth, bool friendly);
+
+
 	std::string getHealthString();
-	bool initialize(Graphics* g, int width, int height, int ncols, TextureManager* textureM, std::string charaName, std::string charaClass, float maxHealth);
-	void setValues(std::string charaName, std::string charaClass, float maxHealth);
 	Image* getImagePtr() { return &charaSprite; }
 
 	float getX() {return charaSprite.getX();}
@@ -52,5 +66,6 @@ public:
 	void setHealth(float newHealth) { maxHealth = newHealth; }
 	void deductHealth(float health) { currentHealth -= health; }
 
+	void setFriendlyTag(bool newBool) { friendlyTag = newBool; }
 };
 #endif // !_CHARACTER_H_

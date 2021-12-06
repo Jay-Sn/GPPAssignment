@@ -2,14 +2,19 @@
 #define _SCENE_H            // ..file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
+#include <vector>
 #include "graphics.h"
 #include "input.h"
 #include "game.h"
+#include "character.h"
 
 class Scene;
 
 class Scene
 {
+private:
+	std::vector<Character> characterList;
+
 public:
 	Scene() {}
 	~Scene() {}
@@ -21,5 +26,9 @@ public:
 	virtual void render() = 0;
 	virtual void releaseAll() = 0;
 	virtual void resetAll() = 0;
+
+	void setCharacterList(std::vector<Character> newCharacterList) { characterList = newCharacterList; }
+	std::vector<Character> getCharacterList() { return characterList; }
+
 };
 #endif

@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
 #include "game.h"
 #include "constants.h"
 #include "Scene.h"
@@ -12,6 +13,7 @@ class SceneManager: public Game
 {
 protected:
 	Scene* currentScene;
+	std::vector<Character> characterList;
 	std::map<std::string, Scene*> sceneMap;
 
 public:
@@ -19,6 +21,9 @@ public:
 	~SceneManager();
 
 	void switchScene(std::string scene);
+
+	void switchScene(std::string scene, std::vector<Character> characterList);
+
 	void initialize(HWND hwnd);
 
 	void reset();
@@ -28,5 +33,7 @@ public:
 	void render();
 	void releaseAll();
 	void resetAll();
+
+	std::vector<Character> getCharacterList() { return currentScene->getCharacterList(); }
 };
 #endif
