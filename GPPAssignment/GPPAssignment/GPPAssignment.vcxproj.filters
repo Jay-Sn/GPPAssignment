@@ -155,5 +155,8 @@
     <ClInclude Include="characterBattleManager.h">
       <Filter>Header Files\BattleSystem</Filter>
     </ClInclude>
+    <ClInclude Include="gameState.h">
+      <Filter>Header Files\GeneralSystem</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

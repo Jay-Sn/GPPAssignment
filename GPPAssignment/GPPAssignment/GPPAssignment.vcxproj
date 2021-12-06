@@ -170,6 +170,7 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameerror.h" />
+    <ClInclude Include="gameState.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />

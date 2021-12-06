@@ -26,9 +26,9 @@ void PauseMenu::initialize()
 {
     if (!mainCharaTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
     if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
-
-    cursor.setY(menuList.front().x - 20);
-    cursor.setX(menuList.front().y);
+    
+    cursor.setX(menuList.front().x - 20);
+    cursor.setY(menuList.front().y);
     cursor.setScale(0.5, 0.5);
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
 
@@ -64,20 +64,17 @@ void PauseMenu::update(float frameTime)
     {
         optionSelected(menuList.at(menuIndex).option);
     }
-    if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && cursor.getY() != 220)               // if move up
+    if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && menuIndex != (menuList.size() - 1))               // if move up
     {
         menuIndex++;
         cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
     }
-    if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && cursor.getY() != 100)               // if move up
+    if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && menuIndex != 0)               // if move up
     {
         menuIndex--;
         cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
-    }
-    if (dxManager->getInput()->wasKeyPressed(VK_LEFT)) {
-
     }
     cursor.update(frameTime);
 }
@@ -88,15 +85,23 @@ void PauseMenu::update(float frameTime)
 // ===================================================
 // *Switch case doesn't work because C++ doesn't allow strings in switch cases.
 void PauseMenu::optionSelected(std::string option) {
-    if (option == "Start")
+    if (option == "Back")
     {
         dxManager->switchScene("Overworld");
     }
-    else if (option == "Option")
+    else if (option == "Stats")
     {
-        dxManager->switchScene("Battle");
+
     }
-    else if (option == "Quit")
+    else if (option == "Save")
+    {
+
+    }
+    else if (option == "Return to Title")
+    {
+        dxManager->switchScene("Title");
+    }
+    else if (option == "Exit Game")
     {
         PostQuitMessage(0);
     }
@@ -124,8 +129,6 @@ void PauseMenu::render()
     }
     dxFont.setFontColor(gameNS::FONT_COLOR);
     dxManager->getGraphics()->spriteEnd();
-
-
 }
 
 //=============================================================================

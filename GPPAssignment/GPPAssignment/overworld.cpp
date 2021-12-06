@@ -40,6 +40,14 @@ void Overworld::update(float frameTime)
     //Checking for controls
     controls(frameTime);
 
+    // Goes to pause menu
+    if (dxManager->getInput()->wasKeyPressed(VK_ESCAPE)) 
+    {
+        dxManager->switchScene("PauseMenu");
+    }
+
+    //Go back to main menu
+
     //UpdatePositions
     setWorldPosition();
 }
