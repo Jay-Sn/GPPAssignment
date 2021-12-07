@@ -1,3 +1,9 @@
+//============================================================================
+//  Module:             Gameplay Programming
+//  Assignment 1:       PlaceHolder Fantasy?
+//  Student Name:       William Wibisana Dumanauw
+//  Student Number:     S10195561A
+//============================================================================
 #include "pauseMenu.h"
 #include <iostream>
 
@@ -24,8 +30,8 @@ PauseMenu::~PauseMenu()
 //=============================================================================
 void PauseMenu::initialize()
 {
-    if (!mainCharaTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
-    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &mainCharaTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+    if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
     
     cursor.setX(menuList.front().x - 20);
     cursor.setY(menuList.front().y);
@@ -95,18 +101,18 @@ void PauseMenu::optionSelected(std::string option) {
     }
     else if (option == "Save")
     {
-        std::ifstream file("placeholder.txt");
+        std::ifstream file("placeholder_save.txt");
         if (!file.is_open())
         {
-            std::ofstream newFile("placeholder.txt");
+            std::ofstream newFile("placeholder_save.txt");
             newFile << "WorldX " << dxManager->getState()->getFloatFromState("WorldX") << std::endl;
             newFile << "WorldY " << dxManager->getState()->getFloatFromState("WorldY") << std::endl;
             newFile.close();
         }
         else
         {
-            std::remove("placeholder.txt");
-            std::ofstream newFile("placeholder.txt");
+            std::remove("placeholder_save.txt");
+            std::ofstream newFile("placeholder_save.txt");
             newFile << "WorldX " << dxManager->getState()->getFloatFromState("WorldX") << std::endl;
             newFile << "WorldY " << dxManager->getState()->getFloatFromState("WorldY") << std::endl;
             newFile.close();
@@ -155,7 +161,7 @@ void PauseMenu::render()
 //=============================================================================
 void PauseMenu::releaseAll()
 {
-    mainCharaTexture.onLostDevice();
+    cursorTexture.onLostDevice();
     dxMenuText->onLostDevice();
     return;
 }
@@ -166,7 +172,7 @@ void PauseMenu::releaseAll()
 //=============================================================================
 void PauseMenu::resetAll()
 {
-    mainCharaTexture.onResetDevice();
+    cursorTexture.onResetDevice();
     dxMenuText->onResetDevice();
     return;
 }

@@ -1,2 +1,0 @@
-WorldX -740
-WorldY -1020

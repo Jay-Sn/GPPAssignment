@@ -48,13 +48,13 @@ void Overworld::update(float frameTime)
         dxManager->getState()->setValueToState("WorldY", worldY);
         dxManager->switchScene("PauseMenu");
     }
-
     //UpdatePositions
     setWorldPosition();
 }
 
 void Overworld::ai()
 {
+
 }
 
 void Overworld::collisions()

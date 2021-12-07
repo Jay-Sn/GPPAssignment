@@ -158,7 +158,7 @@
     <ClCompile Include="overworld.cpp" />
     <ClCompile Include="battleScene.cpp" />
     <ClCompile Include="pauseMenu.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="startingMenu.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="texturemanager.cpp" />
@@ -170,7 +170,6 @@
     <ClInclude Include="character.h" />
     <ClInclude Include="characterBattleManager.h" />
     <ClInclude Include="constants.h" />
-    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameerror.h" />
     <ClInclude Include="gameState.h" />
@@ -182,7 +181,7 @@
     <ClInclude Include="battleScene.h" />
     <ClInclude Include="pauseMenu.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="sceneManager.h" />
     <ClInclude Include="startingMenu.h" />
     <ClInclude Include="textDX.h" />
     <ClInclude Include="texturemanager.h" />

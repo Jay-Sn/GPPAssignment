@@ -12,7 +12,7 @@
 #include <crtdbg.h>
 #include "gameerror.h"
 #include "constants.h"
-#include "SceneManager.h"
+#include "sceneManager.h"
 
 // Function prototypes
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
