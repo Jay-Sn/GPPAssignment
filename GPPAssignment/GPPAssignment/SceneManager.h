@@ -34,6 +34,6 @@ public:
 	void releaseAll();
 	void resetAll();
 
-	std::vector<Character> getCharacterList() { return currentScene->getCharacterList(); }
+	std::vector<Character>* getCharacterList() { return currentScene->getCharacterList(); }
 };
 #endif

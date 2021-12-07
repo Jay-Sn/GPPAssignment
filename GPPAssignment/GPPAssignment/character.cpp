@@ -45,6 +45,7 @@ bool Character::initialize(
 	charaClass = newCharaClass;
 	friendlyTag = friendly;
 	maxHealth = newMaxHealth;
+    currentHealth = maxHealth;
 
 	return true;
 }
@@ -77,54 +78,12 @@ bool Character::collidesWith(Character& ent, VECTOR2& collisionVector)
     if (!active || !ent.getActive())
         return false;
 
-    //// If both entities are CIRCLE collision
-    //if (collisionType == characterNS::CIRCLE && ent.getCollisionType() == characterNS::CIRCLE)
-    //    return collideCircle(ent, collisionVector);
-
     // If both entities are BOX collision
     if (collisionType == characterNS::BOX && ent.getCollisionType() == characterNS::BOX)
         return collideBox(ent, collisionVector);
 
-    // All other combinations use separating axis test
-    // If neither entity uses CIRCLE collision
-    //if (collisionType != characterNS::CIRCLE && ent.getCollisionType() != characterNS::CIRCLE)
-    //    return collideRotatedBox(ent, collisionVector);
-
-    //else    // one of the entities is a circle
-    //    if (collisionType == characterNS::CIRCLE)  // if this entity uses CIRCLE collision
-    //    {
-    //        // Check for collision from other box with our circle
-    //        bool collide = ent.collideRotatedBoxCircle(*this, collisionVector);
-    //        // Put the collision vector in the proper direction
-    //        collisionVector *= -1;              // reverse collision vector
-    //        return collide;
-    //    }
-    //    else    // the other entity uses CIRCLE collision
-    //        return collideRotatedBoxCircle(ent, collisionVector);
-
     return false;
 }
-
-//bool Character::collideCircle(Character& ent, VECTOR2& collisionVector)
-//{
-//    // difference between centers
-//    distSquared = *getCenter() - *ent.getCenter();
-//    distSquared.x = distSquared.x * distSquared.x;      // difference squared
-//    distSquared.y = distSquared.y * distSquared.y;
-//
-//    // Calculate the sum of the radii (adjusted for scale)
-//    sumRadiiSquared = (radius * getsca()) + (ent.radius * ent.getScale());
-//    sumRadiiSquared *= sumRadiiSquared;                 // square it
-//
-//    // if entities are colliding
-//    if (distSquared.x + distSquared.y <= sumRadiiSquared)
-//    {
-//        // set collision vector
-//        collisionVector = *ent.getCenter() - *getCenter();
-//        return true;
-//    }
-//    return false;   // not colliding
-//}
 
 //=============================================================================
 // Axis aligned bounding box collision detection method
@@ -138,13 +97,13 @@ bool Character::collideBox(Character& ent, VECTOR2& collisionVector)
     if (!active || !ent.getActive())
         return false;
 
-    float test = getImagePtr()->getX();
-    float test2 = ent.getImagePtr()->getWidth();
+    float test = getY() + getImagePtr()->getHeight();
+    float test2 = ent.getY();
 
     // Check for collision using Axis Aligned Bounding Box.
     if ((getX() > ent.getX() + ent.getImagePtr()->getWidth()) ||
-        (getX() + getWidth() < ent.getX()) ||
-        (getY() + getWidth() < ent.getY()) ||
+        (getX() + getImagePtr()->getWidth() < ent.getX()) ||
+        (getY() + getImagePtr()->getHeight() < ent.getY()) ||
         (getY() > ent.getY() + ent.getImagePtr()->getHeight()))
     {
         return false;

@@ -6,11 +6,14 @@
 #include <map>
 #include <vector>
 
+#include "menuOption.h"
 #include "image.h"
 #include "texturemanager.h"
 #include "game.h"
 #include "character.h"
 #include "constants.h"
+#include "input.h"
+#include "SceneManager.h"
 
 class BattleUI : public Image
 {
@@ -22,32 +25,56 @@ public:
 
 	Image selectionArrow;
 
-	TextDX  hpFonts;
-	TextDX  selectionFonts;
-	TextDX  infoFonts;
+	TextDX  hpFont;
+	TextDX  selectionFont;
+	TextDX  infoFont;
 
 	BattleUI();
 	~BattleUI();
 
 	bool initialize(Game* gameptr, std::vector<Character>* listOfCharacters );
 	
-	void healthBarSetup(Game* gameptr, std::vector<Character> listOfCharacters);
+	void healthBarSetup(Game* gameptr);
 
-	void update(Game* gameptr);
+	void update(Game* gameptr, float frameTime);
 
 	void draw();
 
 	void setHpPosYEnemy();
 	void setHpPosYTeam();
+	void drawHealthBars();
 
 	bool updateHpBars(Character character, float frameTime);
 
-	bool animationDone = true;
+	//Setup Selection Menu
+	void selectionMenuSetup(Game* gameptr);
 
-	int selectionY = 0;
+	void selectionMenuPrint();
+
+	std::string checkSelection(Game* gameptr);
+
+	bool isChecking() { return checking; }
+	void StartChecking() { checking = true; }
+
+	bool getGameState() { return gameOver; }
+	void setGameState() { gameOver = false; }
+
+	void releaseAll();
+
+	void resetAll();
 
 private:
 	std::vector<Character>* listOfCharactersInPlay;
+
+	bool gameOver;
+
+	bool checking;
+
+	int checkingIndex;
+
+	std::vector<MenuOption> selectionList;
+
+	int selectionIndex;
 
 	//======================================================
 	//					 Health Bars
@@ -77,7 +104,6 @@ private:
 	};
 
 	std::map<string, Image> usedHealthBar;
-
 
 	std::vector<float> enemyHpPosY;
 	std::vector<float> teamHpPosY;
