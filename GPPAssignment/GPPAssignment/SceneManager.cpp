@@ -1,5 +1,10 @@
+//============================================================================
+//  Module:             Gameplay Programming
+//  Assignment 1:       PlaceHolder Fantasy?
+//  Student Name:       William Wibisana Dumanauw
+//  Student Number:     S10195561A
+//============================================================================
 #include "SceneManager.h"
-
 #include "StartingMenu.h"
 #include "battleScene.h"
 #include "overworld.h"
@@ -7,6 +12,7 @@
 
 SceneManager::SceneManager()
 {
+    // Map of scenes here, use dxManager->switchScene(the one you want to switch to) to switch scenes
     sceneMap["Title"] = new StartingMenu(this);
     sceneMap["Overworld"] = new Overworld(this);
     sceneMap["Battle"] = new BattleScene(this);
@@ -19,6 +25,7 @@ SceneManager::~SceneManager()
 	releaseAll();
 }
 
+// dxManager->switchScene(the one you want to switch to) to switch scenes
 void SceneManager::switchScene(std::string scene)
 {
     currentScene = sceneMap[scene];
@@ -32,8 +39,7 @@ void SceneManager::switchScene(std::string scene, std::vector<Character> charact
     currentScene->initialize();
 }
 
-
-
+// Initialize SceneManager with title/main menu
 void SceneManager::initialize(HWND hwnd)
 {
     Game::initialize(hwnd);

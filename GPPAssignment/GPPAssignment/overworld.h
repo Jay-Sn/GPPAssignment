@@ -8,7 +8,8 @@
 #include "constants.h"
 #include "TextureManager.h"
 #include "Image.h"
-#include "SceneManager.h"
+#include "sceneManager.h"
+#include "gameState.h"
 
 using namespace std;
 

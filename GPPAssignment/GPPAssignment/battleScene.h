@@ -10,7 +10,7 @@
 #include "character.h"
 #include "battleUI.h"
 #include "textDX.h"
-#include "SceneManager.h"
+#include "sceneManager.h"
 
 class BattleScene : public Scene
 {

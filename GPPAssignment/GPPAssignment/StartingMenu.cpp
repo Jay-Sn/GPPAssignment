@@ -1,3 +1,9 @@
+//============================================================================
+//  Module:             Gameplay Programming
+//  Assignment 1:       PlaceHolder Fantasy?
+//  Student Name:       William Wibisana Dumanauw
+//  Student Number:     S10195561A
+//============================================================================
 #include "startingMenu.h"
 #include <iostream>
 
@@ -5,11 +11,7 @@ StartingMenu::StartingMenu(SceneManager* manager)
 {
     dxManager = manager;
     dxMenuText = new TextDX();
-
-    // This menu list has the following functions: Start, Options, Quit
-    menuList.push_back({ "Start", 60, 100 });
-    menuList.push_back({ "Options", 60, 130 });
-    menuList.push_back({ "Quit", 60, 160 });
+    dxTitle = new TextDX();
 }
 
 StartingMenu::~StartingMenu()
@@ -28,18 +30,38 @@ void StartingMenu::initialize()
     if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
     if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
 
-    // Cursor settings on initialize
-    cursor.setX(menuList.front().x - 20);
-    cursor.setY(menuList.front().y);
-    cursor.setScale(0.5, 0.5);
-
     // Set background colour: White
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
 
+    float textSize = 25; // dxMenuText size
+    float titleSize = 100; //dxTitle size
+    float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
+    float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
+    float scaledCursorHeight = textSize / originalCursorHeight;  // Height of cursor after scaling
+    float scaledCursorWidth = textSize / originalCursorWidth;    // Width of cursor after scaling
+
     // initialize DirectX fonts
-    // 15 pixel high Arial
-    if (dxMenuText->initialize(dxManager->getGraphics(), 15, true, false, "Arial") == false)
+    // 15 pixel high Trebuchet MS
+    if (dxMenuText->initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+
+    if (dxTitle->initialize(dxManager->getGraphics(), titleSize, true, false, "Old English Text MT") == false)
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+
+    std::vector<std::string> optionList = { "Start New Adventure", "Continue", "Options", "Quit" }; // Option list contains these
+
+    int menuY = GAME_HEIGHT / 2; // Half of game height
+
+    // This menu list has the following functions: Start New Adventure, Continue, Options, Quit
+    for (int i = 0; i < optionList.size(); i++)
+    {
+        menuList.push_back({ optionList.at(i), int(GAME_WIDTH / 2 - dxMenuText->getWidth(optionList.at(i), dxMenuText->getFont()) / 2),  menuY + 30 * i });
+    }
+
+    // Cursor settings on initialize
+    cursor.setX(menuList.front().x - GAME_WIDTH / 50);
+    cursor.setY(menuList.front().y);
+    cursor.setScale(scaledCursorHeight, scaledCursorWidth);
 
     reset();            // reset all game variables
     return;
@@ -69,14 +91,14 @@ void StartingMenu::update(float frameTime)
     if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && menuIndex != (menuList.size() - 1))
     {
         menuIndex++; // Increases menu index to tell where the location of the cursor is
-        cursor.setX(menuList.at(menuIndex).x - 20);
+        // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
     }
     // Move up
     if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && menuIndex != 0)
     {
         menuIndex--; // Decreases menu index to tell where the location of the cursor is
-        cursor.setX(menuList.at(menuIndex).x - 20);
+        // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
     }
     cursor.update(frameTime);
@@ -89,9 +111,22 @@ void StartingMenu::update(float frameTime)
 // ===================================================
 // *Switch case doesn't work because C++ doesn't allow strings in switch cases.
 void StartingMenu::optionSelected(std::string option) {
-    // Start -> Overworld
-    if (option == "Start")
+    // Start New Adventure -> Overworld at default position
+    if (option == "Start New Adventure")
     {
+        dxManager->getState()->resetState();
+        dxManager->switchScene("Overworld");
+    }
+    // Continue -> Overworld at saved position
+    else if (option == "Continue")
+    {
+        // Read file placeholder_save.txt
+        std::ifstream file("placeholder_save.txt");
+        std::string key, value; // key for map key, value for the actual key
+        while (file >> key >> value)
+        {
+            dxManager->getState()->setValueToState(key, std::stof(value));
+        }
         dxManager->switchScene("Overworld");
     }
     // Option -> Whatever options we have
@@ -122,6 +157,8 @@ void StartingMenu::render()
 {
     dxManager->getGraphics()->spriteBegin();
     cursor.draw(TRANSCOLOR);
+    dxTitle->setFontColor(graphicsNS::ORANGE);
+    dxTitle->print("PlaceHolder Fantasy?", int(GAME_WIDTH / 2 - dxTitle->getWidth("PlaceHolder Fantasy?", dxTitle->getFont()) / 2), GAME_HEIGHT / 2 - 100);
     dxMenuText->setFontColor(graphicsNS::BLACK);
     for(auto option: menuList) 
     {
@@ -138,6 +175,7 @@ void StartingMenu::releaseAll()
 {
     cursorTexture.onLostDevice();
     dxMenuText->onLostDevice();
+    dxTitle->onLostDevice();
     return;
 }
 
@@ -149,5 +187,6 @@ void StartingMenu::resetAll()
 {
     cursorTexture.onResetDevice();
     dxMenuText->onResetDevice();
+    dxTitle->onResetDevice();
     return;
 }

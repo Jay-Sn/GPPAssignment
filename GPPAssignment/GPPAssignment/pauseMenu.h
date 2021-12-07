@@ -1,3 +1,9 @@
+//============================================================================
+//  Module:             Gameplay Programming
+//  Assignment 1:       PlaceHolder Fantasy?
+//  Student Name:       William Wibisana Dumanauw
+//  Student Number:     S10195561A
+//============================================================================
 #ifndef _PAUSEMENU_H             // prevent multiple definitions if this 
 #define _PAUSEMENU_H             // ..file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
@@ -9,10 +15,11 @@
 #include "Image.h"
 #include "graphics.h"
 #include "Scene.h"
-#include "SceneManager.h"
+#include "sceneManager.h"
 #include "menuOption.h"
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 //===================
 // MENU CLASS
@@ -23,7 +30,7 @@ protected:
     SceneManager* dxManager;
     TextDX  dxFont;                 // DirectX font for fps
     TextDX* dxMenuText;
-    TextureManager mainCharaTexture;
+    TextureManager cursorTexture;
 
     std::vector<MenuOption> menuList;
     std::vector<MenuOption> subList;
@@ -50,4 +57,4 @@ public:
     void releaseAll();
     void resetAll();
 };
-#endif#pragma once
+#endif
