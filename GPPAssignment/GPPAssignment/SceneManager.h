@@ -8,11 +8,13 @@
 #include "game.h"
 #include "constants.h"
 #include "Scene.h"
+#include "gameState.h"
 
 class SceneManager: public Game
 {
 protected:
 	Scene* currentScene;
+	GameState currentState;
 	std::vector<Character> characterList;
 	std::map<std::string, Scene*> sceneMap;
 
@@ -33,6 +35,8 @@ public:
 	void render();
 	void releaseAll();
 	void resetAll();
+
+	GameState* getState() { return &currentState;  }
 
 	std::vector<Character> getCharacterList() { return currentScene->getCharacterList(); }
 };

@@ -11,7 +11,9 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "menuOption.h"
+#include "gameState.h"
 #include <vector>
+#include <fstream>
 
 //===================
 // MENU CLASS

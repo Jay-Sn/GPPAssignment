@@ -93,6 +93,9 @@
     <ClCompile Include="characterBattleManager.cpp">
       <Filter>Source Files\BattleSystem</Filter>
     </ClCompile>
+    <ClCompile Include="gameState.cpp">
+      <Filter>Source Files\GeneralSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleScene.h">

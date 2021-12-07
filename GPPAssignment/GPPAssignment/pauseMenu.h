@@ -13,6 +13,7 @@
 #include "menuOption.h"
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 //===================
 // MENU CLASS

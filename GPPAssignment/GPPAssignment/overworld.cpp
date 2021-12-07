@@ -43,10 +43,11 @@ void Overworld::update(float frameTime)
     // Goes to pause menu
     if (dxManager->getInput()->wasKeyPressed(VK_ESCAPE)) 
     {
+        // Store world coordinates into game state
+        dxManager->getState()->setValueToState("WorldX", worldX);
+        dxManager->getState()->setValueToState("WorldY", worldY);
         dxManager->switchScene("PauseMenu");
     }
-
-    //Go back to main menu
 
     //UpdatePositions
     setWorldPosition();
@@ -114,11 +115,16 @@ void Overworld::initializeWorld()
     //Scaling Up world
     worldMap.setScale(3, 3);
 
-    
+    //If map stuff doesn't exist, tell it to go to default
+    if ((dxManager->getState()->isFloatExist("WorldX") == false) && (dxManager->getState()->isFloatExist("WorldY") == false))
+    {
+        dxManager->getState()->setValueToState("WorldX", - worldMap.getWidth() / 2 + GAME_WIDTH / 2);
+        dxManager->getState()->setValueToState("WorldY", -worldMap.getHeight() / 2 + GAME_HEIGHT / 2);
+    }
 
     //Setting Default Position of the world
-    worldMap.setX(-worldMap.getWidth() / 2 + GAME_WIDTH / 2);
-    worldMap.setY(-worldMap.getHeight() / 2 + GAME_HEIGHT / 2);
+    worldMap.setX(dxManager->getState()->getFloatFromState("WorldX"));
+    worldMap.setY(dxManager->getState()->getFloatFromState("WorldY"));
 
     //Setting world parameters
     worldX = worldMap.getX();

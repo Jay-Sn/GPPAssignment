@@ -9,6 +9,7 @@
 #include "TextureManager.h"
 #include "Image.h"
 #include "SceneManager.h"
+#include "gameState.h"
 
 using namespace std;
 

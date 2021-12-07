@@ -7,9 +7,10 @@ StartingMenu::StartingMenu(SceneManager* manager)
     dxMenuText = new TextDX();
 
     // This menu list has the following functions: Start, Options, Quit
-    menuList.push_back({ "Start", 60, 100 });
-    menuList.push_back({ "Options", 60, 130 });
-    menuList.push_back({ "Quit", 60, 160 });
+    menuList.push_back({ "Start New Adventure", 60, 100 });
+    menuList.push_back({ "Continue", 60, 130 });
+    menuList.push_back({ "Options", 60, 160 });
+    menuList.push_back({ "Quit", 60, 190 });
 }
 
 StartingMenu::~StartingMenu()
@@ -90,8 +91,19 @@ void StartingMenu::update(float frameTime)
 // *Switch case doesn't work because C++ doesn't allow strings in switch cases.
 void StartingMenu::optionSelected(std::string option) {
     // Start -> Overworld
-    if (option == "Start")
+    if (option == "Start New Adventure")
     {
+        dxManager->getState()->resetState();
+        dxManager->switchScene("Overworld");
+    }
+    else if (option == "Continue")
+    {
+        std::ifstream file("placeholder.txt");
+        std::string key, value;
+        while (file >> key >> value)
+        {
+            dxManager->getState()->setValueToState(key, std::stof(value));
+        }
         dxManager->switchScene("Overworld");
     }
     // Option -> Whatever options we have

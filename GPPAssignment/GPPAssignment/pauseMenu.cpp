@@ -64,7 +64,7 @@ void PauseMenu::update(float frameTime)
     {
         optionSelected(menuList.at(menuIndex).option);
     }
-    if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && menuIndex != (menuList.size() - 1))               // if move up
+    if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && menuIndex != (menuList.size() - 1))               // if move down
     {
         menuIndex++;
         cursor.setX(menuList.at(menuIndex).x - 20);
@@ -95,10 +95,26 @@ void PauseMenu::optionSelected(std::string option) {
     }
     else if (option == "Save")
     {
-
+        std::ifstream file("placeholder.txt");
+        if (!file.is_open())
+        {
+            std::ofstream newFile("placeholder.txt");
+            newFile << "WorldX " << dxManager->getState()->getFloatFromState("WorldX") << std::endl;
+            newFile << "WorldY " << dxManager->getState()->getFloatFromState("WorldY") << std::endl;
+            newFile.close();
+        }
+        else
+        {
+            std::remove("placeholder.txt");
+            std::ofstream newFile("placeholder.txt");
+            newFile << "WorldX " << dxManager->getState()->getFloatFromState("WorldX") << std::endl;
+            newFile << "WorldY " << dxManager->getState()->getFloatFromState("WorldY") << std::endl;
+            newFile.close();
+        }
     }
     else if (option == "Return to Title")
     {
+        dxManager->getState()->resetState();
         dxManager->switchScene("Title");
     }
     else if (option == "Exit Game")
@@ -109,10 +125,12 @@ void PauseMenu::optionSelected(std::string option) {
 
 void PauseMenu::ai()
 {
+
 }
 
 void PauseMenu::collisions()
 {
+
 }
 
 //=============================================================================

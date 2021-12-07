@@ -1,36 +1,13 @@
-﻿  overworld.cpp
+﻿  startingMenu.cpp
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\overworld.cpp(120,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\overworld.cpp(121,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\overworld.cpp(147,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\overworld.cpp(148,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  pauseMenu.cpp
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pauseMenu.cpp(30,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pauseMenu.cpp(31,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pauseMenu.cpp(70,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pauseMenu.cpp(71,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pauseMenu.cpp(76,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\pauseMenu.cpp(77,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  startingMenu.cpp
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(32,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(33,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(72,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(73,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(79,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(80,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(33,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(34,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(73,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(74,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(80,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\startingMenu.cpp(81,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   GPPAssignment.vcxproj -> C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe
