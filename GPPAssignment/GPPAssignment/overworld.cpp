@@ -59,10 +59,19 @@ void Overworld::ai()
 
 void Overworld::collisions()
 {
+    VECTOR2 collisionVector;
+    bool check = (playerChara.collidesWith(enemyChara, collisionVector));
+    if (playerChara.collidesWith(enemyChara, collisionVector))
+    {
+        characterList.push_back(enemyChara);
+        enemyChara.setActive(false);
+        playerChara.setActive(false);
+        dxManager->switchScene("Battle", characterList);
+    }
 }
 
 //=============================================================================
-// render game items
+//                          Render game items
 //=============================================================================
 void Overworld::render()
 {
@@ -73,9 +82,11 @@ void Overworld::render()
 
     //Draw enemy Character
     enemyChara.draw(graphicsNS::RED);
+    enemyChara.setActive(true);
 
     //Draw Main Character
     playerChara.draw();
+    playerChara.setActive(true);
 
     //renderCharacters();
     dxManager->getGraphics()->spriteEnd();
@@ -193,8 +204,6 @@ void Overworld::controls(float frameTime) {
     {
         worldY += MOVEMENTSPEED * frameTime;
     }
-
-    
 }
 
 //=====================================================================================

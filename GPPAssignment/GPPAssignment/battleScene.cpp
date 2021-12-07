@@ -33,7 +33,7 @@ void BattleScene::initialize()
 	characterList = dxManager->getCharacterList();
 
 	//Initialize the BattleUI
-	battleUI.initialize(dxManager, characterList);
+	battleUI.initialize(dxManager, &characterList);
 
 	return;
 }

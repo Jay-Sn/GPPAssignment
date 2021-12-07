@@ -29,7 +29,7 @@ public:
 	BattleUI();
 	~BattleUI();
 
-	bool initialize(Game* gameptr, std::vector<Character> listOfCharacters );
+	bool initialize(Game* gameptr, std::vector<Character>* listOfCharacters );
 	
 	void healthBarSetup(Game* gameptr, std::vector<Character> listOfCharacters);
 
@@ -47,7 +47,7 @@ public:
 	int selectionY = 0;
 
 private:
-	std::vector<Character> listOfCharactersInPlay;
+	std::vector<Character>* listOfCharactersInPlay;
 
 	//======================================================
 	//					 Health Bars
@@ -78,8 +78,12 @@ private:
 
 	std::map<string, Image> usedHealthBar;
 
+
 	std::vector<float> enemyHpPosY;
 	std::vector<float> teamHpPosY;
+
+	std::vector<Character> enemyTeam;
+	std::vector<Character> friendlyTeam;
 
 };
 #endif // !_BATTLEUI_H
