@@ -30,6 +30,7 @@ PauseMenu::~PauseMenu()
 //=============================================================================
 void PauseMenu::initialize()
 {
+    menuIndex = 0;
     if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
     if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
     
