@@ -26,41 +26,50 @@ StartingMenu::~StartingMenu()
 //=============================================================================
 void StartingMenu::initialize()
 {
+    // Reset menu index to 0 on initialize
     menuIndex = 0;
+
     // Initializing Cursor
-    if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
-    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+    if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
+    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
 
     // Set background colour: White
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
 
     float textSize = 25; // dxMenuText size
-    float titleSize = 100; //dxTitle size
+    float titleSize = 100; // dxTitle size
     float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
     float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
     float scaledCursorHeight = textSize / originalCursorHeight;  // Height of cursor after scaling
     float scaledCursorWidth = textSize / originalCursorWidth;    // Width of cursor after scaling
 
     // initialize DirectX fonts
-    // 15 pixel high Trebuchet MS
+    // Option Text
+    // Font: Trebuchet MS
     if (dxMenuText->initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
+    // Title
+    // Font: Old English Text MT
     if (dxTitle->initialize(dxManager->getGraphics(), titleSize, true, false, "Old English Text MT") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
-    std::vector<std::string> optionList = { "Start New Adventure", "Continue", "Options", "Quit" }; // Option list contains these
+    std::vector<std::string> optionList = { "Start New Adventure", "Continue", "Options", "Quit" }; // Option list contains these options
 
     int menuY = GAME_HEIGHT / 2; // Half of game height
 
-    // This menu list has the following functions: Start New Adventure, Continue, Options, Quit
+    // Add to menuList the options from optionList
     for (int i = 0; i < optionList.size(); i++)
     {
-        menuList.push_back({ optionList.at(i), int(GAME_WIDTH / 2 - dxMenuText->getWidth(optionList.at(i), dxMenuText->getFont()) / 2),  menuY + 30 * i });
+        menuList.push_back({ 
+            /*Option = */optionList.at(i),
+            /*X = */int(GAME_WIDTH / 2 - dxMenuText->getWidth(optionList.at(i), dxMenuText->getFont()) / 2),
+            /*Y = */menuY + 30 * i
+            });
     }
 
     // Cursor settings on initialize
-    cursor.setX(menuList.front().x - GAME_WIDTH / 50);
+    cursor.setX(menuList.front().x - 30);
     cursor.setY(menuList.front().y);
     cursor.setScale(scaledCursorHeight, scaledCursorWidth);
 
@@ -109,7 +118,7 @@ void StartingMenu::update(float frameTime)
 //====================================================
 // Check string of current option
 // Return the function
-// ===================================================
+//====================================================
 // *Switch case doesn't work because C++ doesn't allow strings in switch cases.
 void StartingMenu::optionSelected(std::string option) {
     // Start New Adventure -> Overworld at default position
@@ -123,10 +132,10 @@ void StartingMenu::optionSelected(std::string option) {
     {
         // Read file placeholder_save.txt
         std::ifstream file("placeholder_save.txt");
-        std::string key, value; // key for map key, value for the actual key
-        while (file >> key >> value)
-        {
-            dxManager->getState()->setValueToState(key, std::stof(value));
+        std::string key, value, type; // key for map key, value for the actual key
+        while (file >> key >> value >> type) // Get the key, value and type, where the delim is a space
+        { 
+            dxManager->getState()->setValueToState(key, { value, type }); // Put to the globalMap
         }
         dxManager->switchScene("Overworld");
     }

@@ -11,11 +11,6 @@ PauseMenu::PauseMenu(SceneManager* manager)
 {
     dxManager = manager;
     dxMenuText = new TextDX();     // DirectX fonts
-    menuList.push_back({ "Back", 60, 100 });
-    menuList.push_back({ "Stats", 60, 130 });
-    menuList.push_back({ "Save", 60, 160 });
-    menuList.push_back({ "Return to Title", 60, 190 });
-    menuList.push_back({ "Exit Game", 60, 220 });
 }
 
 PauseMenu::~PauseMenu()
@@ -28,24 +23,48 @@ PauseMenu::~PauseMenu()
 // initializes the game
 // Throws GameError on error
 //=============================================================================
-void PauseMenu::initialize()
+void PauseMenu::initialize() 
 {
+    // Reset menu index to 0 on initialize 
     menuIndex = 0;
-    if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
-    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+    // Cursor initialization
+    if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
+    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
     
-    cursor.setX(menuList.front().x - 20);
-    cursor.setY(menuList.front().y);
-    cursor.setScale(0.5, 0.5);
+    float textSize = 25; // dxMenuText size
+    float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
+    float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
+    float scaledCursorHeight = textSize / originalCursorHeight;  // Height of cursor after scaling
+    float scaledCursorWidth = textSize / originalCursorWidth;    // Width of cursor after scaling
+
+    // Set Background to white
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
 
     // initialize DirectX fonts
-    // 15 pixel high Arial
-    if (dxMenuText->initialize(dxManager->getGraphics(), 15, true, false, "Arial") == false)
+    // Options
+    // Font: Trebuchet MS
+    if (dxMenuText->initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
-    if (dxFont.initialize(dxManager->getGraphics(), gameNS::POINT_SIZE, false, false, gameNS::FONT) == false)
-        throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
 
+    std::vector<std::string> optionList = { "Back", "Stats", "Save", "Return to Title", "Exit Game" }; // Option list contains these options
+    
+    int menuY = 100; // Start of the Y of menu options
+    int menuX = GAME_WIDTH / 15; // Split game_width to 15 parts, take the first part as X
+
+    // Add to menuList the options from optionList
+    for (int i = 0; i < optionList.size(); i++)
+    {
+        menuList.push_back({
+            /*Option = */optionList.at(i),
+            /*X = */menuX,
+            /*Y = */menuY + 30 * i
+            });
+    }
+
+    // Cursor settings on initialize
+    cursor.setX(menuList.front().x - 30);
+    cursor.setY(menuList.front().y);
+    cursor.setScale(scaledCursorHeight, scaledCursorWidth);
 
 
     reset();            // reset all game variables
@@ -74,13 +93,13 @@ void PauseMenu::update(float frameTime)
     if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && menuIndex != (menuList.size() - 1))               // if move down
     {
         menuIndex++;
-        cursor.setX(menuList.at(menuIndex).x - 20);
+        // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
     }
     if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && menuIndex != 0)               // if move up
     {
         menuIndex--;
-        cursor.setX(menuList.at(menuIndex).x - 20);
+        // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
     }
     cursor.update(frameTime);
@@ -102,21 +121,35 @@ void PauseMenu::optionSelected(std::string option) {
     }
     else if (option == "Save")
     {
-        std::ifstream file("placeholder_save.txt");
-        if (!file.is_open())
+        std::ifstream file("placeholder_save.txt"); // Check if placeholder_save.txt is there
+        if (!file.is_open()) // If not there
         {
-            std::ofstream newFile("placeholder_save.txt");
-            newFile << "WorldX " << dxManager->getState()->getFloatFromState("WorldX") << std::endl;
-            newFile << "WorldY " << dxManager->getState()->getFloatFromState("WorldY") << std::endl;
-            newFile.close();
+            std::ofstream newFile("placeholder_save.txt"); // Create the txt file
+            std::map<std::string, Var> map = dxManager->getState()->getMap(); // Get the map
+            // Iterate through the map
+            for (std::map<std::string, Var>::iterator it = map.begin();
+                it != map.end();
+                ++it)
+            {
+                // it->first is the keys, it->second is the Var
+                newFile << it->first << " " << it->second.value << " " << it->second.type << std::endl;
+            }
+            newFile.close(); // Close the txt file
         }
         else
         {
-            std::remove("placeholder_save.txt");
-            std::ofstream newFile("placeholder_save.txt");
-            newFile << "WorldX " << dxManager->getState()->getFloatFromState("WorldX") << std::endl;
-            newFile << "WorldY " << dxManager->getState()->getFloatFromState("WorldY") << std::endl;
-            newFile.close();
+            std::remove("placeholder_save.txt"); // Delete txt file
+            std::ofstream newFile("placeholder_save.txt"); // Recreate txt file
+            std::map<std::string, Var> map = dxManager->getState()->getMap(); // Get the map
+            // Iterate through the map
+            for (std::map<std::string, Var>::iterator it = map.begin();
+                it != map.end();
+                ++it)
+            {
+                // it->first is the keys, it->second is the Var
+                newFile << it->first << " " << it->second.value << " " << it->second.type << std::endl;
+            }
+            newFile.close(); // Close the txt file
         }
     }
     else if (option == "Return to Title")

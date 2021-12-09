@@ -26,11 +26,23 @@ public:
 	GameState();
 	~GameState();
 
+	// Get the entire map
+	std::map<std::string, Var> getMap();
+
 	// Getter and check if map entry exist: globalMap
-	float getFloatFromState(std::string key);
-	bool isFloatExist(std::string key);
+
+	// Template cannot be put in .cpp due to "inclusion model" rule
+	template<typename  T> T getFloatFromState(std::string key)
+	{
+		if (globalMap[key].type == "float") // If float
+		{
+			return std::stof(globalMap[key].value);
+		}
+	}
+	bool isExistInState(std::string key);
 	// Setter
-	void setValueToState(std::string key, float var);
+	void setValueToState(std::string key, Var var);
+	void setValueToState(std::string key, float value);
 	// Clear map
 	void resetState();
 };

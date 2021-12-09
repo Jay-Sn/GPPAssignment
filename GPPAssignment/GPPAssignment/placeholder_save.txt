@@ -1,2 +1,2 @@
-WorldX -163.162
-WorldY -1570.79
+WorldX -352.598511 float
+WorldY -907.293640 float
