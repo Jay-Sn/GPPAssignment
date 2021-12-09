@@ -188,21 +188,17 @@ void Overworld::initializeCharacters()
 //                              Updates WorldX and WorldY
 //=====================================================================================
 void Overworld::controls(float frameTime) {
+    bool bruh = playerChara.getX() + playerChara.getWidth() <= GAME_WIDTH;
+    float check = playerChara.getX() + playerChara.getWidth();
+    float check2 = GAME_WIDTH;
     // Right Key
     if (dxManager->getInput()->isKeyDown(NAVI_RIGHT_KEY))
     {
-        if (playerChara.getX() >= GAME_WIDTH / 2 - playerChara.getImagePtr()->getWidth() / 2)
+        if (playerChara.getX() >= GAME_WIDTH / 2 - playerChara.getWidth() / 2 && -worldX + GAME_WIDTH <= (worldMap.getWidth()))
         {
-            if (-worldX + GAME_WIDTH <= (worldMap.getWidth()))
-            {
-                worldX -= MOVEMENTSPEED * frameTime;
-            }
-            else
-            {
-                playerChara.setX(playerChara.getX() + MOVEMENTSPEED * frameTime);
-            }
+            worldX -= MOVEMENTSPEED * frameTime;
         }
-        else
+        else if (playerChara.getX() + playerChara.getImagePtr()->getWidth() <= GAME_WIDTH)
         {
             playerChara.setX(playerChara.getX() + MOVEMENTSPEED * frameTime);
         }
@@ -211,18 +207,11 @@ void Overworld::controls(float frameTime) {
     // Left Key
     if (dxManager->getInput()->isKeyDown(NAVI_LEFT_KEY))
     {
-        if (playerChara.getX() <= GAME_WIDTH / 2 - playerChara.getImagePtr()->getWidth() / 2)
+        if (playerChara.getX() <= GAME_WIDTH / 2 - playerChara.getImagePtr()->getWidth() / 2 && worldX < 0)
         {
-            if (worldX < 0)
-            {
-                worldX += MOVEMENTSPEED * frameTime;
-            }
-            else
-            {
-                playerChara.setX(playerChara.getX() - MOVEMENTSPEED * frameTime);
-            }
+            worldX += MOVEMENTSPEED * frameTime;
         }
-        else
+        else if(playerChara.getX() >= 0)
         {
             playerChara.setX(playerChara.getX() - MOVEMENTSPEED * frameTime);
         }
@@ -231,18 +220,13 @@ void Overworld::controls(float frameTime) {
     // Down Key
     if (dxManager->getInput()->isKeyDown(NAVI_DOWN_KEY))
     {
-        if (playerChara.getY() >= GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2)
+        if (playerChara.getY() >= GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2 && -worldY + GAME_WIDTH <= (worldMap.getHeight()))
         {
-            if (-worldY + GAME_WIDTH <= (worldMap.getHeight()))
-            {
-                worldY -= MOVEMENTSPEED * frameTime;
-            }
-            else
-            {
-                playerChara.setY(playerChara.getY() + MOVEMENTSPEED * frameTime);
-            }
+
+            worldY -= MOVEMENTSPEED * frameTime;
+
         }
-        else
+        else if(playerChara.getY() + playerChara.getHeight() <= GAME_HEIGHT)
         {
             playerChara.setY(playerChara.getY() + MOVEMENTSPEED * frameTime);
         }
@@ -251,18 +235,13 @@ void Overworld::controls(float frameTime) {
     // Up Key
     if (dxManager->getInput()->isKeyDown(NAVI_UP_KEY))
     {
-        if (playerChara.getY() <= GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2)
+        if (playerChara.getY() <= GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2 && worldY < 0)
         {
-            if (worldY < 0)
-            {
-                worldY += MOVEMENTSPEED * frameTime;
-            }
-            else
-            {
-                playerChara.setY(playerChara.getY() - MOVEMENTSPEED * frameTime);
-            }
+
+            worldY += MOVEMENTSPEED * frameTime;
+
         }
-        else
+        else if (playerChara.getY() >= 0)
         {
             playerChara.setY(playerChara.getY() - MOVEMENTSPEED * frameTime);
         }

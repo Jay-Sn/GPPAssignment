@@ -34,6 +34,8 @@ protected:
 
     std::vector<Character> characterList;
 
+    int characterMovement;
+
 public:
     // Constructor
     Overworld(SceneManager* manager);

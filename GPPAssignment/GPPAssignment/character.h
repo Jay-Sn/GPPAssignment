@@ -110,6 +110,9 @@ public:
 	float getY() { return getImagePtr()->getY(); }
 	void setY(float y) { return getImagePtr()->setY(y); }
 
+	int getWidth() { return getImagePtr()->getWidth(); }
+	int getHeight() { return getImagePtr()->getHeight(); }
+
 	// Get Center of Character
 	const VECTOR2* getCenter()
 	{
