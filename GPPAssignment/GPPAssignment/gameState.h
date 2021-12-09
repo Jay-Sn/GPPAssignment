@@ -38,6 +38,7 @@ public:
 		{
 			return std::stof(globalMap[key].value);
 		}
+		return (globalMap[key].value);
 	}
 	bool isExistInState(std::string key);
 	// Setter

@@ -36,12 +36,12 @@ void StartingMenu::initialize()
     // Set background colour: White
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
 
-    float textSize = 25; // dxMenuText size
-    float titleSize = 100; // dxTitle size
-    float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
-    float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
-    float scaledCursorHeight = textSize / originalCursorHeight;  // Height of cursor after scaling
-    float scaledCursorWidth = textSize / originalCursorWidth;    // Width of cursor after scaling
+    const float textSize = 25; // dxMenuText size
+    const float titleSize = 100; // dxTitle size
+    const float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
+    const float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
+    const float scaledCursorHeight = textSize / originalCursorHeight;  // Height of cursor after scaling
+    const float scaledCursorWidth = textSize / originalCursorWidth;    // Width of cursor after scaling
 
     // initialize DirectX fonts
     // Option Text
@@ -56,14 +56,14 @@ void StartingMenu::initialize()
 
     std::vector<std::string> optionList = { "Start New Adventure", "Continue", "Options", "Quit" }; // Option list contains these options
 
-    int menuY = GAME_HEIGHT / 2; // Half of game height
+    const int menuY = GAME_HEIGHT / 2; // Half of game height
 
     // Add to menuList the options from optionList
     for (int i = 0; i < optionList.size(); i++)
     {
         menuList.push_back({ 
             /*Option = */optionList.at(i),
-            /*X = */int(GAME_WIDTH / 2 - dxMenuText->getWidth(optionList.at(i), dxMenuText->getFont()) / 2),
+            /*X = */static_cast<int>(GAME_WIDTH / 2 - dxMenuText->getWidth(optionList.at(i), dxMenuText->getFont()) / 2),
             /*Y = */menuY + 30 * i
             });
     }
@@ -168,7 +168,7 @@ void StartingMenu::render()
     dxManager->getGraphics()->spriteBegin();
     cursor.draw(TRANSCOLOR);
     dxTitle->setFontColor(graphicsNS::ORANGE);
-    dxTitle->print("PlaceHolder Fantasy?", int(GAME_WIDTH / 2 - dxTitle->getWidth("PlaceHolder Fantasy?", dxTitle->getFont()) / 2), GAME_HEIGHT / 2 - 100);
+    dxTitle->print("PlaceHolder Fantasy?", static_cast<int>(GAME_WIDTH / 2 - dxTitle->getWidth("PlaceHolder Fantasy?", dxTitle->getFont()) / 2), GAME_HEIGHT / 2 - 100);
     dxMenuText->setFontColor(graphicsNS::BLACK);
     for(auto option: menuList) 
     {

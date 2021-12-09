@@ -31,11 +31,11 @@ void PauseMenu::initialize()
     if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
     if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
     
-    float textSize = 25; // dxMenuText size
-    float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
-    float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
-    float scaledCursorHeight = textSize / originalCursorHeight;  // Height of cursor after scaling
-    float scaledCursorWidth = textSize / originalCursorWidth;    // Width of cursor after scaling
+    const float textSize = 25; // dxMenuText size
+    const float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
+    const float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
+    const float scaledCursorHeight = textSize / originalCursorHeight;  // Height of cursor after scaling
+    const float scaledCursorWidth = textSize / originalCursorWidth;    // Width of cursor after scaling
 
     // Set Background to white
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
@@ -46,10 +46,10 @@ void PauseMenu::initialize()
     if (dxMenuText->initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
-    std::vector<std::string> optionList = { "Back", "Stats", "Save", "Return to Title", "Exit Game" }; // Option list contains these options
+    const std::vector<std::string> optionList = { "Back", "Stats", "Save", "Return to Title", "Exit Game" }; // Option list contains these options
     
-    int menuY = 100; // Start of the Y of menu options
-    int menuX = GAME_WIDTH / 15; // Split game_width to 15 parts, take the first part as X
+    const int menuY = 100; // Start of the Y of menu options
+    const int menuX = GAME_WIDTH / 15; // Split game_width to 15 parts, take the first part as X
 
     // Add to menuList the options from optionList
     for (int i = 0; i < optionList.size(); i++)
@@ -201,7 +201,7 @@ void PauseMenu::releaseAll()
 }
 
 //=============================================================================
-// The grahics device has been reset.
+// The graphics device has been reset.
 // Recreate all surfaces and reset all entities.
 //=============================================================================
 void PauseMenu::resetAll()

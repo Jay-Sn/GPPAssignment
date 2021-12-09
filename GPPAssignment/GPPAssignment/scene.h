@@ -25,6 +25,7 @@ private:
 public:
 	Scene() {}
 	~Scene() {}
+	//========================================================
 	// Make sure all children of scene has these functions
 	virtual void initialize() = 0;
 	virtual void reset() = 0;
@@ -34,7 +35,7 @@ public:
 	virtual void render() = 0;
 	virtual void releaseAll() = 0;
 	virtual void resetAll() = 0;
-
+	//=========================================================
 	void setCharacterList(std::vector<Character> newCharacterList) { characterList = newCharacterList; }
 	std::vector<Character>* getCharacterList() { return &characterList; }
 

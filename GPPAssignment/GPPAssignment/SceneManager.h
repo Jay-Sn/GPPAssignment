@@ -8,12 +8,10 @@
 #define _SCENEMANAGER_H             // ..file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
-#include <iostream>
 #include <map>
 #include <vector>
 #include "game.h"
-#include "constants.h"
-#include "Scene.h"
+#include "scene.h"
 #include "gameState.h"
 
 class SceneManager: public Game

@@ -137,7 +137,7 @@
     <ClInclude Include="input.h">
       <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
+    <ClInclude Include="scene.h">
       <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
     <ClInclude Include="battleUI.h">
