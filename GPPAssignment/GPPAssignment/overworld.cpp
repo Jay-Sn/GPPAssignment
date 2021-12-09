@@ -129,15 +129,15 @@ void Overworld::initializeWorld()
     worldMap.setScale(3, 3);
 
     //If map stuff doesn't exist, tell it to go to default
-    if ((dxManager->getState()->isFloatExist("WorldX") == false) && (dxManager->getState()->isFloatExist("WorldY") == false))
+    if ((dxManager->getState()->isExistInState("WorldX") == false) && (dxManager->getState()->isExistInState("WorldY") == false))
     {
         dxManager->getState()->setValueToState("WorldX", -worldMap.getWidth() / 2 + GAME_WIDTH / 2);
         dxManager->getState()->setValueToState("WorldY", -worldMap.getHeight() / 2 + GAME_HEIGHT / 2);
     }
 
     //Setting Default Position of the world
-    worldMap.setX(dxManager->getState()->getFloatFromState("WorldX"));
-    worldMap.setY(dxManager->getState()->getFloatFromState("WorldY"));
+    worldMap.setX(dxManager->getState()->getFloatFromState<float>("WorldX"));
+    worldMap.setY(dxManager->getState()->getFloatFromState<float>("WorldY"));
 
     //Setting world parameters
     worldX = worldMap.getX();
@@ -181,30 +181,91 @@ void Overworld::initializeCharacters()
 
 }
 
+
+
 //=====================================================================================
 //                                  Movement Controls
 //                              Updates WorldX and WorldY
 //=====================================================================================
 void Overworld::controls(float frameTime) {
-
+    // Right Key
     if (dxManager->getInput()->isKeyDown(NAVI_RIGHT_KEY))
     {
-        worldX -= MOVEMENTSPEED * frameTime;
+        if (playerChara.getX() >= GAME_WIDTH / 2 - playerChara.getImagePtr()->getWidth() / 2)
+        {
+            if (-worldX + GAME_WIDTH <= (worldMap.getWidth()))
+            {
+                worldX -= MOVEMENTSPEED * frameTime;
+            }
+            else
+            {
+                playerChara.setX(playerChara.getX() + MOVEMENTSPEED * frameTime);
+            }
+        }
+        else
+        {
+            playerChara.setX(playerChara.getX() + MOVEMENTSPEED * frameTime);
+        }
     }
 
+    // Left Key
     if (dxManager->getInput()->isKeyDown(NAVI_LEFT_KEY))
     {
-        worldX += MOVEMENTSPEED * frameTime;
+        if (playerChara.getX() <= GAME_WIDTH / 2 - playerChara.getImagePtr()->getWidth() / 2)
+        {
+            if (worldX < 0)
+            {
+                worldX += MOVEMENTSPEED * frameTime;
+            }
+            else
+            {
+                playerChara.setX(playerChara.getX() - MOVEMENTSPEED * frameTime);
+            }
+        }
+        else
+        {
+            playerChara.setX(playerChara.getX() - MOVEMENTSPEED * frameTime);
+        }
     }
 
+    // Down Key
     if (dxManager->getInput()->isKeyDown(NAVI_DOWN_KEY))
     {
-        worldY -= MOVEMENTSPEED * frameTime;
+        if (playerChara.getY() >= GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2)
+        {
+            if (-worldY + GAME_WIDTH <= (worldMap.getHeight()))
+            {
+                worldY -= MOVEMENTSPEED * frameTime;
+            }
+            else
+            {
+                playerChara.setY(playerChara.getY() + MOVEMENTSPEED * frameTime);
+            }
+        }
+        else
+        {
+            playerChara.setY(playerChara.getY() + MOVEMENTSPEED * frameTime);
+        }
     }
 
+    // Up Key
     if (dxManager->getInput()->isKeyDown(NAVI_UP_KEY))
     {
-        worldY += MOVEMENTSPEED * frameTime;
+        if (playerChara.getY() <= GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2)
+        {
+            if (worldY < 0)
+            {
+                worldY += MOVEMENTSPEED * frameTime;
+            }
+            else
+            {
+                playerChara.setY(playerChara.getY() - MOVEMENTSPEED * frameTime);
+            }
+        }
+        else
+        {
+            playerChara.setY(playerChara.getY() - MOVEMENTSPEED * frameTime);
+        }
     }
 }
 
@@ -214,7 +275,7 @@ void Overworld::controls(float frameTime) {
 //=====================================================================================
 void Overworld::setWorldPosition()
 {
-    //Setting the world map postition
+    //Setting the world map position
     worldMap.setX(worldX);
     worldMap.setY(worldY);
 
