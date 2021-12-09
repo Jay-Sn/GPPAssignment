@@ -15,8 +15,6 @@
 class BattleScene : public Scene
 {
 private:
-	//Variables
-	float yValues[3] = { 550, 600, 650 }; // Y values for menu
 	SceneManager* dxManager;
 	BattleUI battleUI;
 
@@ -34,7 +32,7 @@ private:
 
 	Character checkCharacterHealth;
 
-	std::vector<Character> characterList;
+	std::vector<Character>* characterList;
 
 	Image eHealthBar;
 	Image healthBar;
@@ -46,10 +44,15 @@ private:
 	Image floor;
 	Image selectionBlock;
 
+	bool check;
 	bool animationDone = true;
+
+	float ifDefend;
+
 	int attackPhase;
 	int selectionY;
 
+	std::string optionChosen;
 public:
 	BattleScene(SceneManager* manager);					//Constructor
 	virtual ~BattleScene();		//Destructor
@@ -62,6 +65,11 @@ public:
 	void reset();
 	void collisions();
 	void render();
+
+	void checkSelectionChosen(std::string option);
+
+	void turnSystem();
+
 	void releaseAll();
 	void resetAll();
 

@@ -44,10 +44,8 @@ public:
 	void releaseAll();
 	void resetAll();
 
+	std::vector<Character>* getCharacterList() { return currentScene->getCharacterList(); }
 	// Gets the game state
 	GameState* getState() { return &currentState;  }
-
-	// Gets the character list
-	std::vector<Character> getCharacterList() { return currentScene->getCharacterList(); }
 };
 #endif

@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 PlatformToolSet=v143:VCToolArchitecture=Native32Bit:VCToolsVersion=14.30.30705:TargetPlatformVersion=10.0.20348.0:
 Debug|Win32|C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\|
+=======
+PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.28.29910:TargetPlatformVersion=10.0.18362.0:
+Debug|Win32|C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\|
+>>>>>>> 59e51852ff68d725a77ddb8cb90476c759fc005f

@@ -17,6 +17,8 @@ Overworld::~Overworld()
 //=============================================================================
 void Overworld::initialize()
 {
+    characterList.clear();
+
     //Initialize the world map
     initializeWorld();
 

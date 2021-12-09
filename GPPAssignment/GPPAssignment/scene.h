@@ -36,7 +36,7 @@ public:
 	virtual void resetAll() = 0;
 
 	void setCharacterList(std::vector<Character> newCharacterList) { characterList = newCharacterList; }
-	std::vector<Character> getCharacterList() { return characterList; }
+	std::vector<Character>* getCharacterList() { return &characterList; }
 
 };
 #endif

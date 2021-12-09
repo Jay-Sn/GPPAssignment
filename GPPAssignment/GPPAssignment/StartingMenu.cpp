@@ -26,6 +26,7 @@ StartingMenu::~StartingMenu()
 //=============================================================================
 void StartingMenu::initialize()
 {
+    menuIndex = 0;
     // Initializing Cursor
     if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
     if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
