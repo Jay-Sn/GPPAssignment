@@ -20,6 +20,7 @@ protected:
 
     //Textures;
     TextureManager worldMapTexture;
+    TextureManager animationTexture;
     TextureManager mainCharaTexture;
 
     //Images

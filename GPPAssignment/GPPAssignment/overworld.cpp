@@ -63,8 +63,12 @@ void Overworld::collisions()
 {
     VECTOR2 collisionVector;
     bool check = (playerChara.collidesWith(enemyChara, collisionVector));
+
     if (playerChara.collidesWith(enemyChara, collisionVector))
     {
+        characterList[0].getImagePtr()->setCurrentFrame(0);
+        characterList[0].changeCharaSprite(dxManager, 0, 0, 0, &mainCharaTexture);
+        
         characterList.push_back(enemyChara);
         enemyChara.setActive(false);
         playerChara.setActive(false);
@@ -155,12 +159,15 @@ void Overworld::initializeCharacters()
 {
     //initializing Character Texture
     if (!mainCharaTexture.initialize(dxManager->getGraphics(), MAINCHARA_IMAGE))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Main Character texture"));
+    
+    if (!animationTexture.initialize(dxManager->getGraphics(), MAINCHARA_ANIMATION))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Animation texture"));
 
     //initializing player character
-    if (!playerChara.initialize(dxManager, 0, 0, 0, &mainCharaTexture, "Ayame","Hero",100,true))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Main Character"));
-
+    if (!playerChara.initialize(dxManager, 34, 34, 1, &animationTexture, "Ayame","Hero",100,true))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Main Character"));
+    
     //Setting Scale
-    playerChara.setScale(1.5, 1.5);
+    playerChara.setScale(3, 3);
+    playerChara.getImagePtr()->setFrame(0, 4);
 
     //Setting Default Position of the world
     playerChara.setX(GAME_WIDTH / 2 - playerChara.getImagePtr()->getWidth() / 2);
@@ -194,6 +201,8 @@ void Overworld::controls(float frameTime) {
     // Right Key
     if (dxManager->getInput()->isKeyDown(NAVI_RIGHT_KEY))
     {
+        playerChara.getImagePtr()->flipHorizontal(true);
+        playerChara.getImagePtr()->update(3*frameTime);
         if (playerChara.getX() >= GAME_WIDTH / 2 - playerChara.getWidth() / 2 && -worldX + GAME_WIDTH <= (worldMap.getWidth()))
         {
             worldX -= MOVEMENTSPEED * frameTime;
@@ -207,6 +216,8 @@ void Overworld::controls(float frameTime) {
     // Left Key
     if (dxManager->getInput()->isKeyDown(NAVI_LEFT_KEY))
     {
+        playerChara.getImagePtr()->flipHorizontal(false);
+        playerChara.getImagePtr()->update(3 * frameTime);
         if (playerChara.getX() <= GAME_WIDTH / 2 - playerChara.getImagePtr()->getWidth() / 2 && worldX < 0)
         {
             worldX += MOVEMENTSPEED * frameTime;
@@ -220,6 +231,7 @@ void Overworld::controls(float frameTime) {
     // Down Key
     if (dxManager->getInput()->isKeyDown(NAVI_DOWN_KEY))
     {
+        playerChara.getImagePtr()->update(3 * frameTime);
         if (playerChara.getY() >= GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2 && -worldY + GAME_WIDTH <= (worldMap.getHeight()))
         {
 
@@ -235,6 +247,7 @@ void Overworld::controls(float frameTime) {
     // Up Key
     if (dxManager->getInput()->isKeyDown(NAVI_UP_KEY))
     {
+        playerChara.getImagePtr()->update(3 * frameTime);
         if (playerChara.getY() <= GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2 && worldY < 0)
         {
 

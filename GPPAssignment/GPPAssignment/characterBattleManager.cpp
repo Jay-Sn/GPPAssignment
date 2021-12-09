@@ -55,6 +55,7 @@ void CharacterBattleManager::draw()
 {
 	for (int i = 0; i < listOfCharacters->size(); i++)
 	{
-		listOfCharacters->at(i).draw();
+		if(!listOfCharacters->at(i).getFriendlyTag())listOfCharacters->at(i).draw(graphicsNS::RED);
+		else listOfCharacters->at(i).draw();
 	}
 }

@@ -41,6 +41,7 @@ const float CURSOR_SCALE = 1.5f;                  // starting ship scale
 
 // Asset files
 const char MAINCHARA_IMAGE[] = "assets\\Ayame.png";
+const char MAINCHARA_ANIMATION[] = "assets\\ayameRun.png";
 const char OVERWORLD_IMAGE[] = "assets\\PlaceholderWorldMap.png";
 const char Cursor[] = "assets\\cursor.png";
 const char PLACEHOLDERRECT[] = "assets\\PlaceholderRect.png";

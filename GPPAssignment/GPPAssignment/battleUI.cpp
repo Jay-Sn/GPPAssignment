@@ -12,6 +12,17 @@ BattleUI::~BattleUI() {}
 
 bool BattleUI::initialize(Game* gameptr, std::vector<Character>* listOfCharacters) 
 {
+	selectionIndex = 0;
+	checking = false;
+	gameOver = false;
+	checkingIndex = 0;
+
+	enemyTeam.clear();
+	friendlyTeam.clear();
+	enemyHpPosY.clear();
+	teamHpPosY.clear();
+	usedHealthBar.clear();
+
 	//Set List of Characters to be used in the Battle UI
 	listOfCharactersInPlay = listOfCharacters;
 	
