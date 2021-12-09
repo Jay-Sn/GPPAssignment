@@ -50,7 +50,6 @@ void BattleScene::update(float frameTime) {
 	optionChosen = battleUI.checkSelection(dxManager);
 
 	turnSystem();
-
 }
 
 //Artificial Intelligence

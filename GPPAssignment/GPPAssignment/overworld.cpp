@@ -131,7 +131,7 @@ void Overworld::initializeWorld()
     //If map stuff doesn't exist, tell it to go to default
     if ((dxManager->getState()->isFloatExist("WorldX") == false) && (dxManager->getState()->isFloatExist("WorldY") == false))
     {
-        dxManager->getState()->setValueToState("WorldX", - worldMap.getWidth() / 2 + GAME_WIDTH / 2);
+        dxManager->getState()->setValueToState("WorldX", -worldMap.getWidth() / 2 + GAME_WIDTH / 2);
         dxManager->getState()->setValueToState("WorldY", -worldMap.getHeight() / 2 + GAME_HEIGHT / 2);
     }
 

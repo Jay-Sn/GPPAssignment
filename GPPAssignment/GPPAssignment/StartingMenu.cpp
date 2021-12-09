@@ -26,10 +26,12 @@ StartingMenu::~StartingMenu()
 //=============================================================================
 void StartingMenu::initialize()
 {
+    // Reset menu index to 0 on initialize
     menuIndex = 0;
+
     // Initializing Cursor
-    if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
-    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
+    if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
+    if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
 
     // Set background colour: White
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
@@ -59,11 +61,15 @@ void StartingMenu::initialize()
     // Add to menuList the options from optionList
     for (int i = 0; i < optionList.size(); i++)
     {
-        menuList.push_back({ optionList.at(i), int(GAME_WIDTH / 2 - dxMenuText->getWidth(optionList.at(i), dxMenuText->getFont()) / 2),  menuY + 30 * i });
+        menuList.push_back({ 
+            /*Option = */optionList.at(i),
+            /*X = */int(GAME_WIDTH / 2 - dxMenuText->getWidth(optionList.at(i), dxMenuText->getFont()) / 2),
+            /*Y = */menuY + 30 * i
+            });
     }
 
     // Cursor settings on initialize
-    cursor.setX(menuList.front().x - GAME_WIDTH / 50);
+    cursor.setX(menuList.front().x - 30);
     cursor.setY(menuList.front().y);
     cursor.setScale(scaledCursorHeight, scaledCursorWidth);
 
@@ -126,10 +132,10 @@ void StartingMenu::optionSelected(std::string option) {
     {
         // Read file placeholder_save.txt
         std::ifstream file("placeholder_save.txt");
-        std::string key, value; // key for map key, value for the actual key
-        while (file >> key >> value)
+        std::string key, value, type; // key for map key, value for the actual key
+        while (file >> key >> value >> type) // Get the key, value and type, where the delim is a space
         { 
-            dxManager->getState()->setValueToState(key, std::stof(value));
+            dxManager->getState()->setValueToState(key, { value, type }); // Put to the globalMap
         }
         dxManager->switchScene("Overworld");
     }

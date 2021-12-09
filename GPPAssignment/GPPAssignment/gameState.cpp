@@ -16,6 +16,11 @@ GameState::~GameState()
 
 }
 
+std::map<std::string, Var> GameState::getMap()
+{
+	return globalMap;
+}
+
 float GameState::getFloatFromState(std::string key)
 {
 	return std::stof(globalMap[key].value);
@@ -28,6 +33,11 @@ bool GameState::isFloatExist(std::string key)
 		return false;
 	}
 	return true;
+}
+
+void GameState::setValueToState(std::string key, Var var)
+{
+	globalMap[key] = var;
 }
 
 void GameState::setValueToState(std::string key, float value)

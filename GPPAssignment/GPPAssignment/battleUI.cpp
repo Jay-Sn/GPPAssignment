@@ -255,7 +255,7 @@ std::string BattleUI::checkSelection(Game* gameptr)
 	return "";
 }
 
-void BattleUI::releaseAll() 
+void BattleUI::releaseAll()
 {
 	UITexture.onLostDevice();
 }
