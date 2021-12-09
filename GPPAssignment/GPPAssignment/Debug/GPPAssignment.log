@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  character.cpp
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -9,3 +10,15 @@ C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\character.cpp(190,49): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\character.cpp(190,22): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
   GPPAssignment.vcxproj -> C:\Users\Willthunder\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe
+=======
+﻿  battleScene.cpp
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(43,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(49,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(33,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(80,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\GPPAssignment\battleScene.cpp(88,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  GPPAssignment.vcxproj -> C:\Users\jason\Documents\GitHub\GPPAssignment\GPPAssignment\Debug\GPPAssignment.exe
+>>>>>>> 07832af2f845e0ba24950c0be33e4d87a44265ec
