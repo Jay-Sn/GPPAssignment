@@ -18,17 +18,6 @@
 class BattleUI : public Image
 {
 public:
-	float yValues[3] = { 550, 600, 650 }; // Y values for menu
-
-	TextureManager UITexture;
-	TextureManager SelectionArrowTexture;
-
-	Image selectionArrow;
-
-	TextDX  hpFont;
-	TextDX  selectionFont;
-	TextDX  infoFont;
-
 	BattleUI();
 	~BattleUI();
 
@@ -64,6 +53,17 @@ public:
 	void resetAll();
 
 private:
+	float yValues[3] = { 550, 600, 650 }; // Y values for menu
+
+	TextureManager UITexture;
+	TextureManager SelectionArrowTexture;
+
+	Image selectionArrow;
+
+	TextDX  hpFont;
+	TextDX  selectionFont;
+	TextDX  infoFont;
+
 	std::vector<Character>* listOfCharactersInPlay;
 
 	bool gameOver;

@@ -38,17 +38,17 @@ public:
 	virtual float getX() { return spriteData.x; }
 	virtual float getY() { return spriteData.y; }
 	virtual float getScaleX() { return spriteData.scaleX; }
-	virtual float getScaleX2DP() {
+	//virtual float getScaleX2DP() {
 
-		float value = (int)(spriteData.scaleX * 100);
-		return (float)value / 100;
-	}
-	virtual int test() {
-		float value = (int)(spriteData.scaleX * 100);
-		float decimals = spriteData.scaleX * 100 - value;
-		int finalValue = spriteData.scaleX * 100 - decimals;
-		return finalValue;
-	}
+	//	float value = (int)(spriteData.scaleX * 100);
+	//	return (float)value / 100;
+	//}
+	//virtual int test() {
+	//	float value = (int)(spriteData.scaleX * 100);
+	//	float decimals = spriteData.scaleX * 100 - value;
+	//	int finalValue = spriteData.scaleX * 100 - decimals;
+	//	return finalValue;
+	//}
 	virtual float getScaleY() { return spriteData.scaleY; }
 	virtual int getWidth() { return spriteData.width * spriteData.scaleX; }
 	virtual int getHeight() { return spriteData.height * spriteData.scaleY; }

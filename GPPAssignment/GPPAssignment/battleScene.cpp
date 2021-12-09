@@ -12,6 +12,9 @@
 BattleScene::BattleScene(SceneManager* manager) {
 	dxManager = manager;
 	dxMenuText = new TextDX();
+
+	characterBM = CharacterBattleManager();
+
 	selectionY = 0;
 	attackPhase = 1;
 }
@@ -27,6 +30,7 @@ BattleScene::~BattleScene()
 void BattleScene::initialize()
 {
 	battleUI.setGameState();
+
 	attackPhase = 1;
 	selectionY = 0;
 	//Allow for the randomizer for the damage to be always different
@@ -37,6 +41,7 @@ void BattleScene::initialize()
 
 	//Initialize the BattleUI
 	battleUI.initialize(dxManager, characterList);
+	characterBM.initialize(characterList);
 
 	return;
 }
@@ -65,6 +70,8 @@ void BattleScene::render() {
 	dxManager->getGraphics()->spriteBegin();
 
 	battleUI.draw();
+
+	characterBM.draw();
 
 	dxManager->getGraphics()->spriteEnd();
 }

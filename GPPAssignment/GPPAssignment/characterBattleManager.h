@@ -5,19 +5,34 @@
 #include <vector>
 #include "character.h"
 
+struct positions
+{
+	float x;
+	float y;
+};
+
 class CharacterBattleManager
 {
 private:
-	std::vector<Character> listOfCharacters;
+	std::vector<Character>* listOfCharacters;
+
+	int enemycount, friendcount;
+
+	std::vector<positions> friendlyPositions;
+	std::vector<positions> enemyPositions;
+
 
 public:
 	CharacterBattleManager();
 	~CharacterBattleManager();
 
-	std::vector<Character>* getCharacterList() { return &listOfCharacters; }
+	//std::vector<Character>* getCharacterList() { return &listOfCharacters; }
 
-	void initializeCharacters();
+	//Get the list of characters that are being used in the battle.
+	void initialize(std::vector<Character>* newList);
 
+	// Draw function
+	void draw();
 
 };
 #endif // !_CHARACTER_BATTLE_H_

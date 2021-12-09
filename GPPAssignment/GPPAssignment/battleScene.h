@@ -11,12 +11,14 @@
 #include "battleUI.h"
 #include "textDX.h"
 #include "sceneManager.h"
+#include "characterBattleManager.h"
 
 class BattleScene : public Scene
 {
 private:
 	SceneManager* dxManager;
 	BattleUI battleUI;
+	CharacterBattleManager characterBM;
 
 	TextureManager mainCharaTexture;
 	TextureManager placeholderRectTexture;
@@ -55,7 +57,7 @@ private:
 	std::string optionChosen;
 public:
 	BattleScene(SceneManager* manager);					//Constructor
-	virtual ~BattleScene();		//Destructor
+	virtual ~BattleScene();								//Destructor
 
 	void initialize();
 

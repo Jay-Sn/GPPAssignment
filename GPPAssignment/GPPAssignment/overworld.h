@@ -20,6 +20,7 @@ protected:
 
     //Textures;
     TextureManager worldMapTexture;
+    TextureManager animationTexture;
     TextureManager mainCharaTexture;
 
     //Images
@@ -33,6 +34,8 @@ protected:
     float worldX, worldY;
 
     std::vector<Character> characterList;
+
+    int characterMovement;
 
 public:
     // Constructor

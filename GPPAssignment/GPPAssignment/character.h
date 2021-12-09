@@ -110,6 +110,9 @@ public:
 	float getY() { return getImagePtr()->getY(); }
 	void setY(float y) { return getImagePtr()->setY(y); }
 
+	int getWidth() { return getImagePtr()->getWidth(); }
+	int getHeight() { return getImagePtr()->getHeight(); }
+
 	// Get Center of Character
 	const VECTOR2* getCenter()
 	{
@@ -130,7 +133,7 @@ public:
 	void setScaleY(float scaleY) { getImagePtr()->setScaleY(scaleY); }
 
 	// Change the Character's sprite
-	bool changeCharaSprite(Graphics* g, int width, int height, int ncols, TextureManager* textureM);
+	bool changeCharaSprite(Game* gamePtr, int width, int height, int ncols, TextureManager* textureM);
 
 	// Get the current Health of the character
 	double getCurrentHealth() { return currentHealth; }

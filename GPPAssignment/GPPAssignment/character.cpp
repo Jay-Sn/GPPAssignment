@@ -62,8 +62,9 @@ void Character::setValues(std::string CharaName, std::string CharaClass, float M
 		currentHealth = maxHealth;
 }
 
-bool Character::changeCharaSprite(Graphics* g, int width, int height, int ncols, TextureManager* textureM) {
-	//return getCharaImage().initialize(g, width, height, ncols, textureM);
+bool Character::changeCharaSprite(Game* gamePtr, int width, int height, int ncols, TextureManager* textureM) {
+
+    charaSprite.initialize(gamePtr->getGraphics(), width, height, ncols, textureM);
 	return true;
 }
 
