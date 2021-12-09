@@ -33,18 +33,25 @@ void PauseMenu::initialize()
     if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
     if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Main Character");
     
-    cursor.setX(menuList.front().x - 20);
-    cursor.setY(menuList.front().y);
-    cursor.setScale(0.5, 0.5);
+    float textSize = 25; // dxMenuText size
+    float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
+    float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
+    float scaledCursorHeight = textSize / originalCursorHeight;  // Height of cursor after scaling
+    float scaledCursorWidth = textSize / originalCursorWidth;    // Width of cursor after scaling
+
+    // Set Background to white
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
 
     // initialize DirectX fonts
-    // 15 pixel high Arial
-    if (dxMenuText->initialize(dxManager->getGraphics(), 15, true, false, "Arial") == false)
+    // Options
+    // Font: Trebuchet MS
+    if (dxMenuText->initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
-    if (dxFont.initialize(dxManager->getGraphics(), gameNS::POINT_SIZE, false, false, gameNS::FONT) == false)
-        throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize DirectX font."));
 
+    // Cursor settings on initialize
+    cursor.setX(menuList.front().x - GAME_WIDTH / 50);
+    cursor.setY(menuList.front().y);
+    cursor.setScale(scaledCursorHeight, scaledCursorWidth);
 
 
     reset();            // reset all game variables
