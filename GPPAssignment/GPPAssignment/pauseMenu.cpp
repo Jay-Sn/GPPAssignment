@@ -42,7 +42,7 @@ void PauseMenu::initialize()
 
     // initialize DirectX fonts
     // Options
-    // Font: Trebuchet MS
+    // Font: Trebuchet MS 
     if (dxMenuText->initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 

@@ -62,7 +62,6 @@ void Overworld::ai()
 void Overworld::collisions()
 {
     VECTOR2 collisionVector;
-    bool check = (playerChara.collidesWith(enemyChara, collisionVector));
 
     if (playerChara.collidesWith(enemyChara, collisionVector))
     {
@@ -140,8 +139,8 @@ void Overworld::initializeWorld()
     }
 
     //Setting Default Position of the world
-    worldMap.setX(dxManager->getState()->getFloatFromState<float>("WorldX"));
-    worldMap.setY(dxManager->getState()->getFloatFromState<float>("WorldY"));
+    worldMap.setX(dxManager->getState()->getFloatFromState("WorldX"));
+    worldMap.setY(dxManager->getState()->getFloatFromState("WorldY"));
 
     //Setting world parameters
     worldX = worldMap.getX();
@@ -195,9 +194,6 @@ void Overworld::initializeCharacters()
 //                              Updates WorldX and WorldY
 //=====================================================================================
 void Overworld::controls(float frameTime) {
-    bool bruh = playerChara.getX() + playerChara.getWidth() <= GAME_WIDTH;
-    float check = playerChara.getX() + playerChara.getWidth();
-    float check2 = GAME_WIDTH;
     // Right Key
     if (dxManager->getInput()->isKeyDown(NAVI_RIGHT_KEY))
     {

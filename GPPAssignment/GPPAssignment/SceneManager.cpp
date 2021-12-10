@@ -13,6 +13,7 @@
 SceneManager::SceneManager()
 {
     // Map of scenes here, use dxManager->switchScene(the one you want to switch to) to switch scenes
+    // Format: sceneMap["Key"] = new SceneName(this);
     sceneMap["Title"] = new StartingMenu(this);
     sceneMap["Overworld"] = new Overworld(this);
     sceneMap["Battle"] = new BattleScene(this);
@@ -22,9 +23,8 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
-	releaseAll();
+	SceneManager::releaseAll();
 }
-
 // dxManager->switchScene(the one you want to switch to) to switch scenes
 void SceneManager::switchScene(std::string scene)
 {

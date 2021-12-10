@@ -4,6 +4,10 @@
 //  Student Name:       William Wibisana Dumanauw
 //  Student Number:     S10195561A
 //============================================================================
+// Description of Scene:
+// This is where the game happens. All child members of the Scene class is a scene of the game, where each will have there own logic
+// and movement and other important things.
+//============================================================================
 #ifndef _SCENE_H            // prevent multiple definitions if this 
 #define _SCENE_H            // ..file is included in more than one place
 #define WIN32_LEAN_AND_MEAN

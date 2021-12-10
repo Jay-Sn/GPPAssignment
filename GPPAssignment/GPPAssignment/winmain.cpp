@@ -1,9 +1,3 @@
-// Programming 2D Games
-// Copyright (c) 2011 by:
-// Charles Kelly
-// Chapter 2 "Hello World" Windows Style v1.0
-// winmain.cpp
-
 #define _CRTDBG_MAP_ALLOC   //For detecting memory loss
 #define WIN32_LEAN_AND_MEAN
 
