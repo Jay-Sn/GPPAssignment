@@ -43,6 +43,14 @@ void BattleScene::initialize()
 	//Assign the totalCharacterScenes to the BattleScene CharacterList
 	characterList = dxManager->getCharacterList();
 
+	//Initializing Floor
+	if (!placeholderRectTexture.initialize(dxManager->getGraphics(), PLACEHOLDERRECT))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Place holder rect"));
+	if (!floor.initialize(dxManager->getGraphics(), 0,GAME_HEIGHT/2,0,&placeholderRectTexture))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize floor"));
+	if (!sky.initialize(dxManager->getGraphics(), 0,GAME_HEIGHT/2,0,&placeholderRectTexture))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize floor"));
+	
+	
+	floor.setY(GAME_HEIGHT/2);
+
 	//Initialize the BattleUI
 	battleUI.initialize(dxManager, characterList);
 	characterBM.initialize(characterList);
@@ -72,6 +80,10 @@ void BattleScene::collisions() {}
 //Render game items
 void BattleScene::render() {
 	dxManager->getGraphics()->spriteBegin();
+
+	sky.draw(graphicsNS::SKYBLUE);
+
+	floor.draw(graphicsNS::GREEN);
 
 	battleUI.draw();
 

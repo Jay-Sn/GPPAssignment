@@ -112,7 +112,7 @@ void BattleUI::update(Game* gameptr, float frameTime)
 void BattleUI::draw()
 {
 	//Draw Action Bar
-	actionBar.draw(graphicsNS::GRAY);
+	actionBar.draw(graphicsNS::LTGRAY);
 
 	//Draw Selection Options
 	selectionMenuPrint();

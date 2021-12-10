@@ -55,7 +55,7 @@ private:
 	Image actionBarinfoSection;
 
 	Image floor;
-	Image selectionBlock;
+	Image sky;
 
 	bool check;
 	bool animationDone = true;
