@@ -15,6 +15,7 @@
 #include <vector>
 #include "character.h"
 
+//Struct to store postions
 struct positions
 {
 	float x;
@@ -24,10 +25,13 @@ struct positions
 class CharacterBattleManager
 {
 private:
+	//list of characters from the overworld
 	std::vector<Character>* listOfCharacters;
 
+	//number of enemies and friendly
 	int enemycount, friendcount;
 
+	//These are fixed positions that are calculated based on the screen size.
 	std::vector<positions> friendlyPositions;
 	std::vector<positions> enemyPositions;
 

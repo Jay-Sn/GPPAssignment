@@ -197,7 +197,5 @@ public:
 	virtual void setCollisionRadius(float r) { radius = r; }
 
 	bool collidesWith(Character& ent, VECTOR2& collisionVector);
-
-	void activate();
 };
 #endif // !_CHARACTER_H_

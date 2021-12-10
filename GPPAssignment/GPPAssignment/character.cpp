@@ -39,6 +39,9 @@ Character::~Character() {
 
 }
 
+//======================================================================
+//				To initialize Characters for Battle
+//======================================================================
 //To Initialize Characters for Battle.
 bool Character::initialize(
 	Game* gamePtr, 
@@ -66,6 +69,9 @@ void Character::draw(COLOR_ARGB color)
 		charaSprite.draw(color);
 }
 
+//======================================================================
+//						Manual setting of values
+//======================================================================
 void Character::setValues(std::string CharaName, std::string CharaClass, float MaxHealth, bool friendly) {
 		charaName = CharaName;
 		charaClass = CharaClass;
@@ -84,6 +90,9 @@ std::string Character::getHealthString() {
 	return hpbuffer;
 }
 
+//======================================================================
+//						Collision Checking for overworld
+//======================================================================
 bool Character::collidesWith(Character& ent, VECTOR2& collisionVector)
 {
     // if either entity is not active then no collision may occcur

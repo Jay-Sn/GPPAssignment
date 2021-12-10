@@ -27,60 +27,52 @@
 class BattleScene : public Scene
 {
 private:
+	//Reference to Scene Manager
 	SceneManager* dxManager;
+
+	//Components used to display elements for the Battle Scene
 	BattleUI battleUI;
 	CharacterBattleManager characterBM;
 
-	TextureManager mainCharaTexture;
+	//texture to be used for the sky and floor
 	TextureManager placeholderRectTexture;
 
-	TextDX  hpFonts;
-	TextDX  selectionFonts;
-	TextDX  infoFonts;
-
-	TextDX* dxMenuText;
-
-	Character mainChara;
-	Character enemyChara;
-
-	Character checkCharacterHealth;
-
+	//Character list to be used for the Battle
 	std::vector<Character>* characterList;
 
-	Image eHealthBar;
-	Image healthBar;
-
-	Image enemyNameSection;
-	Image abilitySection;
-	Image actionBarinfoSection;
-
+	//Image objects for the floor and the sky
 	Image floor;
 	Image sky;
 
-	bool check;
-	bool animationDone = true;
-
+	//Ranges from 0 - 1, the lower the number, the less damage you take
 	float ifDefend;
 
+	//attack phase to be switched when friendly turn and enemy turn.
 	int attackPhase;
+
 	int selectionY;
 
+	//Check for return string from BattleUI
 	std::string optionChosen;
+
 public:
 	BattleScene(SceneManager* manager);					//Constructor
 	virtual ~BattleScene();								//Destructor
 
+	//initialize BattleScene
 	void initialize();
 
-	//Override virtual in from Game
+	// Override virtual in from Game
 	void update(float frameTime);
 	void ai();
 	void reset();
 	void collisions();
 	void render();
 
+	// Check the Selection string returned by the BattleUI function
 	void checkSelectionChosen(std::string option);
 
+	// Handles the switch in turns
 	void turnSystem();
 
 	void releaseAll();

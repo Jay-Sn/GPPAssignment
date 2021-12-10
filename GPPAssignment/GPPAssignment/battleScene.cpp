@@ -15,7 +15,6 @@
 //Constructor
 BattleScene::BattleScene(SceneManager* manager) {
 	dxManager = manager;
-	dxMenuText = new TextDX();
 
 	characterBM = CharacterBattleManager();
 
@@ -92,6 +91,7 @@ void BattleScene::render() {
 	dxManager->getGraphics()->spriteEnd();
 }
 
+//Check the selection string from BattleUI
 void BattleScene::checkSelectionChosen(std::string option)
 {
 	ifDefend = 1;
@@ -119,6 +119,7 @@ void BattleScene::checkSelectionChosen(std::string option)
 	}
 }
 
+//Turn system changes by checking for state of animation and game state for gameover.
 void BattleScene::turnSystem() {
 	if (!battleUI.isChecking())
 	{

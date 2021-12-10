@@ -77,9 +77,9 @@ bool BattleUI::initialize(Game* gameptr, std::vector<Character>* listOfCharacter
 //=========================================================
 void BattleUI::update(Game* gameptr, float frameTime)
 {
-	if (checking)
+	if (checking) // checking will be set to true when the function startChecking is called in BattleUI
 	{
-		if (listOfCharactersInPlay->at(checkingIndex).getCurrentHealth() <= 0)
+		if (listOfCharactersInPlay->at(checkingIndex).getCurrentHealth() <= 0) // When one of the character reaches 0 hp
 		{
 			updateHpBars(listOfCharactersInPlay->at(checkingIndex), frameTime / 5);
 			gameOver = true;
@@ -87,6 +87,7 @@ void BattleUI::update(Game* gameptr, float frameTime)
 
 		if (listOfCharactersInPlay->at(checkingIndex).getCurrentHealth() / listOfCharactersInPlay->at(checkingIndex).getMaxHealth() < usedHealthBar[listOfCharactersInPlay->at(checkingIndex).getName()].getScaleX() && usedHealthBar[listOfCharactersInPlay->at(checkingIndex).getName()].getScaleX() > 0)
 		{
+			//as long as the health bar scale is not the same as the ratio of the current health and max health, it will continue to check and reduce scale.
 			checking = true;
 
 			// Update Health Bar
@@ -94,7 +95,7 @@ void BattleUI::update(Game* gameptr, float frameTime)
 		}
 		else
 		{
-			if (checkingIndex < listOfCharactersInPlay->size() - 1) checkingIndex++;
+			if (checkingIndex < listOfCharactersInPlay->size() - 1) checkingIndex++; // This ensures that all healthbars are updated. In case of AOE
 
 			else
 			{
@@ -242,6 +243,9 @@ void BattleUI::selectionMenuSetup(Game* gameptr)
 	selectionArrow.setY(selectionList[0].y);
 }
 
+//======================================================================
+//					Displaying Selection Menu
+//======================================================================
 void BattleUI::selectionMenuPrint()
 {
 	for (auto selection : selectionList)
@@ -252,6 +256,9 @@ void BattleUI::selectionMenuPrint()
 	selectionArrow.draw(TRANSCOLOR);
 }
 
+//======================================================================
+//						Check Selection Menu
+//======================================================================
 std::string BattleUI::checkSelection(Game* gameptr)
 {
 	if (gameptr->getInput()->wasKeyPressed(VK_RETURN))
