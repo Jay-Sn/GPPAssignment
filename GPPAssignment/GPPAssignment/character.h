@@ -1,3 +1,14 @@
+//===========================================================================================
+//	Module		: Game Programming
+//	Assignment	: Placeholder Fantasy?	
+//	Name		: Jason Teo Jun Hao
+//	S/N			: S10194978
+//	Description	: This header file is for the creation of character objects that are used
+//				  throughout the game. Both the enemies and friendlys use the same object
+//				  and are differentiated by the friendly tag. They also handle the containing
+//				  of the health and can allow for change in sprites.
+//===========================================================================================
+
 #ifndef _CHARACTER_H_
 #define _CHARACTER_H_
 #define WIN32_LEAN_AND_MEAN

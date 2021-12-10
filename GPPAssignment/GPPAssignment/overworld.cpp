@@ -1,3 +1,19 @@
+//===============================================================================================
+//	Module		: Game Programming
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is the overworld scene that will be accessed from both menu and battle.
+//				  Here the code will be handling movement by making use of WorldX and Y to move
+//				  the world instead of the player character, to simulate a camera object. The 
+//				  other object in the world's position will be relative to World X and Y and World
+//                X and Y will be edited to simulate the movement instead of player character getX
+//                and set X.
+//                William worked of the boundary check for the world / camera and Jason worked on
+//                the boundary check for the player character.
+//===============================================================================================
+
+
 #include "overworld.h"
 #include <iostream>
 using namespace std;

@@ -1,3 +1,13 @@
+//===========================================================================================
+//	Module		: Game Programming
+//	Assignment	: Placeholder Fantasy?	
+//	Name		: Jason Teo Jun Hao
+//	S/N			: S10194978
+//	Description	: This header file is for the displaying of the battle ui and selections.
+//				  This includes the health bars and the animations of the healthbars. The
+//				  turns are based heavily on the completion on the animation of healthbars.
+//===========================================================================================
+
 #ifndef _BATTLEUI_H
 #define _BATTLEUI_H_
 #define WIN32_LEAN_AND_MEAN

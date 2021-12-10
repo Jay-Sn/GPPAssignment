@@ -1,3 +1,15 @@
+//===============================================================================================
+//	Module		: Game Programming
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is the Character Battle Manager cpp file. It is used to set the positions
+//				  of the characters to their respective positions. The positions are predetermined
+//				  as a Position Struct and are initialized in the contructor method. The characters
+//				  will then be assigned based on the teams they are in and their index.
+//===============================================================================================
+
+
 #include "characterBattleManager.h"
 
 CharacterBattleManager::CharacterBattleManager()
