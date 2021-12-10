@@ -1,13 +1,14 @@
-//============================================================================
+//============================================================================<<
 //  Module:             Gameplay Programming
 //  Assignment 1:       PlaceHolder Fantasy?
 //  Student Name:       William Wibisana Dumanauw
 //  Student Number:     S10195561A
-//============================================================================
+//============================================================================<>
 //  Description of GameState:
-//  This is where the current state of the game is held. The global map kept here is in charge of keeping the global variables such as
-//  player coordinates.
-//============================================================================
+//  This is where the current state of the game is held. 
+// The global map kept here is in charge of keeping the global variables such as
+//		player coordinates.
+//============================================================================>>
 #ifndef _GAMESTATE_H_
 #define _GAMESTATE_H_
 #define WIN32_LEAN_AND_MEAN
@@ -25,7 +26,7 @@ struct Var
 class GameState
 {
 private:
-	std::map<std::string, Var> globalMap; // global variables
+	std::map<std::string, Var> globalMap; // global map for keeping global variables
 public:
 	GameState();
 	~GameState();

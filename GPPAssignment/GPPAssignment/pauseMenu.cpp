@@ -185,7 +185,6 @@ void PauseMenu::render()
     {
         dxMenuText->print(option.option, option.x, option.y);
     }
-    dxFont.setFontColor(gameNS::FONT_COLOR);
     dxManager->getGraphics()->spriteEnd();
 }
 

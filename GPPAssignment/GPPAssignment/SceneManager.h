@@ -1,14 +1,16 @@
-//============================================================================
+//============================================================================<<
 //  Module:             Gameplay Programming
 //  Assignment 1:       PlaceHolder Fantasy?
 //  Student Name:       William Wibisana Dumanauw
 //  Student Number:     S10195561A
-//============================================================================
+//============================================================================<>
 // Description of SceneManager:
-// The overlord of the scene system. This is the game itself. It is a child of the Game class and is responsible for initializing the
-// application. It also manages the scene and allows scene switching to occur. All scenes will take after the methods of the sceneManager and
-// adapt it for their own logic. The SceneManager is in charge of running the scenes, behind-the-scenes.
-//============================================================================
+// The overlord of the scene system. 
+// This is the game itself. It is a child of the Game class and is responsible for initializing the
+//		application. It also manages the scene and allows scene switching to occur. 
+// All scenes will take after the methods of the sceneManager and
+//		adapt it for their own logic. The SceneManager is in charge of running the scenes, behind-the-scenes.
+//============================================================================>>
 #ifndef _SCENEMANAGER_H             // prevent multiple definitions if this 
 #define _SCENEMANAGER_H             // ..file is included in more than one place
 #define WIN32_LEAN_AND_MEAN

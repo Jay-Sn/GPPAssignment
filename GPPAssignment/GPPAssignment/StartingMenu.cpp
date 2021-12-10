@@ -12,6 +12,7 @@ StartingMenu::StartingMenu(SceneManager* manager)
     dxManager = manager;
     dxMenuText = new TextDX();
     dxTitle = new TextDX();
+    errorMsg = "";
 }
 
 StartingMenu::~StartingMenu()
@@ -52,6 +53,11 @@ void StartingMenu::initialize()
     // Title
     // Font: Old English Text MT
     if (dxTitle->initialize(dxManager->getGraphics(), titleSize, true, false, "Old English Text MT") == false)
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+
+    // Error Text
+    // Font: Trebuchet MS
+    if (dxError.initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
     std::vector<std::string> optionList = { "Start New Adventure", "Continue", "Options", "Quit" }; // Option list contains these options
@@ -132,18 +138,24 @@ void StartingMenu::optionSelected(std::string option) {
     {
         // Read file placeholder_save.txt
         std::ifstream file("placeholder_save.txt");
-        std::string key, value, type; // key for map key, value for the actual key
-        while (file >> key >> value >> type) // Get the key, value and type, where the delim is a space
-        { 
-            dxManager->getState()->setValueToState(key, { value, type }); // Put to the globalMap
+        if (file.is_open())
+        {
+            std::string key, value, type; // key for map key, value for the actual key
+            while (file >> key >> value >> type) // Get the key, value and type, where the delim is a space
+            {
+                dxManager->getState()->setValueToState(key, { value, type }); // Put to the globalMap
+            }
+            dxManager->switchScene("Overworld");
         }
-        dxManager->switchScene("Overworld");
+        else
+        {
+            // errorMsg = "Save file not found!";
+        }
     }
     // Option -> Whatever options we have
     else if (option == "Options")
     {
-        dxManager->switchScene("PauseMenu");
-        // dxManager->switchScene("Battle");
+
     }
     // Quit -> Quit the game
     else if (option == "Quit")
@@ -167,8 +179,10 @@ void StartingMenu::render()
 {
     dxManager->getGraphics()->spriteBegin();
     cursor.draw(TRANSCOLOR);
+    dxError.setFontColor(graphicsNS::RED);
     dxTitle->setFontColor(graphicsNS::ORANGE);
     dxTitle->print("PlaceHolder Fantasy?", static_cast<int>(GAME_WIDTH / 2 - dxTitle->getWidth("PlaceHolder Fantasy?", dxTitle->getFont()) / 2), GAME_HEIGHT / 2 - 100);
+    // dxError.print(errorMsg, static_cast<int>(GAME_WIDTH / 2 - dxTitle->getWidth("PlaceHolder Fantasy?", dxTitle->getFont()) / 2), GAME_HEIGHT / 2 - 200);
     dxMenuText->setFontColor(graphicsNS::BLACK);
     for(auto option: menuList) 
     {
