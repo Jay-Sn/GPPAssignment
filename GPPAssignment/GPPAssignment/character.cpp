@@ -1,3 +1,14 @@
+//===============================================================================================
+//	Module		: Game Programming
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is the Character Object cpp that is used to initialize Character objects
+//				  and will be referenced to get data about the current character. This includes
+//				  and animations and movement
+//===============================================================================================
+
+
 #include "character.h"
 
 Character::Character(): charaSprite() {

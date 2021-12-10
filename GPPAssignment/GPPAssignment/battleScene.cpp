@@ -1,8 +1,12 @@
 //===============================================================================================
-//	Author:			Jason Teo Jun Hao
-//	Student ID:		S10194978B
-//	Description:	This is the battle scene that is accessed by encountering an enemy in the
-//					overworld.
+//	Module		: Game Programming
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is the battle scene that is accessed by encountering an enemy in the
+//				  overworld. The character list is passed through from the overworld and is
+//				  determined by the group of enemies a npc represents and vice versa for the
+//				  player character
 //===============================================================================================
 
 #include <time.h>

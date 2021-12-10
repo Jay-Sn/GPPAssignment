@@ -1,3 +1,14 @@
+//===============================================================================================
+//	Module		: Game Programming
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is the battle UI cpp file that will be used for processing the math for
+//				  the placement of the different UI elements that will be used in the Battle Scene
+//				  such as HealthBar and selection Objections. The code is supposed to be able to
+//				  support up to 4 character each side and will scale and postition accordingly.
+//===============================================================================================
+
 #include "battleUI.h"
 
 BattleUI::BattleUI() 

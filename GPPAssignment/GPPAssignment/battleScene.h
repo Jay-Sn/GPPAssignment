@@ -1,3 +1,14 @@
+//===========================================================================================
+//	Module		: Game Programming
+//	Assignment	: Placeholder Fantasy?	
+//	Name		: Jason Teo Jun Hao
+//	S/N			: S10194978
+//	Description	: This header file is for the scene that will be handling the battle
+//				  in the game. Here is supposed to make use of the BattleUI and
+//				  CharacterBattleManager to deal with battle state / Menu selections
+//				  and Displaying of any Images.
+//===========================================================================================
+
 #ifndef _PFANTASY_H
 #define _PFANTASY_H
 #define WIN32_LEAN_AND_MEAN
