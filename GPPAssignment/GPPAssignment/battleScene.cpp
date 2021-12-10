@@ -15,7 +15,6 @@
 //Constructor
 BattleScene::BattleScene(SceneManager* manager) {
 	dxManager = manager;
-	dxMenuText = new TextDX();
 
 	characterBM = CharacterBattleManager();
 
@@ -42,6 +41,14 @@ void BattleScene::initialize()
 
 	//Assign the totalCharacterScenes to the BattleScene CharacterList
 	characterList = dxManager->getCharacterList();
+
+	//Initializing Floor
+	if (!placeholderRectTexture.initialize(dxManager->getGraphics(), PLACEHOLDERRECT))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Place holder rect"));
+	if (!floor.initialize(dxManager->getGraphics(), 0,GAME_HEIGHT/2,0,&placeholderRectTexture))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize floor"));
+	if (!sky.initialize(dxManager->getGraphics(), 0,GAME_HEIGHT/2,0,&placeholderRectTexture))throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize floor"));
+	
+	
+	floor.setY(GAME_HEIGHT/2);
 
 	//Initialize the BattleUI
 	battleUI.initialize(dxManager, characterList);
@@ -73,6 +80,10 @@ void BattleScene::collisions() {}
 void BattleScene::render() {
 	dxManager->getGraphics()->spriteBegin();
 
+	sky.draw(graphicsNS::SKYBLUE);
+
+	floor.draw(graphicsNS::GREEN);
+
 	battleUI.draw();
 
 	characterBM.draw();
@@ -80,6 +91,7 @@ void BattleScene::render() {
 	dxManager->getGraphics()->spriteEnd();
 }
 
+//Check the selection string from BattleUI
 void BattleScene::checkSelectionChosen(std::string option)
 {
 	ifDefend = 1;
@@ -107,6 +119,7 @@ void BattleScene::checkSelectionChosen(std::string option)
 	}
 }
 
+//Turn system changes by checking for state of animation and game state for gameover.
 void BattleScene::turnSystem() {
 	if (!battleUI.isChecking())
 	{

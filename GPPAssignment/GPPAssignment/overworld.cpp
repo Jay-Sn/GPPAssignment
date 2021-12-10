@@ -74,7 +74,9 @@ void Overworld::ai()
 {
 
 }
-
+//======================================================================
+//				Collision to switch to BattleScene
+//======================================================================
 void Overworld::collisions()
 {
     VECTOR2 collisionVector;

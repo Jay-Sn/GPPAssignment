@@ -113,11 +113,14 @@ private:
 		healthBar8
 	};
 
+	// This is where the corresponding number of health bar will be stored in relation to the number of characters
 	std::map<string, Image> usedHealthBar;
 
+	// These will be set based on the number of characters in each team.
 	std::vector<float> enemyHpPosY;
 	std::vector<float> teamHpPosY;
 
+	// These are separated from listOfCharacterInPlay by their friendly tag bool
 	std::vector<Character> enemyTeam;
 	std::vector<Character> friendlyTeam;
 
